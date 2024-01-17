@@ -8,7 +8,7 @@ use App\Models\tariff;
 use App\Rules\Uppercase;
 use Illuminate\Http\Request;
 
-class Counter12Controller extends Controller
+class Counter123Controller extends Controller
 {
     public function index($id)
     {
