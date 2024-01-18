@@ -36,7 +36,7 @@ class Counter2Controller extends Controller
 
 
         $value = $data['value'];
-        $data2 = $data['date'];
+        $date = $data['date'];
         $razn = $value - $lastValue;
 
 
@@ -50,8 +50,8 @@ class Counter2Controller extends Controller
             'amount' => $razn,
             'tariff' => $tariff,
             'sum' => $sum,
-            'date' => $data2,
-            'status' => 'ok',
+            'date' => $date,
+            'status' => 'неоплачен',
 
         ];
         Payment::create($data2);

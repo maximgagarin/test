@@ -69,7 +69,6 @@
                     <button type="submit" class="btn btn-primary mb-3">Добавить платёж</button>
                 </div>
             </form>
-
         </div>
         <div>
             <table class="table">
@@ -111,7 +110,6 @@
                     <th >статус</th>
                     <th >Оплачено</th>
                     <th >Осталось</th>
-
                     <th ></th>
                     <th ></th>
                 </tr>
@@ -153,14 +151,9 @@
                                     <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
                                     <button type="submit" class="btn btn-primary  btn-sm">Закрыть</button>
                                 </td>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
+                                <td>                                </td>
+                                <td>                                </td>
                                 <th>
-
                                 </th>
                             </form>
                     </tr>

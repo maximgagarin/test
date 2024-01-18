@@ -23,14 +23,14 @@
                 <tbody>
                 @foreach($all as $al)
                     <tr>
-                        <th> {{$al->number}}</th>
-                        <th> {{$al->address}}</th>
-                        <th> {{$al->telephone}}</th>
-                        <th> {{$al->name}}</th>
-                        <th> {{$al->square}}</th>
-                        <th> {{$al->balance}}</th>
-                        <th> {{$al->comment}}</th>
-                        <th> <a href="{{ route('dashboard', $al->id) }}">Перейти</a></th>
+                        <td> {{$al->number}}</td>
+                        <td> {{$al->address}}</td>
+                        <td> {{$al->telephone}}</td>
+                        <td> {{$al->name}}</td>
+                        <td> {{$al->square}}</td>
+                        <td> {{$al->balance}}</td>
+                        <td> {{$al->comment}}</td>
+                        <td> <a href="{{ route('dashboard', $al->id) }}">Перейти</a></td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -40,21 +40,7 @@
     <div class="row">
 
     </div>
-    <button class="button btn btn-danger" id="ajax">Ajax</button>
-    <table id="counters-table" class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Value</th>
-            <th>Date</th>
-            <th>Date</th>
-            <!-- Добавьте другие колонки по необходимости -->
-        </tr>
-        </thead>
-        <tbody>
 
-        </tbody>
-    </table>
 </div>
 
 

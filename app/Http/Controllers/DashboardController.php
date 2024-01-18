@@ -16,18 +16,19 @@ class DashboardController extends Controller
     public function index(Area $id)
 
     {
-        $payments = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'свет')->get();
+
         $paymentsChVznos = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'чвзнос')->get();
         $payments = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'свет')->get();
-        //$counters = Counter::where('areas_id', $id->id)->get();
-
-
 
         $sumPaidSvet =DB::table('payments')
             ->Join('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')
             ->where('payments.type', 'свет')
+            ->where('areas_id', $id->id)
+            ->where('status', 'неоплачен')
              ->sum('payment_movs.sum');
-        $sumAllSvet = Payment::where('areas_id', $id->id)->where('type', 'свет')->sum('sum');
+
+
+        $sumAllSvet = Payment::where('areas_id', $id->id)->where('type', 'свет')->where('status', 'неоплачен')->sum('sum');
         $sumLeft = $sumAllSvet - $sumPaidSvet;
 
 
