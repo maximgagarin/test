@@ -42,6 +42,7 @@ return $counts;
             'sum' => $sum,
             'date' => '',
             'status' => 'ok',
+            'status' => 'ok',
 
         ];
         Payment::create($data2);
@@ -50,10 +51,5 @@ return $counts;
         return redirect()->route('counter');
     }
 
-    public function delete(Counter $id )
-    {
-       $id->delete();
-        return redirect()->route('counter' );
 
-    }
 }
