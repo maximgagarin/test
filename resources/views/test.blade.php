@@ -68,6 +68,7 @@
 
                         <button type="submit" class="btn btn-primary">Save Record</button>
                         <button type="submit" class="btn btn-primary">Save Record</button>
+                        <button type="submit" class="btn btn-primary">Save Record</button>
                     </form>
                 </div>
             </div>
