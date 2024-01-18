@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\Counter;
 use App\Models\Payment;
 use App\Models\payment_mov;
+use App\Models\Prepay;
 use App\Rules\Uppercase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,10 @@ class DashboardController extends Controller
     public function index(Area $id)
 
     {
-
+        $Prepay=Prepay::sum('sum');
+        $totalPrepayPrihod = Prepay::where('saldo', 'приход')->sum('sum');
+        $totalPrepayRashod = Prepay::where('saldo', 'расход')->sum('sum');
+        $DifferencePrihodRashod = $totalPrepayPrihod - $totalPrepayRashod;
         $paymentsChVznos = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'чвзнос')->get();
         $payments = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'свет')->get();
 
@@ -32,7 +36,7 @@ class DashboardController extends Controller
         $sumLeft = $sumAllSvet - $sumPaidSvet;
 
 
-        return view('dashboard', compact('id',  'payments', 'sumAllSvet', 'sumPaidSvet', 'sumLeft'));
+        return view('dashboard', compact('id',  'payments', 'sumAllSvet', 'sumPaidSvet', 'sumLeft', 'Prepay', 'DifferencePrihodRashod'));
 
         // $payments = Payment::all()->where('areas_id', $id->id)->where('type', 'свет');
     }

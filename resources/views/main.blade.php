@@ -4,10 +4,15 @@
 <div class="container">
     <div class="row">
         <h3>Все участки</h3>
+
     </div>
     <div class="row">
         <div class="col-6">
-            <table class="table">
+            <form class="d-flex mt-3">
+                <input class="form-control me-2" type="search" placeholder="Найти участок" >
+                <button class="btn btn-outline-success" type="submit">Поиск</button>
+            </form>
+            <table class="table mt-3">
                 <thead>
                 <tr>
                     <th scope="col">номер</th>
@@ -16,7 +21,7 @@
                     <th scope="col">имя</th>
                     <th scope="col">площадь</th>
                     <th scope="col">аванс</th>
-                    <th scope="col">комент</th>
+
                     <th scope="col">кнопка</th>
                 </tr>
                 </thead>
@@ -29,7 +34,6 @@
                         <td> {{$al->name}}</td>
                         <td> {{$al->square}}</td>
                         <td> {{$al->balance}}</td>
-                        <td> {{$al->comment}}</td>
                         <td> <a href="{{ route('dashboard', $al->id) }}">Перейти</a></td>
                     </tr>
                 @endforeach

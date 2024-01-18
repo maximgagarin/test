@@ -30,6 +30,9 @@ Route::get('Payments', 'PaymentController@index')->name('payments');
 Route::post('Payments/{id}', 'PaymentController@store')->name('payments.store');
 Route::post('Payment/{id}', 'PaymentController@pay')->name('payments.pay');
 
+Route::post('Prepay/{id}', 'PrepayController@prepay')->name('prepay');
+
+
 Route::get('Tariff', 'TariffController@index')->name('tariff') ;
 Route::post('Tariff', 'TariffController@store')->name('tariff.store') ;
 

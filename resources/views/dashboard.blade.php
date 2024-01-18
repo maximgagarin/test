@@ -1,6 +1,27 @@
 @extends('layout')
 @section('content')
 
+        <div class="row mb-4">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Участок</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a href="#" class="nav-link" aria-current="page">Счетчик</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Тарифы</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Взносы</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Авансы</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Плаежи</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
 
 @if($errors->any())
     <div class="alert alert-danger">
@@ -14,7 +35,7 @@
 
 <div class="row mb-5">
     <div class="col-3 md-3">
-        <h4>Участки</h4>
+        <h4>Участкок</h4>
         <table class="table">
             <tr>
                 <td>Номер</td>
@@ -22,6 +43,7 @@
                 <td>Телефон</td>
                 <td>Площадь</td>
                 <td>Аванс</td>
+
             </tr>
             <tr>
                 <td>{{$id->number}}</td>
@@ -29,12 +51,22 @@
                 <td>{{$id->telephone}}</td>
                 <td>{{$id->square}}</td>
                 <td>{{$id->balance}}</td>
+
             </tr>
         </table>
     </div>
-    <dvi class="col-3">
+    <dvi class="col-2">
         <h4>Счетчик</h4>
         <div><a href="{{ route('counter2', $id->id) }}">Показания счетчика</a></div>
+    </dvi>
+    <dvi class="col-2">
+
+        <h4> аванс: {{$DifferencePrihodRashod}}</h4>
+        <form action="{{ route('prepay', $id->id) }}" method="POST">
+            @csrf
+            <input type="hidden" value="{{$DifferencePrihodRashod}}" name="value">
+            <button class="btn btn-primary" type="submit">Списать аванс на платежи</button>
+        </form>
     </dvi>
 </div>
 

@@ -6,46 +6,23 @@ use App\Models\Counter;
 use App\Models\Payment;
 use App\Models\payment_mov;
 use App\Models\Prepay;
+use App\Models\tariff;
 use App\Rules\Uppercase;
 use Illuminate\Http\Request;
 
-class PaymentController extends Controller
+class PrepayController extends Controller
 {
-    public function index()
-    {
-        $payments= Payment::all();
-        return view('payments', compact('payments'));
-   }
-
-    public function store($id)
+    public function prepay($id)
     {
 
-        $data = request()->validate([
-           // 'areas_id' => '',
-            'amount' => '',
-            'tariff' => '',
-            'sum' => '',
-        ]);
-
-        $data['areas_id'] = $id;
-        $data['type'] = 'свет';
-        $data['unit'] = 'квт';
-        $data['status'] = 'неоплачен';
-        $data['date'] = '2012-12-12';
-
-        Payment::create($data);
-
-        return redirect()->route('dashboard', compact('id'));
-    }
-
-    public function pay($id)
-    {
 
         $data = request()->validate([
             'value' => '',
         ]);
 
         $value= $data['value'];
+
+
 
 
         $TypePayment = 'свет';
@@ -80,6 +57,13 @@ class PaymentController extends Controller
                     'sum' => $remainingSumm,
                     'date' => now(),
                 ]);
+                Prepay::create([
+                        'sum' => $remainingSumm,
+                        'areas_id' =>$id,
+                        'date' => now(),
+                        'saldo' => 'расход'
+                    ]
+                );
                 Payment::where('id', $paymentId)->update(['status' => 'оплачен']);
                 continue;
             }
@@ -89,6 +73,13 @@ class PaymentController extends Controller
                     'sum' => $value,
                     'date' => now(), // Use Laravel's now() helper to get the current date and time
                 ]);
+                Prepay::create([
+                        'sum' => $value,
+                        'areas_id' =>$id,
+                        'date' => now(),
+                        'saldo' => 'расход'
+                    ]
+                );
                 $value = 0;
             }
         }
@@ -98,12 +89,16 @@ class PaymentController extends Controller
                 'sum' => $value,
                 'areas_id' =>$id,
                 'date' => now(),
-                'saldo' => 'приход'
+                'saldo' => 'остаток'
             ];
             Prepay::create($data);
 
 
         }
         return redirect()->route('dashboard', compact('id'));
+
+
     }
+
+
 }

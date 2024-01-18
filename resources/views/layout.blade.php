@@ -10,18 +10,15 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
-<header class="d-flex justify-content-center py-3">
-    <ul class="nav ">
+<header class="d-flex justify-content-center py-3  "  style="background-color: lightgray">
+    <ul class="nav">
         <li class="nav-item"><a href="{{route('main')}}" class="nav-link " aria-current="page">Все участки</a></li>
         <li class="nav-item"><a href="{{route('tariff')}}" class="nav-link">Тарифы</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Взносы</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Долги</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Статистика</a></li>
     </ul>
-    <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Найти участок" >
-        <button class="btn btn-outline-success" type="submit">Поиск</button>
-    </form>
+
 </header>
 <body>
 
