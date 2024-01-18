@@ -88,3 +88,36 @@
     <h1>Data from Table 2</h1>
     <!-- ... -->
 @endsection
+<script>
+    $('#ajax').click(function (){
+
+        $.ajax({
+            url: "Counter",
+
+            success: function (data) {
+                // Очищаем таблицу перед обновлением
+                $('#counters-table tbody').empty();
+
+                // Добавляем данные в таблицу
+                $.each(data, function (index, counter) {
+                    $('#counters-table tbody').append(
+                        '<tr>' +
+                        '<td>' + counter.id + '</td>' +
+                        '<td>' + counter.value + '</td>' +
+                        '<td>' + counter.date + '</td>' +
+                        '<td>' + '<button class="editStudentBtn btn btn-success btn-sm" value="'+counter.id+'" id="'+counter.id+'">123</button>' + '<td>'+
+                        '</tr>'
+                    );
+                });
+            }
+        });
+    });
+
+    $('#counters-table').on('click', '.editStudentBtn', function() {
+        // Получение id кнопки
+        var student_id = $(this).val();
+
+        // Показ id кнопки (вы можете использовать другой способ для отображения id)
+        alert('ID кнопки: ' +student_id);
+    });
+</script>
