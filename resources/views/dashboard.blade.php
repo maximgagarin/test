@@ -73,7 +73,29 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="row">
+
+
+
+        <div class="row" >
+            <div class="col-6 " >
+                <form class="row g-3" action="{{route('payments.store', $id->id)}}" method="POST" >
+                    @csrf
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="amount"  placeholder="количество квт">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="tariff"  placeholder="тариф">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="sum" placeholder="сумма">
+                    </div>
+
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3">Добавить платёж</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3">
             <form class="row g-3" action="{{route('payments.pay',$id->id)}}" method="POST" >
                 @csrf
                 <div class="col-auto">
@@ -83,24 +105,7 @@
                     <button type="submit" class="btn btn-primary mb-3">Оплатить свет</button>
                 </div>
             </form>
-        </div>
-        <div class="row">
-            <form class="row g-3" action="{{route('payments.store', $id->id)}}" method="POST" >
-                @csrf
-                <div class="col-auto">
-                    <input type="text" class="form-control" name="amount"  placeholder="количество квт">
-                </div>
-                <div class="col-auto">
-                    <input type="text" class="form-control" name="tariff"  placeholder="тариф">
-                </div>
-                <div class="col-auto">
-                    <input type="text" class="form-control" name="sum" placeholder="сумма">
-                </div>
-
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-3">Добавить платёж</button>
-                </div>
-            </form>
+            </div>
         </div>
         <div>
             <table class="table">
