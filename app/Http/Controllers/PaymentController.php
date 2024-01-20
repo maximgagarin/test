@@ -25,10 +25,11 @@ class PaymentController extends Controller
             'amount' => '',
             'tariff' => '',
             'sum' => '',
+            'type' => '',
         ]);
 
         $data['areas_id'] = $id;
-        $data['type'] = 'свет';
+       // $data['type'] = 'свет';
         $data['unit'] = 'квт';
         $data['status'] = 'неоплачен';
         $data['date'] = '2012-12-12';

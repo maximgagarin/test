@@ -42,16 +42,12 @@
                 <td>Адрес</td>
                 <td>Телефон</td>
                 <td>Площадь</td>
-
-
             </tr>
             <tr>
                 <td>{{$id->number}}</td>
                 <td>{{$id->address}}</td>
                 <td>{{$id->telephone}}</td>
                 <td>{{$id->square}}</td>
-
-
             </tr>
         </table>
     </div>
@@ -99,6 +95,9 @@
                                     </div>
                                     <div class="col-auto">
                                         <input type="text" class="form-control" name="sum" placeholder="сумма">
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="hidden" class="form-control" name="type" value="свет" placeholder="сумма">
                                     </div>
 
                                     <div class="col-auto">
@@ -221,10 +220,50 @@
                     }
                 </script>
 
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                <x-payment-table :type="'чвзнос'" :id="$id" />
 
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">321</div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                Начислено
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="accordion-body">
+                                <x-payment-table :type="'чвзнос'" :id="$id" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                Оплачено
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="accordion-body">
+                                <strong>Это тело аккордеона второго элемента.</strong> По умолчанию он скрыт, пока плагин свертывания не добавит соответствующие классы, которые мы используем для стилизации каждого элемента. Эти классы управляют общим внешним видом, а также отображением и скрытием с помощью переходов CSS. Вы можете изменить все это с помощью собственного CSS или переопределить наши переменные по умолчанию. Также стоит отметить, что практически любой HTML может быть помещен в <code>.accordion-body</code>, хотя переход ограничивает переполнение.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
         </div>
 
 @endsection

@@ -17,11 +17,12 @@ class DashboardController extends Controller
     public function index(Area $id)
 
     {
+
         $Prepay=Prepay::sum('sum');
         $totalPrepayPrihod = Prepay::where('saldo', 'приход')->sum('sum');
         $totalPrepayRashod = Prepay::where('saldo', 'расход')->sum('sum');
         $DifferencePrihodRashod = $totalPrepayPrihod - $totalPrepayRashod;
-        $paymentsChVznos = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'чвзнос')->get();
+       // $paymentsChVznos = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'чвзнос')->get();
         $payments = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'свет')->get();
 
         $sumPaidSvet =DB::table('payments')
@@ -38,7 +39,7 @@ class DashboardController extends Controller
 
         return view('dashboard', compact('id',  'payments', 'sumAllSvet', 'sumPaidSvet', 'sumLeft', 'Prepay', 'DifferencePrihodRashod'));
 
-        // $payments = Payment::all()->where('areas_id', $id->id)->where('type', 'свет');
+
     }
 
 
