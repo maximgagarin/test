@@ -35,14 +35,14 @@
 
 <div class="row mb-5">
     <div class="col-3 md-3">
-        <h4>Участок</h4>
+        <h4>Участкок</h4>
         <table class="table">
             <tr>
                 <td>Номер</td>
                 <td>Адрес</td>
                 <td>Телефон</td>
                 <td>Площадь</td>
-
+                <td>Аванс</td>
 
             </tr>
             <tr>
@@ -50,12 +50,12 @@
                 <td>{{$id->address}}</td>
                 <td>{{$id->telephone}}</td>
                 <td>{{$id->square}}</td>
-
+                <td>{{$id->balance}}</td>
 
             </tr>
         </table>
     </div>
-    <dvi class="col-3">
+    <dvi class="col-2">
         <h4>Счетчик</h4>
         <div><a href="{{ route('counter2', $id->id) }}">Показания счетчика</a></div>
     </dvi>
@@ -73,13 +73,13 @@
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Свет</button>
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Ч.взнос</button>
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Дороги</button>
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -87,6 +87,9 @@
 
                 <div class="row">
                     <div class="col-12">
+
+
+
                         <div class="row" >
                             <div class="col-6 " >
                                 <form class="row g-3" action="{{route('payments.store', $id->id)}}" method="POST" >
