@@ -14,6 +14,7 @@ class PrepayController extends Controller
 {
     public function prepay($id)
     {
+        $type = \request('type');
 
 
         $data = request()->validate([
@@ -25,10 +26,10 @@ class PrepayController extends Controller
 
 
 
-        $TypePayment = 'свет';
+
         $payments = Payment::select(['id', 'sum'])
             ->where('areas_id', $id)
-            ->where('type', 'свет')
+            ->where('type', $type)
             ->get();
 
         $allPaymentsPaid = 1;
@@ -36,7 +37,7 @@ class PrepayController extends Controller
         foreach ($payments as $payment) {
             $paymentId = $payment['id'];
             $paymentSumm = $payment['sum'];
-            $paidSum = Payment::withSum('payment_mov as sumpaid', 'sum')->where('type', 'свет')->where('id', $paymentId)->value('sumpaid');//сколько оплачено
+            $paidSum = Payment::withSum('payment_mov as sumpaid', 'sum')->where('type', $type)->where('id', $paymentId)->value('sumpaid');//сколько оплачено
 
 
             $remainingSumm = $paymentSumm - $paidSum; // Сколько осталось доплатить

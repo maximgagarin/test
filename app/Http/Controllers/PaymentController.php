@@ -41,6 +41,7 @@ class PaymentController extends Controller
 
     public function pay($id)
     {
+        $type = \request('type');
 
         $data = request()->validate([
             'value' => '',
@@ -52,7 +53,7 @@ class PaymentController extends Controller
         $TypePayment = 'свет';
         $payments = Payment::select(['id', 'sum'])
             ->where('areas_id', $id)
-            ->where('type', 'свет')
+            ->where('type', $type)
             ->get();
 
         $allPaymentsPaid = 1;
@@ -60,7 +61,7 @@ class PaymentController extends Controller
         foreach ($payments as $payment) {
             $paymentId = $payment['id'];
             $paymentSumm = $payment['sum'];
-            $paidSum = Payment::withSum('payment_mov as sumpaid', 'sum')->where('type', 'свет')->where('id', $paymentId)->value('sumpaid');//сколько оплачено
+            $paidSum = Payment::withSum('payment_mov as sumpaid', 'sum')->where('type', $type)->where('id', $paymentId)->value('sumpaid');//сколько оплачено
 
 
             $remainingSumm = $paymentSumm - $paidSum; // Сколько осталось доплатить
@@ -91,6 +92,7 @@ class PaymentController extends Controller
                     'date' => now(), // Use Laravel's now() helper to get the current date and time
                 ]);
                 $value = 0;
+
             }
         }
         if ($allPaymentsPaid ==0 && $value > 0) {
