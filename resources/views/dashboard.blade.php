@@ -127,7 +127,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <h5>Счетчик</h5>
                         <p>Последнее показание:  {{$lastValue}} </p>
 
