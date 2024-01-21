@@ -17,13 +17,13 @@ class DashboardController extends Controller
     public function index(Area $id)
 
     {
-
-
-        $totalPrepayPrihod = Prepay::where('saldo', 'приход')->sum('sum');
-        $totalPrepayRashod = Prepay::where('saldo', 'расход')->sum('sum');
-        $DifferencePrihodRashod = $totalPrepayPrihod - $totalPrepayRashod;
-       // $paymentsChVznos = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'чвзнос')->get();
         $payments = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'свет')->get();
+
+        $payments2 = Payment::join('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')
+            ->where('payments.areas_id', $id->id)
+            ->where('payment_movs.sum', '>' ,0)
+            ->select('payment_movs.payments_id', 'payment_movs.sum', 'payment_movs.date')
+            ->get();
 
         $sumPaidSvet =DB::table('payments')
             ->Join('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')
@@ -33,11 +33,17 @@ class DashboardController extends Controller
              ->sum('payment_movs.sum');
 
 
+        $totalPrepayPrihod = Prepay::where('saldo', 'приход')->sum('sum');
+        $totalPrepayRashod = Prepay::where('saldo', 'расход')->sum('sum');
+        $DifferencePrihodRashod = $totalPrepayPrihod - $totalPrepayRashod;
+
         $sumAllSvet = Payment::where('areas_id', $id->id)->where('type', 'свет')->where('status', 'неоплачен')->sum('sum');
         $sumLeft = $sumAllSvet - $sumPaidSvet;
 
+        $lastValue = Counter::where('areas_id', $id->id)->latest('id')->value('value');
 
-        return view('dashboard', compact('id',  'payments', 'sumAllSvet', 'sumPaidSvet', 'sumLeft',  'DifferencePrihodRashod'));
+
+        return view('dashboard', compact('id',  'payments', 'payments2', 'sumAllSvet', 'sumPaidSvet', 'sumLeft', 'DifferencePrihodRashod', 'lastValue'));
 
 
     }

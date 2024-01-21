@@ -38,11 +38,13 @@
             <div class="mb-3">
                 <input type="number" class="form-control" name="areas_id" value="{{$id}}">
             </div>
-
             <button type="submit" class="btn btn-primary">Отправить</button>
         </form>
     </div>
     <div class="col-3 p-3">
+        @if (empty($lastValue))
+            нет показаний
+        @else
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -59,11 +61,11 @@
                     <td> {{$count->date}}</td>
                     <td> <button class="btn btn-primary btn-sm">Редактировать</button></td>
                     <td> <button class="btn btn-danger btn-sm">Удалить</button></td>
-                        </form>
                 </tr>
             @endforeach
             </tbody>
         </table>
+        @endif
     </div>
 </div>
 

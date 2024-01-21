@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'MainController@index')->name('main');
+//Route::get('/search', 'MainController@search')->name('main.search');
 
 
 

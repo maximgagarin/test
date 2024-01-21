@@ -12,11 +12,21 @@ class MainController extends Controller
 {
     public function index()
     {
-        //$last = Counter::latest('id')->value('value');
 
-        $all = Area::all();
-        return view('main', compact('all'));
+        $data = request();
+        $value = $data['value'];
+        $query = Area::query();
+        if(isset($data['value'])) {
+            $query->where('name', 'like', "%{$data['value']}%");
+            $areas = $query->get();
+        }
+        else{
+            $areas = Area::all();
+        }
+        return view('main', compact('areas', 'value'));
     }
+
+
 
 
 }

@@ -4,15 +4,17 @@
 <div class="container">
     <div class="row">
         <h3>Все участки</h3>
+        <a href="">Добавить участок</a>
 
     </div>
     <div class="row">
         <div class="col-6">
-            <form class="d-flex mt-3">
-                <input class="form-control me-2" type="search" placeholder="Найти участок" >
+            <form action="{{route('main')}}"   class="d-flex mt-3">
+                <input class="form-control me-2" type="search" name="value" placeholder="Найти участок" >
                 <button class="btn btn-outline-success" type="submit">Поиск</button>
             </form>
             <table class="table mt-3">
+                {{$value}}
                 <thead>
                 <tr>
                     <th scope="col">номер</th>
@@ -26,7 +28,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($all as $al)
+                @foreach($areas as $al)
                     <tr>
                         <td> {{$al->number}}</td>
                         <td> {{$al->address}}</td>

@@ -12,18 +12,14 @@ class Counter2Controller extends Controller
 {
     public function index($id)
     {
+        $lastValue = Counter::where('areas_id', $id)->latest('id')->value('value');
         $tariffs = tariff::query()->select('value')->get();
         $counts = Counter::where('areas_id', $id)->get();
-       // $counts2 = Counter::where('areas_id', $id)->get()->first();
-        //$id = $counts2->areas_id;
-
-
-        return view('counter2', compact('counts', 'id', 'tariffs'));
+        return view('counter2', compact('counts', 'id', 'tariffs', 'lastValue'));
    }
 
     public function store()
     {
-
         $id = request('areas_id');
         $tariff = request('select');
         $lastValue = Counter::where('areas_id', $id)->latest('id')->value('value');
@@ -34,27 +30,28 @@ class Counter2Controller extends Controller
         ]);
         Counter::create($data);
 
-
-        $value = $data['value'];
-        $date = $data['date'];
-        $razn = $value - $lastValue;
-
-
-        $sum = $razn*$tariff;
+        if (!empty($lastValue)) {
+            $value = $data['value'];
+            $date = $data['date'];
+            $razn = $value - $lastValue;
 
 
-        $data2 = [
-            'areas_id' => $id,
-            'type' => 'свет',
-            'unit' => 'квт',
-            'amount' => $razn,
-            'tariff' => $tariff,
-            'sum' => $sum,
-            'date' => $date,
-            'status' => 'неоплачен',
+            $sum = $razn * $tariff;
 
-        ];
-        Payment::create($data2);
+
+            $data2 = [
+                'areas_id' => $id,
+                'type' => 'свет',
+                'unit' => 'квт',
+                'amount' => $razn,
+                'tariff' => $tariff,
+                'sum' => $sum,
+                'date' => $date,
+                'status' => 'неоплачен',
+
+            ];
+            Payment::create($data2);
+        }
 
         return redirect()->route('dashboard',['id' => $id]);
     }
