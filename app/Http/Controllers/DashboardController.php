@@ -31,16 +31,21 @@ class DashboardController extends Controller
             ->where('areas_id', $id->id)
             ->where('status', 'неоплачен')
              ->sum('payment_movs.sum');
+        $sumAllSvet = Payment::where('areas_id', $id->id)->where('type', 'свет')->where('status', 'неоплачен')->sum('sum');
+        $sumLeft = $sumAllSvet - $sumPaidSvet;
 
 
         $totalPrepayPrihod = Prepay::where('saldo', 'приход')->sum('sum');
         $totalPrepayRashod = Prepay::where('saldo', 'расход')->sum('sum');
         $DifferencePrihodRashod = $totalPrepayPrihod - $totalPrepayRashod;
 
-        $sumAllSvet = Payment::where('areas_id', $id->id)->where('type', 'свет')->where('status', 'неоплачен')->sum('sum');
-        $sumLeft = $sumAllSvet - $sumPaidSvet;
+
 
         $lastValue = Counter::where('areas_id', $id->id)->latest('id')->value('value');
+
+
+
+
 
 
         return view('dashboard', compact('id',  'payments', 'payments2', 'sumAllSvet', 'sumPaidSvet', 'sumLeft', 'DifferencePrihodRashod', 'lastValue'));

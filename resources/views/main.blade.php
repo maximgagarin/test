@@ -1,18 +1,21 @@
-
 @extends('layout')
 @section('content')
-<div class="container">
-    <div class="row">
-        <h3>Все участки</h3>
-        <a href="">Добавить участок</a>
+    <div class="container">
+        <div class="row">
+            <h3>Все участки</h3>
+            <a href="">Добавить участок</a>
+            <div class="col-3">
+                <form action="{{route('main')}}" class="d-flex mt-3">
+                    <input class="form-control me-2" type="search" name="value" placeholder="Найти участок">
+                    <button class="btn btn-outline-success" type="submit">Поиск</button>
+                </form>
+            </div>
+            <div class="col-3">
 
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <form action="{{route('main')}}"   class="d-flex mt-3">
-                <input class="form-control me-2" type="search" name="value" placeholder="Найти участок" >
-                <button class="btn btn-outline-success" type="submit">Поиск</button>
-            </form>
+            </div>
+        </div>
+
+        <div class="row">
             <table class="table mt-3">
                 {{$value}}
                 <thead>
@@ -23,8 +26,7 @@
                     <th scope="col">имя</th>
                     <th scope="col">площадь</th>
                     <th scope="col">аванс</th>
-
-                    <th scope="col">кнопка</th>
+                    <th scope="col">перейти</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,21 +38,14 @@
                         <td> {{$al->name}}</td>
                         <td> {{$al->square}}</td>
                         <td> {{$al->balance}}</td>
-                        <td> <a href="{{ route('dashboard', $al->id) }}">Перейти</a></td>
+                        <td><a href="{{ route('dashboard', $al->id) }}">Перейти</a></td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="row">
 
     </div>
-
-</div>
-
-
-
 
 @endsection
 
