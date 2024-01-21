@@ -37,7 +37,7 @@ class MainController extends Controller
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments
-                WHERE payments.areas_id = areas.id
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
             ) AS total_payments_sum,
             (
                 SELECT COALESCE(SUM(payment_movs.sum), 0)
