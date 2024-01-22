@@ -18,10 +18,10 @@ class TariffController extends Controller
 
     public function store()
     {
-        $data = request()->validate([
-            'value' =>'',
-        ]);
-        tariff::create($data);
+//        $data = request()->validate([
+//            'value' =>'',
+//        ]);
+//        tariff::create($data);
         return redirect()->route('tariff');
     }
 }

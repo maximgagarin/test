@@ -18,6 +18,8 @@ class DashboardController extends Controller
     public function index(Area $id)
 
     {
+
+
         $payments = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'свет')->get();
 
         $payments2 = Payment::join('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')

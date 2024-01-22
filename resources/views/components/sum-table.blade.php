@@ -14,7 +14,6 @@
             <th class="text-danger"> </th>
             <th class="text-danger"> </th>
             <th class="text-danger"></th>
-
         </tr>
         </tbody>
     </table>

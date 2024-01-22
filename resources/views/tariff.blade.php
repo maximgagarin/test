@@ -2,48 +2,56 @@
 @extends('layout')
 @section('content')
 
-@if($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+
+            <form  action="{{route('tariff.store')}}" method="POST">
+                @csrf
+                <div class="mb-3">
+
+                    <input type="text" class="form-control" name="value" placeholder="введите значение">
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
+            </form>
+
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+
+            <form  action="{{route('tariff.store')}}" method="POST">
+                @csrf
+                <div class="mb-3">
+
+                    <input type="text" class="form-control" name="value" placeholder="введите значение">
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
+            </form>
+
+        </div>
+
+
     </div>
-@endif
+<script>
+    $(document).ready(function() {
+    // При клике на вкладку
+    $(".nav-link").click(function() {
+    var activeTabId = $(this).attr('data-bs-target'); // Получаем идентификатор новой активной вкладки
 
-<div class="row mb-3"> <h3>Тарифы на свет</h3></div>
+    // Сохраняем активную вкладку в localStorage
+    localStorage.setItem("activeTab", activeTabId);
+    });
 
-<div class="row">
-    <div class="col-2">
-        <form  action="{{route('tariff.store')}}" method="POST">
-            @csrf
-            <div class="mb-3">
+    // После перезагрузки страницы
+    var activeTabId = localStorage.getItem("activeTab"); // Получаем сохраненную активную вкладку из localStorage
 
-                <input type="text" class="form-control" name="value" placeholder="введите значение">
-            </div>
-            <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
-        </form>
-    </div>
-    <div class="col-3">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col">тариф</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($counts as $count)
-                <tr>
-                    <td> {{$count->value}}</td>
-                    <td> <button class="btn btn-danger btn-sm">Удалить</button></td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
+    if (activeTabId) {
+    $(activeTabId).tab("show"); // Показываем сохраненную активную вкладку
+    }
+    });
+</script>
 @endsection
