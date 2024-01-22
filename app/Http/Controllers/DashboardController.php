@@ -7,6 +7,7 @@ use App\Models\Counter;
 use App\Models\Payment;
 use App\Models\payment_mov;
 use App\Models\Prepay;
+use App\Models\tariff;
 use App\Rules\Uppercase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,14 +42,15 @@ class DashboardController extends Controller
 
 
 
-        $lastValue = Counter::where('areas_id', $id->id)->latest('id')->value('value');
+        $lastValue = Counter::where('areas_id', $id->id)->latest('id')->value('value'); //послед показ счетчика
+        $tariffs = tariff::query()->select('value')->get();
+
+        $AreaBalance = Area::where('id', $id->id )->value('balance');
 
 
 
 
-
-
-        return view('dashboard', compact('id',  'payments', 'payments2', 'sumAllSvet', 'sumPaidSvet', 'sumLeft', 'DifferencePrihodRashod', 'lastValue'));
+        return view('dashboard', compact('id' ,'AreaBalance', 'payments',  'tariffs' , 'payments2', 'sumAllSvet', 'sumPaidSvet', 'sumLeft', 'DifferencePrihodRashod', 'lastValue'));
 
 
     }

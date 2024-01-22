@@ -50,7 +50,6 @@ class PaymentController extends Controller
         $value= $data['value'];
 
 
-
         $TypePayment = 'свет';
         $payments = Payment::select(['id', 'sum'])
             ->where('areas_id', $id)
@@ -66,8 +65,6 @@ class PaymentController extends Controller
 
 
             $remainingSumm = $paymentSumm - $paidSum; // Сколько осталось доплатить
-
-
 
             if ($remainingSumm == 0) {
                 $allPaymentsPaid = 0;
@@ -86,6 +83,7 @@ class PaymentController extends Controller
                     'date' => now(),
                 ]);
                 Payment::where('id', $paymentId)->update(['status' => 'оплачен']);
+                $allPaymentsPaid = 0;
                 continue;
             }
             else{

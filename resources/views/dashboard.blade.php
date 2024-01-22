@@ -127,11 +127,48 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-3">
-                        <h5>Счетчик</h5>
-                        <p>Последнее показание:  {{$lastValue}} </p>
-
-                        <div><a href="{{ route('counter2', $id->id) }}">Добавить</a></div>
+                    <div class="col-2">
+                        <h6>Счетчик</h6>
+                        <div><a href="{{ route('counter2', $id->id) }}">История показаний</a></div>
+                        @if (empty($lastValue))
+                            нет показаний
+                            <form  action="{{ route('store2') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" name="value" placeholder="показание">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="date" class="form-control" name="date">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
+                                </div>
+                                <button type="submit" class="btn btn-outline-primary btn-sm">Отправить</button>
+                            </form>
+                        @else
+                            <h6>Последнее показание: {{$lastValue}}</h6>
+                            <form  action="{{ route('store2') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" name="value" placeholder="показание">
+                                </div>
+                                <div class="mb-3">
+                                    <select name="select" class="form-select" aria-label="Default select example">
+                                        <option selected>Выберите тариф</option>
+                                        @foreach($tariffs as $tariff)
+                                            <option value="{{ $tariff->value }}">{{ $tariff->value }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="date" class="form-control" name="date">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
+                                </div>
+                                <button type="submit" class="btn btn-outline-primary btn-sm">Отправить</button>
+                            </form>
+                        @endif
                     </div>
                     <div class="col-2">
                         <h5> Аванс: {{$DifferencePrihodRashod}}</h5>
@@ -148,24 +185,18 @@
                         <thead>
                         <tr>
                             <th>вид</th>
-                            <th>ед.изм</th>
-                            <th>количество</th>
                             <th>начислено</th>
                             <th>оплачено</th>
                             <th>долг</th>
-                            <th>статус</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <th class="text-danger">ОБЩЕЕ СВЕТ</th>
-                            <th></th>
-                            <th></th>
                             <th class="text-danger">{{$sumAllSvet}} </th>
                             <th class="text-danger">{{$sumPaidSvet}} </th>
                             <th class="text-danger">{{$sumLeft}} </th>
-                            <th></th>
-                            <th></th>
+
                         </tr>
                         </tbody>
                     </table>
@@ -272,13 +303,15 @@
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <div class="row p-3">
-            <form class="row g-3" action="{{route('payments.store', $id->id)}}" method="POST">
+            <div class="row">
+                <div class="col-2">
+              <form  action="{{route('payments.store', $id->id)}}" method="POST">
                 @csrf
                 <div class="col-auto">
                     <input type="text" class="form-control" name="amount" value="{{$id->square}}">
                 </div>
                 <div class="col-auto">
-                    <input type="text" class="form-control" name="tariff" placeholder="тариф">
+                    <input type="text" class="form-control" name="tariff" placeholder="цена за сотку">
                 </div>
                 <div class="col-auto">
                     <input type="text" class="form-control" name="sum" placeholder="сумма">
@@ -288,10 +321,12 @@
                 </div>
 
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-3">Добавить платёж</button>
+                    <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж</button>
                 </div>
             </form>
-            <form class="row g-3" action="{{route('payments.pay',$id->id)}}" method="POST">
+                </div>
+                <div class="col-2">
+              <form  action="{{route('payments.pay',$id->id)}}" method="POST">
                 @csrf
                 <div class="col-auto">
                     <input type="text" class="form-control" name="value" placeholder="введите сумму">
@@ -300,9 +335,12 @@
                     <input type="hidden" class="form-control" name="type" value="чвзнос">
                 </div>
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-3">Оплатить чвзнос</button>
+                    <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Оплатить чвзнос</button>
                 </div>
             </form>
+                </div>
+            </div>
+            <x-sum-table />
             <x-payment-table :type="'чвзнос'" :id="$id"/>
         </div>
     </div>

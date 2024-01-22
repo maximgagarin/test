@@ -45,5 +45,5 @@
     </div>
 </div>
 
-<x-payment-table :type="'чвзнос'" :id="1" />
+
 @endsection
