@@ -40,6 +40,10 @@ Route::post('Prepay/{id}', 'PrepayController@prepay')->name('prepay');
 Route::get('Tariff', 'TariffController@index')->name('tariff') ;
 Route::post('Tariff', 'TariffController@store')->name('tariff.store') ;
 
+Route::get('Debts', 'DebtsController@index')->name('debts') ;
+Route::post('Debts2', 'DebtsController@index2')->name('debts2') ;
+
+
 
 //Route::get('Counter', 'CounterController@index')->name('jquery') ;
 

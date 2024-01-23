@@ -15,7 +15,7 @@
         <li class="nav-item"><a href="{{route('main')}}" class="nav-link " aria-current="page">Все участки</a></li>
         <li class="nav-item"><a href="{{route('tariff')}}" class="nav-link">Тарифы</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Взносы</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Долги</a></li>
+        <li class="nav-item"><a href="{{route('debts')}}" class="nav-link">Долги</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Статистика</a></li>
     </ul>
 

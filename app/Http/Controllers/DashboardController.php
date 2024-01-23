@@ -40,7 +40,7 @@ class DashboardController extends Controller
 
         $totalPrepayPrihod = Prepay::where('saldo', 'приход')->where('areas_id', $id->id)->sum('sum');
         $totalPrepayRashod = Prepay::where('saldo', 'расход')->where('areas_id', $id->id)->sum('sum');
-        $DifferencePrihodRashod = $totalPrepayPrihod - $totalPrepayRashod;
+        $D = $totalPrepayPrihod - $totalPrepayRashod;
 
 
 
@@ -52,7 +52,7 @@ class DashboardController extends Controller
 
 
 
-        return view('dashboard', compact('id' ,'AreaBalance', 'payments',  'tariffs' , 'payments2', 'sumAllSvet', 'sumPaidSvet', 'sumLeft', 'DifferencePrihodRashod', 'lastValue'));
+        return view('dashboard', compact('id' ,'AreaBalance', 'payments',  'tariffs' , 'payments2', 'sumAllSvet', 'sumPaidSvet', 'sumLeft', 'D', 'lastValue'));
 
 
     }
