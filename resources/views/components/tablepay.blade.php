@@ -1,4 +1,4 @@
-<div>
+<div class="col-3">
     <table class="table">
         <thead>
         <tr>

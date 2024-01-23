@@ -25,7 +25,7 @@
         </div>
         <div class="col-2">
             <x-formdebts :button="$button = 'камеры'">
-                камеры
+                видеокамеры
             </x-formdebts>
         </div>
 

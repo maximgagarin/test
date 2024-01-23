@@ -34,26 +34,7 @@
             </table>
         </div>
         <div class="col-4">
-            <table class="table table-bordered ">
-                <tr>
-                    <td colspan="5"><h6>Задолженность</h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Свет</td>
-                    <td>Ч взнос</td>
-                    <td>Дороги</td>
-                    <td>Камера</td>
-                    <td>Мусор</td>
-                </tr>
-                <tr>
-                    <td>{{$sumLeft}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
+          <x-tablealldebts :id="$id"/>
         </div>
         <div class="col-2">
             <h7>Комментарий</h7>
@@ -293,7 +274,7 @@
                         </form>
                     </div>
                     <div class="col-2">
-                        <x-formpaypayment :id="$id" :type="$type='видеокамеры'" :button="$button='оплатить в.камеры взнос'"/>
+                        <x-formpaypayment :id="$id" :type="$type='видеокамеры'" :button="$button='оплатить камеры взнос'"/>
                     </div>
                 </div>
                 <div class="row">
