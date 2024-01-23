@@ -110,4 +110,30 @@ class PaymentController extends Controller
         }
         return redirect()->route('dashboard', compact('id'));
     }
+
+    public function update()
+    {
+
+        $data = request()->validate([
+            'amount' => '',
+            'tariff' => '',
+            'sum' => '',
+            'type' => '',
+            'id' => '',
+        ]);
+
+        $payment = Payment::find($data['id']);
+
+        $payment->update([
+            'amount' => $data['amount'],
+            'tariff' => $data['tariff'],
+            'sum' => $data['sum'],
+            'type' => $data['type'],
+            // Другие поля, которые вы хотите обновить
+        ]);
+
+        return redirect()->back()->with('success', 'Payment updated successfully');
+
+
+    }
 }

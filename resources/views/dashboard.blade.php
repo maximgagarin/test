@@ -218,9 +218,7 @@
                             <td> {{$payment->payments_id}}</td>
                             <td> {{$payment->sum}}</td>
                             <td> {{$payment->date}}</td>
-
                         </tr>
-
                     @endforeach
                     </tbody>
                 </table>
@@ -229,13 +227,7 @@
         </div>
 
 
-        <script>
-            function showEditForm(paymentId) {
 
-                // Show the clicked edit form
-                document.getElementById(`editForm${paymentId}`).style.display = 'table-row';
-            }
-        </script>
 
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -304,5 +296,12 @@
         });
     });
 </script>
+<script>
+    function showEditForm(paymentId) {
 
+        // Show the clicked edit form
+        $(`#editForm${paymentId}`).css('display', 'table-row');
+        $(`#editForm2${paymentId}`).css('display', 'none');
+    }
+</script>
 @endsection

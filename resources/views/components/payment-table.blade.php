@@ -16,7 +16,7 @@
     </thead>
     <tbody>
     @foreach($payments as $payment)
-        <tr>
+        <tr id="editForm2{{$payment->id}}">
             <td> {{$payment->id}}</td>
             <td> {{$payment->type}}</td>
             <td> {{$payment->amount}}</td>
@@ -34,22 +34,30 @@
             </td>
         </tr>
         <tr id="editForm{{$payment->id}}" style="display: none; background-color: #f8f9fa;">
-            <form class=action="">
+            <form class= "myForm" action="{{route('payments.update')}}"  method="post" >
                 @csrf
-                @method('PATCH')
-                <td></td>
+
+                <td>{{$payment->id}}</td>
+                <td>{{$payment->type}}</td>
+
                 <td>
-                    <input type="text" class="form-control" name="init" placeholder="квт">
+                    <input type="text" class="form-control" name="amount" placeholder="квт" value="{{$payment->amount}}">
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="amount" placeholder="тариф">
+                    <input type="text" class="form-control" name="tariff" placeholder="тариф" value="{{$payment->tariff}}">
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="tariff" placeholder="сумма">
+                    <input type="text" class="form-control" name="sum" placeholder="сумма" value="{{$payment->sum}}">
+                </td>
+                <td>
+                    <input type="hidden" class="form-control" name="type" placeholder="сумма" value="{{$payment->type}}">
+                </td>
+                <td>
+                    <input type="hidden" class="form-control" name="id" placeholder="сумма" value="{{$payment->id}}">
                 </td>
                 <td>
                     <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
-                    <button type="submit" class="btn btn-primary  btn-sm">Закрыть</button>
+
                 </td>
                 <td></td>
                 <td></td>

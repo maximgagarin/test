@@ -32,6 +32,7 @@ Route::post('store2', 'Counter2Controller@store')->name('store2') ;
 Route::get('Payments', 'PaymentController@index')->name('payments');
 Route::post('Payments/{id}', 'PaymentController@store')->name('payments.store');
 Route::post('Payment/{id}', 'PaymentController@pay')->name('payments.pay');
+Route::post('Paymentupdate', 'PaymentController@update')->name('payments.update');
 
 Route::post('Prepay/{id}', 'PrepayController@prepay')->name('prepay');
 

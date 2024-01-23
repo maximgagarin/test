@@ -5,7 +5,7 @@
             <th>вид</th>
             <th>начислено</th>
             <th>оплачено</th>
-            <th>долг</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
