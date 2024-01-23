@@ -31,7 +31,7 @@ class DebtsController extends Controller
                 WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
             ) AS total_payment_movs_sum
         FROM
-            areas;
+            areas ORDER BY total_payments_sum DESC
     ";
 
 
@@ -61,7 +61,7 @@ class DebtsController extends Controller
                 WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
             ) AS total_payment_movs_sum
         FROM
-            areas;
+            areas ORDER BY total_payments_sum DESC
     ";
 
         $data = request();
@@ -86,7 +86,7 @@ class DebtsController extends Controller
                 WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type'
             ) AS total_payment_movs_sum
         FROM
-            areas;
+            areas ORDER BY total_payments_sum DESC
     ";
             $results = DB::select($query);
             return view('debts', compact('results'));

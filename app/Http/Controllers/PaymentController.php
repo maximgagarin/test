@@ -32,7 +32,7 @@ class PaymentController extends Controller
        // $data['type'] = 'свет';
         $data['unit'] = 'квт';
         $data['status'] = 'неоплачен';
-        $data['date'] = '2012-12-12';
+        $data['date'] = now();
 
         Payment::create($data);
 

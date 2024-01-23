@@ -52,7 +52,7 @@ class DashboardController extends Controller
 
 
 
-        return view('dashboard', compact('id' ,'AreaBalance', 'payments',  'tariffs' , 'payments2', 'sumAllSvet', 'sumPaidSvet', 'sumLeft', 'D', 'lastValue'));
+        return view('dashboard', compact('id' ,'AreaBalance', 'payments',  'tariffs' , 'payments2', 'sumLeft', 'D', 'lastValue'));
 
 
     }
