@@ -22,7 +22,7 @@ class CreatePaymentsTable extends Migration
             $table->decimal('amount',  $precision = 10, $scale = 4);
             $table->decimal('tariff',  $precision = 10, $scale = 4);
             $table->decimal('sum',  $precision = 10, $scale = 4);
-            $table->timestamp('date');
+            $table->timestamp('date')->default(now());
             $table->string('status');
 
         });

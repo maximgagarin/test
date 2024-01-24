@@ -18,7 +18,7 @@ class CreatePrepaysTable extends Migration
             $table->timestamps();
             $table->decimal('sum',  $precision = 10, $scale = 4);
             $table->integer('areas_id');
-            $table->timestamp('date');
+            $table->timestamp('date')->default(now());
             $table->string('saldo');
         });
     }

@@ -18,7 +18,7 @@ class CreatePaymentMovsTable extends Migration
             $table->timestamps();
             $table->foreignId('payments_id')->constrained('payments');
             $table->decimal('sum',  $precision = 10, $scale = 4);
-            $table->timestamp('date');
+            $table->timestamp('date')->default(now());
         });
     }
 
