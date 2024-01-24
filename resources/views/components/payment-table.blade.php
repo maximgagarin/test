@@ -20,12 +20,12 @@
             <td> {{$payment->id}}</td>
             <td> {{$payment->type}}</td>
             <td> {{$payment->amount}}</td>
-            <td> {{$payment->tariff}}</td>
-            <td> {{$payment->sum}}</td>
+            <td> {{$payment->tariff}}р.</td>
+            <td> {{$payment->sum}}р.</td>
             <td> {{$payment->date}}</td>
             <td> {{$payment->status}}</td>
             <td> {{$payment->sumpaid}}</td>
-            <td>{{$payment->sum - $payment->sumpaid}}</td>
+            <td>{{$payment->sum - $payment->sumpaid}}р.</td>
             <td>
                 <button class="btn btn-primary btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
             </td>
@@ -57,6 +57,7 @@
                 </td>
                 <td>
                     <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="Reload()">Закрыть</button>
 
                 </td>
                 <td></td>

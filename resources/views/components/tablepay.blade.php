@@ -11,7 +11,7 @@
         @foreach($payments2 as $payment)
             <tr>
                 <td> {{$payment->payments_id}}</td>
-                <td> {{$payment->sum}}</td>
+                <td> {{$payment->sum}}р.</td>
                 <td> {{$payment->date}}</td>
             </tr>
         @endforeach

@@ -9,7 +9,7 @@
                 <input type="number" class="form-control" name="value" placeholder="показание">
             </div>
             <div class="mb-3">
-                <input type="date" class="form-control" name="date">
+                <input type="date" class="form-control" name="date" value="{{ now()->format('Y-m-d') }}">
             </div>
             <div class="mb-3">
                 <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
@@ -18,6 +18,7 @@
         </form>
     @else
         <h6>Последнее показание: {{$lastValue}}</h6>
+        <h6> {{$lastValuedate}}</h6>
         <form class="myForm"  action="{{ route('store2') }}" method="POST">
             @csrf
             <div class="mb-3">

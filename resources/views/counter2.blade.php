@@ -26,7 +26,7 @@
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Тариф</label>
                 <select name="select" class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
+                    <option selected>Выберите тариф</option>
                     @foreach($tariffs as $tariff)
                         <option value="{{ $tariff->value }}">{{ $tariff->value }}</option>
                     @endforeach
@@ -36,7 +36,7 @@
                 <input type="date" class="form-control" name="date">
             </div>
             <div class="mb-3">
-                <input type="number" class="form-control" name="areas_id" value="{{$id}}">
+                <input type="hidden" class="form-control" name="areas_id" value="{{$id}}">
             </div>
             <button type="submit" class="btn btn-primary">Отправить</button>
         </form>

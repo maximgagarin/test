@@ -12,11 +12,12 @@
     @endif
 
     <div class="row mb-4">
-        <div class="col-3 md-3">
+        <div class="col-4 md-3">
 
             <table class="table table-bordered ">
                 <tr>
                     <td colspan="4"><h6>Участок</h6>
+                        <a href="{{route('areas.update', $id->id)}}">Редактировать участок</a>
                     </td>
                 </tr>
                 <tr>
@@ -32,16 +33,17 @@
                     <td>{{$id->square}}</td>
                 </tr>
             </table>
-        </div>
-        <div class="col-4">
-          <x-tablealldebts :id="$id"/>
+
         </div>
         <div class="col-2">
+          <x-tablealldebts :id="$id"/>
+        </div>
+        <div class="col-3">
             <h7>Комментарий</h7>
-            <form class="row g-3" action="{{route('payments.store', $id->id)}}" method="POST">
+            <form class="row g-3" action="{{route('areas.comment')}}" method="POST">
                 @csrf
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-
+                <input type="hidden" value="{{$id->id}}" name="id">
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="text"  rows="3">{{$comment}}</textarea>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-outline-primary btn-sm mb-2">Сохранить</button>
                 </div>
@@ -113,7 +115,7 @@
                             <x-formpaypayment :id="$id" :type="$type='свет'" :button="$button='оплатить свет'"/>
                         </div>
                         <div class="col-2">
-                            <x-counter :id="$id" :lastValue="$lastValue" :tariffs="$tariffs"/>
+                            <x-counter :id="$id" :lastValue="$lastValue"  :lastValuedate="$lastValuedate" :tariffs="$tariffs"/>
                         </div>
                     </div>
                         <div>
@@ -130,27 +132,28 @@
                     <div class="col-2">
                         <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
                             @csrf
-                            <div class="col-auto">
-                                <input type="text" class="form-control" name="amount" value="{{$id->square}}">
+                            <div class="mb-3">
+                                <label >Площадь</label>
+                                <input type="text" class="form-control" name="amount" id="amount" value="{{$id->square}}">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="tariff" id="tariff" placeholder="цена за сотку">
                             </div>
                             <div class="col-auto">
-                                <input type="text" class="form-control" name="tariff" placeholder="цена за сотку">
-                            </div>
-                            <div class="col-auto">
-                                <input type="text" class="form-control" name="sum" placeholder="сумма">
+                                <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
                             </div>
                             <div class="col-auto">
                                 <input type="hidden" class="form-control" name="type" value="чвзнос"
                                        placeholder="сумма">
                             </div>
 
-                            <div class="col-auto">
+                            <div class="mb-3">
                                 <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж
                                 </button>
                             </div>
                         </form>
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 p-4">
                         <x-formpaypayment :id="$id" :type="$type='чвзнос'" :button="$button='оплатить чвзнос'"/>
                     </div>
                 </div>
@@ -308,14 +311,30 @@
             var activeTab = $('.nav-link.active');
             localStorage.setItem('activeTab', activeTab.attr('id'));
         });
+
+        $('#tariff').on('input', function () {
+            // Получаем значения amount и tariff
+            var amount = parseFloat($('#amount').val()) || 0;
+            var tariff = parseFloat($(this).val()) || 0;
+
+            // Вычисляем сумму и устанавливаем в поле sum
+            var sum = amount * tariff;
+            $('#sum').val(sum.toFixed(2)); // Устанавливаем значение с округлением до двух знаков после запятой
+        });
     });
-</script>
-<script>
+
     function showEditForm(paymentId) {
 
         // Show the clicked edit form
         $(`#editForm${paymentId}`).css('display', 'table-row');
         $(`#editForm2${paymentId}`).css('display', 'none');
     }
+
+    function Reload() {
+        location.reload(true); // true означает, что браузер выполнит полное обновление страницы, включая кэш
+    }
+
+
 </script>
+
 @endsection

@@ -18,24 +18,7 @@ class DashboardController extends Controller
     public function index(Area $id)
 
     {
-
-
         $payments = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'свет')->get();
-
-        $payments2 = Payment::join('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')
-            ->where('payments.areas_id', $id->id)
-            ->where('payment_movs.sum', '>' ,0)
-            ->select('payment_movs.payments_id', 'payment_movs.sum', 'payment_movs.date')
-            ->get();
-
-        $sumPaidSvet =DB::table('payments')
-            ->Join('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')
-            ->where('payments.type', 'свет')
-            ->where('areas_id', $id->id)
-            ->where('status', 'неоплачен')
-             ->sum('payment_movs.sum');
-        $sumAllSvet = Payment::where('areas_id', $id->id)->where('type', 'свет')->where('status', 'неоплачен')->sum('sum');
-        $sumLeft = $sumAllSvet - $sumPaidSvet;
 
 
         $totalPrepayPrihod = Prepay::where('saldo', 'приход')->where('areas_id', $id->id)->sum('sum');
@@ -43,19 +26,15 @@ class DashboardController extends Controller
         $D = $totalPrepayPrihod - $totalPrepayRashod;
 
 
+        $comment = Area::where('id', $id->id)->value('comment');
+
 
         $lastValue = Counter::where('areas_id', $id->id)->latest('id')->value('value'); //послед показ счетчика
+        $lastValuedate = Counter::where('areas_id', $id->id)->latest('id')->value('date'); //послед показ счетчика
+
         $tariffs = tariff::query()->select('value')->get();
 
-        $AreaBalance = Area::where('id', $id->id )->value('balance');
 
-
-
-
-        return view('dashboard', compact('id' ,'AreaBalance', 'payments',  'tariffs' , 'payments2', 'sumLeft', 'D', 'lastValue'));
-
-
+        return view('dashboard', compact('id' , 'comment', 'payments',  'tariffs' , 'D', 'lastValue', 'lastValuedate'));
     }
-
-
 }

@@ -1,22 +1,28 @@
-<div>
+
     <table class="table table-bordered ">
         <tr>
-            <td colspan="5"><h6>Задолженность</h6>
-            </td>
+            <td colspan="2"><h6>Задолженность</h6></td>
+
         </tr>
         <tr>
             <td>Свет</td>
-            <td>Ч взнос</td>
-            <td>Дороги</td>
-            <td>Камера</td>
-            <td>Мусор</td>
+            <td>{{$svet}}р.</td>
         </tr>
         <tr>
-            <td>{{$svet}}</td>
-            <td>{{$chvznos}}</td>
-            <td>{{$road}}</td>
-            <td>{{$camera}}</td>
-            <td>{{$trash}}</td>
+            <td>Чвзнос</td>
+            <td>{{$chvznos}}р.</td>
+        </tr>
+        <tr>
+            <td>Дороги</td>
+            <td>{{$road}}р.</td>
+        </tr>
+        <tr>
+            <td>Камеры</td>
+            <td>{{$camera}}р.</td>
+        </tr>
+        <tr>
+            <td>Мусор</td>
+            <td>{{$trash}}р.</td>
         </tr>
     </table>
-</div>
+

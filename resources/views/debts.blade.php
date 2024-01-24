@@ -51,7 +51,7 @@
                     <td> {{$result->number}}</td>
                     <td> {{$result->total_payments_sum}}</td>
                     <td> {{$result->total_payment_movs_sum}}</td>
-                    <td> {{  $result->total_payments_sum - $result->total_payment_movs_sum}}</td>
+                    <td> {{  $result->total_payments_sum - $result->total_payment_movs_sum}}р.</td>
                     <td><a href="{{ route('dashboard', $result->id) }}">Перейти</a></td>
                 </tr>
             @endforeach

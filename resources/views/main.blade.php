@@ -25,7 +25,7 @@
                     <th scope="col">телефон</th>
                     <th scope="col">имя</th>
                     <th scope="col">площадь</th>
-                    <th scope="col">аванс</th>
+
                     <th scope="col">перейти</th>
                 </tr>
                 </thead>
@@ -37,7 +37,7 @@
                         <td> {{$al->telephone}}</td>
                         <td> {{$al->name}}</td>
                         <td> {{$al->square}}</td>
-                        <td> {{$al->balance}}</td>
+
                         <td><a href="{{ route('dashboard', $al->id) }}">Перейти</a></td>
                     </tr>
                 @endforeach

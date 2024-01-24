@@ -10,10 +10,10 @@
         </thead>
         <tbody>
         <tr>
-            <th class="text-danger">ОБЩЕЕ СВЕТ</th>
+            <th class="text-danger">ОБЩЕЕ ДОЛГ</th>
             <th class="text-danger"> </th>
             <th class="text-danger"> </th>
-            <th class="text-danger">{{$payments}} </th>
+            <th class="text-danger">{{$payments}} р.</th>
         </tr>
         </tbody>
     </table>

@@ -43,6 +43,11 @@ Route::post('Tariff', 'TariffController@store')->name('tariff.store') ;
 Route::get('Debts', 'DebtsController@index')->name('debts') ;
 Route::post('Debts2', 'DebtsController@index2')->name('debts2') ;
 
+Route::post('Areascomment', 'AreasController@comment')->name('areas.comment') ; //обновление комментария
+Route::get('Areasupdate/{id}', 'AreasController@update')->name('areas.update') ; //страница обновление участка
+Route::post('Areaupdate', 'AreasController@update2')->name('area.update') ; //обновление участка
+
+
 
 
 //Route::get('Counter', 'CounterController@index')->name('jquery') ;
