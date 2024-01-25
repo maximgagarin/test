@@ -15,7 +15,8 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row p-3">
+           <div> {{$areas->links()}} </div>
             <table class="table mt-3">
                 {{$value}}
                 <thead>
@@ -43,6 +44,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {{$areas->links()}}
         </div>
 
     </div>

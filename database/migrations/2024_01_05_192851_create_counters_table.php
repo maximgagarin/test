@@ -21,7 +21,7 @@ class CreateCountersTable extends Migration
 
             $table->integer('value');
 
-            $table->timestamp('date')->default(now());
+            $table->timestamp('date')->nullable();
         });
     }
 

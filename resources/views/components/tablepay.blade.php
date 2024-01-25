@@ -4,6 +4,7 @@
         <tr>
             <th>платёж</th>
             <th>сумма</th>
+            <th>тип</th>
             <th>дата</th>
         </tr>
         </thead>
@@ -12,7 +13,9 @@
             <tr>
                 <td> {{$payment->payments_id}}</td>
                 <td> {{$payment->sum}}р.</td>
+                <td> {{$payment->type}}</td>
                 <td> {{$payment->date}}</td>
+
             </tr>
         @endforeach
         </tbody>

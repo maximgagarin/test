@@ -33,7 +33,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <input type="date" class="form-control" name="date">
+                <input type="date" class="form-control" name="date" value="{{ now()->format('Y-m-d') }}" >
             </div>
             <div class="mb-3">
                 <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">

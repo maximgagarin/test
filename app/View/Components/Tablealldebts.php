@@ -14,6 +14,8 @@ class Tablealldebts extends Component
     public $camera;
     public $trash;
     public $id;
+    public $totalsum;
+
     public function __construct($id)
     {
         $this->id=$id;
@@ -67,8 +69,8 @@ class Tablealldebts extends Component
         $sumLeft5 = $sumAll5 - $sumPaid5;
         $this->trash=$sumLeft5;
 
-
-
+         $totalsum1 = $sumLeft5 + $sumLeft4 + $sumLeft3 + $sumLeft2 + $sumLeft;
+        $this->totalsum=$totalsum1;
 
     }
 

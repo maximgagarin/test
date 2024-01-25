@@ -16,13 +16,13 @@ class CreateAreasTable extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('number');
-            $table->string('address');
-            $table->string('telephone');
-            $table->string('name');
-            $table->decimal('square', $precision = 5, $scale = 2);
+            $table->string('number')->nullable();
+            $table->string('address')->nullable();
+            $table->string('telephone')->nullable();
+            $table->string('name')->nullable();
+            $table->decimal('square', $precision = 6, $scale = 2)->nullable();
             $table->decimal('balance', $precision = 10, $scale = 4);
-            $table->string('comment', 500);
+            $table->string('comment', 500)->nullable();
         });
     }
 

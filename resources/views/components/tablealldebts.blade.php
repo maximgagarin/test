@@ -1,7 +1,7 @@
 
     <table class="table table-bordered ">
         <tr>
-            <td colspan="2"><h6>Задолженность</h6></td>
+            <td colspan="2"><h6>Задолженность : {{$totalsum}}</h6></td>
 
         </tr>
         <tr>
@@ -24,5 +24,6 @@
             <td>Мусор</td>
             <td>{{$trash}}р.</td>
         </tr>
+
     </table>
 

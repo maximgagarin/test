@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Counter;
 use App\Models\Payment;
 use App\Models\tariff;
@@ -20,14 +21,27 @@ class Counter2Controller extends Controller
 
     public function store()
     {
+
         $id = request('areas_id');
-        $tariff = request('select');
-        $lastValue = Counter::where('areas_id', $id)->latest('id')->value('value');
+
+        $latestDate = Counter::where('areas_id', $id)->latest('date')->value('date');
+        $lastValue = Counter::where('areas_id', $id)->latest('date')->value('value');
         $data = request()->validate([
-            'value' => ['required','numeric', new Uppercase($id)],
-            'date' => '',
+            'value' => ['required','numeric', 'digits:5', new Uppercase($id)],
+            'date' => [
+                'required',
+                'date',
+                'after:' . $latestDate,
+            ],
             'areas_id' => '',
+            'select' => ['required', 'numeric'],
         ]);
+
+
+        $tariff = $data['select'];
+
+        unset($data['select']);
+
         Counter::create($data);
 
         if (!empty($lastValue)) {

@@ -14,16 +14,15 @@ class MainController extends Controller
     public function index()
     {
 
-        $data = request();
-        $value = $data['value'];
+        $value = request()->input('value');
         $query = Area::query();
-        if(isset($data['value'])) {
-            $query->where('name', 'like', "%{$data['value']}%");
-            $areas = $query->get();
+
+        if ($value) {
+            $query->where('name', 'like', "%{$value}%");
         }
-        else{
-            $areas = Area::all();
-        }
+
+        $areas = $query->paginate(350);
+
         return view('main', compact('areas', 'value'));
     }
 

@@ -12,26 +12,32 @@
     @endif
 
     <div class="row mb-4">
-        <div class="col-4 md-3">
+        <div class="col-3 md-3">
 
             <table class="table table-bordered ">
                 <tr>
-                    <td colspan="4"><h6>Участок</h6>
+                    <td colspan="2"><h6>Участок</h6>
                         <a href="{{route('areas.update', $id->id)}}">Редактировать участок</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Номер</td>
-                    <td>Адрес</td>
-                    <td>Телефон</td>
-                    <td>Площадь</td>
+                    <td>{{$id->number}}</td>
                 </tr>
                 <tr>
-                    <td>{{$id->number}}</td>
-                    <td>{{$id->address}}</td>
-                    <td>{{$id->telephone}}</td>
-                    <td>{{$id->square}}</td>
+                    <td>Адрес</td>
+                      <td>{{$id->address}}</td>
                 </tr>
+                <tr>
+                    <td>Телефон</td>
+                      <td>{{$id->telephone}}</td>
+                </tr>
+                <tr>
+                    <td>Площадь</td>
+                      <td>{{$id->square}}</td>
+
+                </tr>
+
             </table>
 
         </div>
