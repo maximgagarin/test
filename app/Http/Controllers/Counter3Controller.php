@@ -9,7 +9,7 @@ use App\Models\tariff;
 use App\Rules\Uppercase;
 use Illuminate\Http\Request;
 
-class Counter2Controller extends Controller
+class Counter3Controller extends Controller
 {
     public function index($id)
     {
@@ -28,8 +28,16 @@ class Counter2Controller extends Controller
         $lastValue = Counter::where('areas_id', $id)->latest('date')->value('value');
         $data = request()->validate([
             'value' => ['required', 'numeric', 'digits:5', new Uppercase($id)],
-            'date' => '',
-
+            'date' => [
+                'required_if:latestDate,null',  // Делаем 'date' обязательным, если $latestDate равен null
+                'date',
+                function ($attribute, $value, $fail) use ($latestDate) {
+                    if (!is_null($latestDate) && empty($value)) {
+                        $fail('The date field is required when latestDate is not null.');
+                    }
+                },
+                'after:' . $latestDate,
+            ],
             'areas_id' => '',
         ]);
         Counter::create($data);

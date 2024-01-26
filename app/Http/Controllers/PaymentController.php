@@ -136,4 +136,17 @@ class PaymentController extends Controller
 
 
     }
+    public function  destroy($id)
+    {
+
+        $payment = Payment::find($id);
+        if (Payment::has('payment_mov')->exists()) {
+            echo 'есть оплаты';
+        } else {
+            echo 'нет';
+        }
+        $payment->delete();
+       // return redirect()->back();
+        }
+
 }

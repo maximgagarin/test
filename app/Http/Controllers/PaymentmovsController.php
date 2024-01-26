@@ -31,7 +31,8 @@ class PaymentmovsController extends Controller
 
 
             // Удаляем запись из таблицы payment_mov
-            $paymentMov->delete();   $data = [
+            $paymentMov->delete();
+            $data = [
                 'sum' => $paymentMov->sum,
                 'areas_id' => $areas_id,
                 'date' => now(),

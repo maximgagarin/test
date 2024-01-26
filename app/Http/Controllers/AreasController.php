@@ -45,4 +45,23 @@ class AreasController extends Controller
         return redirect()->route('dashboard', compact('id'));
     }
 
+    public function create()
+    {
+        return view('areacreate');
+    }
+
+    public function store()
+    {
+        $data = [
+            'number' => \request('number'),
+            'name' => \request('name'),
+            'address' => \request('address'),
+            'telephone' => \request('telephone'),
+            'square' => \request('square'),
+            'balance' => 0,
+        ]   ;
+        Area::create($data);
+        return redirect()->route('main');
+    }
+
 }

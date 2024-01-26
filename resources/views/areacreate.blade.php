@@ -2,34 +2,31 @@
 @extends('layout')
 @section('content')
 <div class="container">
-    <h5>Редактирование данных участка</h5>
+    <h5 class="mt-3">Создание участка</h5>
     <div class="col-4">
-    <form class="myForm" id="form1" action="{{route('area.update')}}" method="POST">
+    <form class="mt-3 " id="form1" action="{{route('area.store')}}" method="POST">
         @csrf
-        <div class="mb-3">
 
-            <input type="hidden" class="form-control" name="id" value="{{$result->id}}" >
-        </div>
         <div class="mb-3">
             <label>Номер участка</label>
-            <input type="text" class="form-control" name="number" value="{{$result->number}}" >
+            <input type="text" class="form-control" name="number" >
         </div>
         <div class="mb-3">
             <label>Собственник</label>
-            <input type="text" class="form-control" name="name" value="{{$result->name}}" >
+            <input type="text" class="form-control" name="name" >
         </div>
         <div class="mb-3">
             <label>Адрес собственника</label>
-            <input type="text" class="form-control" name="address" value="{{$result->address}}" >
+            <input type="text" class="form-control" name="address" >
         </div>
         <div class="mb-3">
             <label>Телефон</label>
-            <input type="text" class="form-control" name="telephone" value="{{$result->telephone}}" >
+            <input type="text" class="form-control" name="telephone">
         </div>
 
         <div class="mb-3">
             <label>Площадь участка</label>
-            <input type="text" class="form-control" name="square" value="{{$result->square}}" >
+            <input type="number" class="form-control" name="square" >
         </div>
 
         <div class="col-auto">

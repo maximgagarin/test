@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <h3>Все участки</h3>
-            <a href="">Добавить участок</a>
+            <a href="{{route('area.create')}}">Добавить участок</a>
             <div class="col-3">
                 <form action="{{route('main')}}" class="d-flex mt-3">
                     <input class="form-control me-2" type="search" name="value" placeholder="Найти участок">

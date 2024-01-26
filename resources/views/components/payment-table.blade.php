@@ -30,7 +30,11 @@
                 <button class="btn btn-primary btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
             </td>
             <td>
-                <button class="btn btn-danger btn-sm">удалить</button>
+                <form action="{{ route('payment.delete', $payment->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Удалить</button>
+                </form>
             </td>
         </tr>
         <tr id="editForm{{$payment->id}}" style="display: none; background-color: #f8f9fa;">

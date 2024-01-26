@@ -33,6 +33,7 @@ Route::get('Payments', 'PaymentController@index')->name('payments');
 Route::post('Payments/{id}', 'PaymentController@store')->name('payments.store');
 Route::post('Payment/{id}', 'PaymentController@pay')->name('payments.pay');
 Route::post('Paymentupdate', 'PaymentController@update')->name('payments.update');
+Route::delete('Payment/{id}', 'PaymentController@destroy')->name('payment.delete');
 
 Route::post('Prepay/{id}', 'PrepayController@prepay')->name('prepay');
 
@@ -47,6 +48,9 @@ Route::post('Areascomment', 'AreasController@comment')->name('areas.comment') ; 
 Route::get('Areasupdate/{id}', 'AreasController@update')->name('areas.update') ; //страница обновление участка
 Route::post('Areaupdate', 'AreasController@update2')->name('area.update') ; //обновление участка
 Route::delete('/paymentmovs/{id}', 'PaymentmovsController@destroy')->name('payment_mov.delete');
+Route::get('Areas/create', 'AreasController@create')->name('area.create');
+Route::post('Areas', 'AreasController@store')->name('area.store');
+
 
 });
 
