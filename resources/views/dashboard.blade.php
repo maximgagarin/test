@@ -13,7 +13,6 @@
 
     <div class="row mb-4">
         <div class="col-3 md-3">
-
             <table class="table table-bordered ">
                 <tr>
                     <td colspan="2"><h6>Участок</h6>
@@ -35,11 +34,8 @@
                 <tr>
                     <td>Площадь</td>
                       <td>{{$id->square}}</td>
-
                 </tr>
-
             </table>
-
         </div>
         <div class="col-2">
           <x-tablealldebts :id="$id"/>

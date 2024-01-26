@@ -184,3 +184,24 @@
     @endforeach
     </tbody>
 </table>
+
+
+$latestDate = Counter::where('areas_id', $id)->latest('date')->value('date');
+$lastValue = Counter::where('areas_id', $id)->latest('date')->value('value');
+$data = request()->validate([
+'value' => ['required','numeric', 'digits:5', new Uppercase($id)],
+'date' => [
+'required',
+'date',
+//  'after:' . $latestDate,
+],
+'areas_id' => '',
+'select' => [
+function ($attribute, $value, $fail) use ($latestDate) {
+if ($latestDate !== null && empty($value)) {
+return true; // Skip validation
+}
+},
+'numeric',
+],
+]);
