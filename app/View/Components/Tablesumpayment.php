@@ -27,6 +27,10 @@ class Tablesumpayment extends Component
         $this->payments=$sumLeft;
     }
 
+    public function getSumLeftProperty()
+    {
+        return $this->payments;
+    }
 
     public function render()
     {

@@ -57,6 +57,7 @@ class PrepayController extends Controller
                     'payments_id' => $paymentId,
                     'sum' => $remainingSumm,
                     'date' => now(),
+                    'prepays' => 'оплачено_авансем'
                 ]);
                 Prepay::create([
                         'sum' => $remainingSumm,
@@ -73,6 +74,7 @@ class PrepayController extends Controller
                     'payments_id' => $paymentId,
                     'sum' => $value,
                     'date' => now(), // Use Laravel's now() helper to get the current date and time
+                    'prepays' => 'оплачено_авансем'
                 ]);
                 Prepay::create([
                         'sum' => $value,
