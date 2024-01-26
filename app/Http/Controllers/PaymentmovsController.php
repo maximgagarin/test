@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Counter;
 use App\Models\Payment;
 use App\Models\payment_mov;
+use App\Models\Prepay;
 use App\Models\tariff;
 use App\Rules\Uppercase;
 use Illuminate\Http\Request;
@@ -18,45 +19,80 @@ class PaymentmovsController extends Controller
 
     public function destroy($id)
     {
-        // Получаем ID платежа перед удалением
+        // Находим запись в таблице payment_mov
         $paymentMov = payment_mov::find($id);
+        $areas_id = \request('areas_id');
 
-        if (!$paymentMov) {
-            return redirect()->back()->with('error', 'Платеж не найден.');
-        }
 
-        $payment_id = $paymentMov->payments_id;
+        if($paymentMov->prepays){
 
-        // Проверяем, есть ли еще связанные записи
-        $hasRelatedPayments = payment_mov::where('payments_id', $payment_id)->exists();
+            // Получаем ID платежа перед удалением
+            $payment_id = $paymentMov->payments_id;
 
-        // Удаляем запись из таблицы payment_mov
-        $paymentMov->delete();
 
-        if (!$hasRelatedPayments) {
-            // Обновляем статус в таблице Payment на 'неоплачен'
-            $payment = Payment::find($payment_id);
+            // Удаляем запись из таблицы payment_mov
+            $paymentMov->delete();   $data = [
+                'sum' => $paymentMov->sum,
+                'areas_id' => $areas_id,
+                'date' => now(),
+                'saldo' => 'приход',
+            ];
+            Prepay::create($data);
 
-            if ($payment) {
-                $payment->status = 'неоплачен';
-                $payment->save();
-            } else {
-                return redirect()->back()->with('error', 'Платеж с указанным ID не найден.');
+
+            // Проверяем, есть ли еще связанные записи
+            $hasRelatedPayments = payment_mov::where('payments_id', $payment_id)->exists();
+
+            if (!$hasRelatedPayments) {
+                // Обновляем статус в таблице Payment на 'неоплачен'
+                Payment::where('id', $payment_id)->update(['status' => 'неоплачен']);
             }
+
+            // Подсчитываем сумму с использованием агрегатной функции
+            $sumAllSvet = Payment::where('id', $payment_id)->sum('sum');
+            $sumPay = payment_mov::where('payments_id', $payment_id)->sum('sum');
+            $sumleft = $sumAllSvet - $sumPay;
+
+            if ($hasRelatedPayments && $sumleft > 0) {
+                // Если есть связанные платежи и сумма осталась, обновляем статус
+                Payment::where('id', $payment_id)->update(['status' => 'неоплачен']);
+            }
+
+            return redirect()->back()->with('success', 'Платеж успешно удален.');
+
         }
+        else{
+            // Получаем ID платежа перед удалением
+            $payment_id = $paymentMov->payments_id;
 
 
-        $sumAllSvet = Payment::where('id', $payment_id)->sum('sum');
-        $sumPay = payment_mov::where('payments_id', $payment_id)->sum('sum');
-        $sumleft = $sumAllSvet - $sumPay;
+            // Удаляем запись из таблицы payment_mov
+            $paymentMov->delete();
 
-        if ($hasRelatedPayments && $sumleft > 0) {
-            $payment = Payment::find($payment_id);
-            $payment->status = 'неоплачен';
-            $payment->save();
+
+
+            // Проверяем, есть ли еще связанные записи
+            $hasRelatedPayments = payment_mov::where('payments_id', $payment_id)->exists();
+
+            if (!$hasRelatedPayments) {
+                // Обновляем статус в таблице Payment на 'неоплачен'
+                Payment::where('id', $payment_id)->update(['status' => 'неоплачен']);
+            }
+
+            // Подсчитываем сумму с использованием агрегатной функции
+            $sumAllSvet = Payment::where('id', $payment_id)->sum('sum');
+            $sumPay = payment_mov::where('payments_id', $payment_id)->sum('sum');
+            $sumleft = $sumAllSvet - $sumPay;
+
+            if ($hasRelatedPayments && $sumleft > 0) {
+                // Если есть связанные платежи и сумма осталась, обновляем статус
+                Payment::where('id', $payment_id)->update(['status' => 'неоплачен']);
+            }
+
             return redirect()->back()->with('success', 'Платеж успешно удален.');
         }
 
-        return redirect()->back()->with('success', 'Платеж успешно удален.');
+
+
     }
 }
