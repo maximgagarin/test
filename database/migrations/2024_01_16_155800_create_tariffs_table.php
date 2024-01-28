@@ -17,6 +17,7 @@ class CreateTariffsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->decimal('value',  $precision = 10, $scale = 4);
+            $table->string('type')->nullable();
         });
     }
 
