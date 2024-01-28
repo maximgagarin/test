@@ -1,5 +1,6 @@
 <h6>Аванс: {{$d}}р.</h6>
-<form class="myForm" action="{{ route('prepay', $id->id) }}" method="POST">
+<a href="{{route('prepay.index', $id->id)}}" >История</a>
+<form class="myForm mt-3" action="{{ route('prepay', $id->id) }}" method="POST">
     @csrf
     <input type="hidden" value="{{$d}}" name="value">
     <input type="hidden" value="свет" name="type">

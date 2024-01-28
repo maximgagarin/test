@@ -19,7 +19,7 @@
     @else
         <h6>Последнее показание: {{$lastValue}}</h6>
         <h6> {{$lastValuedate}}</h6>
-        <form class="myForm"  action="{{ route('store2') }}" method="POST">
+        <form class="myForm"  action="{{ route('store3') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <input type="number" class="form-control" name="value" placeholder="показание">
@@ -33,7 +33,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <input type="date" class="form-control" name="date" value="{{ now()->format('Y-m-d') }}" >
+                <input type="date" class="form-control" name="date" value="{{ now() }}" >
             </div>
             <div class="mb-3">
                 <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">

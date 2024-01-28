@@ -21,19 +21,29 @@ class Counter2Controller extends Controller
 
     public function store()
     {
+        $id = request('areas_id');
+        $data = request()->validate([
+            'value' => ['required', 'numeric', 'digits:5'],
+            'date' => '',
+            'areas_id' => '',
+        ]);
+        Counter::create($data);
+        return redirect()->route('dashboard',['id' => $id]);
+    }
+
+    public function store3()
+
+    {
         $tariff = request('select');
         $id = request('areas_id');
-
         $latestDate = Counter::where('areas_id', $id)->latest('date')->value('date');
         $lastValue = Counter::where('areas_id', $id)->latest('date')->value('value');
         $data = request()->validate([
             'value' => ['required', 'numeric', 'digits:5', new Uppercase($id)],
-            'date' => '',
-
+            'date' => "after:{$latestDate}",
+            'select' => ['numeric'],
             'areas_id' => '',
         ]);
-        Counter::create($data);
-        if (!empty($lastValue)) {
             $value = $data['value'];
             $date = $data['date'];
             $razn = $value - $lastValue;
@@ -47,9 +57,15 @@ class Counter2Controller extends Controller
                 'sum' => $sum,
                 'date' => $date,
                 'status' => 'неоплачен',
+                ];
+            $data3=[
+                'value' => $value,
+                'date' => $date,
+                'areas_id' => $id,
             ];
-            Payment::create($data2);
-        }
+            Counter::create($data3);
+           Payment::create($data2);
+
         return redirect()->route('dashboard',['id' => $id]);
     }
 }

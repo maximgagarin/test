@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
 use App\Models\Counter;
 use App\Models\Payment;
 use App\Models\tariff;
@@ -23,5 +24,44 @@ class TariffController extends Controller
        ]);
         tariff::create($data);
         return redirect()->route('tariff');
+    }
+
+
+    public function vznos()
+    {
+        return view('vznos');
+    }
+
+    public function calculation()
+    {
+
+        $type = \request('type');
+        $value = \request('value');
+
+        $areas = Area::all();
+
+        foreach ($areas as $area) {
+            $square = $area->square;
+
+            // Умножение значения на 10
+            $new = $square * $value;
+
+            // Создание новой записи в таблице payments
+            $payment = new Payment([
+                'areas_id' => $area->id,
+                'type' => 'взнос',
+                'unit' => 'руб',
+                'amount' => $square,
+                'tariff' => $value,
+                'sum' => $new,
+                'date' => now(),
+                'status' => 'неоплачен',
+            ]);
+
+            // Сохранение записи в базу данных
+            $payment->save();
+        }
+
+
     }
 }

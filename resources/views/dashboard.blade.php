@@ -92,26 +92,26 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-2 ">
-                            <form class="myForm" id="form1" action="{{route('payments.store', $id->id)}}" method="POST">
-                                @csrf
-                                <div class="col-auto">
-                                    <input type="text" class="form-control" name="amount" placeholder="количество квт">
-                                </div>
-                                <div class="col-auto">
-                                    <input type="text" class="form-control" name="tariff" placeholder="тариф">
-                                </div>
-                                <div class="col-auto">
-                                    <input type="text" class="form-control" name="sum" placeholder="сумма">
-                                </div>
-                                <div class="col-auto">
-                                    <input type="hidden" class="form-control" name="type" value="свет"
-                                           placeholder="сумма">
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж
-                                    </button>
-                                </div>
-                            </form>
+{{--                            <form class="myForm" id="form1" action="{{route('payments.store', $id->id)}}" method="POST">--}}
+{{--                                @csrf--}}
+{{--                                <div class="col-auto">--}}
+{{--                                    <input type="text" class="form-control" name="amount" placeholder="количество квт">--}}
+{{--                                </div>--}}
+{{--                                <div class="col-auto">--}}
+{{--                                    <input type="text" class="form-control" name="tariff" placeholder="тариф">--}}
+{{--                                </div>--}}
+{{--                                <div class="col-auto">--}}
+{{--                                    <input type="text" class="form-control" name="sum" placeholder="сумма">--}}
+{{--                                </div>--}}
+{{--                                <div class="col-auto">--}}
+{{--                                    <input type="hidden" class="form-control" name="type" value="свет"--}}
+{{--                                           placeholder="сумма">--}}
+{{--                                </div>--}}
+{{--                                <div class="col-auto">--}}
+{{--                                    <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж--}}
+{{--                                    </button>--}}
+{{--                                </div>--}}
+{{--                            </form>--}}
                         </div>
                         <div class="col-2">
                             <x-formpaypayment :id="$id" :type="$type='свет'" :button="$button='оплатить свет'"/>
@@ -314,15 +314,15 @@
             localStorage.setItem('activeTab', activeTab.attr('id'));
         });
 
-        $('#tariff').on('input', function () {
-            // Получаем значения amount и tariff
-            var amount = parseFloat($('#amount').val()) || 0;
-            var tariff = parseFloat($(this).val()) || 0;
-
-            // Вычисляем сумму и устанавливаем в поле sum
-            var sum = amount * tariff;
-            $('#sum').val(sum.toFixed(2)); // Устанавливаем значение с округлением до двух знаков после запятой
-        });
+        // $('#tariff').on('input', function () {
+        //     // Получаем значения amount и tariff
+        //     var amount = parseFloat($('#amount').val()) || 0;
+        //     var tariff = parseFloat($(this).val()) || 0;
+        //
+        //     // Вычисляем сумму и устанавливаем в поле sum
+        //     var sum = amount * tariff;
+        //     $('#sum').val(sum.toFixed(2)); // Устанавливаем значение с округлением до двух знаков после запятой
+        // });
     });
 
     function showEditForm(paymentId) {

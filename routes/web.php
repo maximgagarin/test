@@ -28,6 +28,7 @@ Route::delete('/delete-record/{id}', 'CounterController@delete')->name('delete')
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dashboard') ;
 Route::get('Counter2/{id}', 'Counter2Controller@index')->name('counter2') ;
 Route::post('store2', 'Counter2Controller@store')->name('store2') ;
+Route::post('store3', 'Counter2Controller@store3')->name('store3') ;
 
 Route::get('Payments', 'PaymentController@index')->name('payments');
 Route::post('Payments/{id}', 'PaymentController@store')->name('payments.store');
@@ -36,10 +37,15 @@ Route::post('Paymentupdate', 'PaymentController@update')->name('payments.update'
 Route::delete('Payment/{id}', 'PaymentController@destroy')->name('payment.delete');
 
 Route::post('Prepay/{id}', 'PrepayController@prepay')->name('prepay');
+Route::get('Prepayindex/{id}', 'PrepayController@index')->name('prepay.index');
+Route::post('Prepaystore', 'PrepayController@store')->name('prepay.store');
+Route::delete('Prepay/delete/{id}', 'PrepayController@delete')->name('prepay.delete');
 
 
 Route::get('Tariff', 'TariffController@index')->name('tariff');
 Route::post('Tariff', 'TariffController@store')->name('tariff.store') ;
+Route::get('vznos', 'TariffController@vznos')->name('vznos');
+Route::post('vznos/calculation', 'TariffController@calculation')->name('vznos.calculation');
 
 Route::get('Debts', 'DebtsController@index')->name('debts') ;
 Route::post('Debts2', 'DebtsController@index2')->name('debts2') ;
@@ -50,6 +56,11 @@ Route::post('Areaupdate', 'AreasController@update2')->name('area.update') ; //о
 Route::delete('/paymentmovs/{id}', 'PaymentmovsController@destroy')->name('payment_mov.delete');
 Route::get('Areas/create', 'AreasController@create')->name('area.create');
 Route::post('Areas', 'AreasController@store')->name('area.store');
+
+
+
+
+
 
 
 });

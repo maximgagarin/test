@@ -38,6 +38,6 @@ class Uppercase implements Rule
      */
     public function message()
     {
-        return 'Должно быть больше последнего значения';
+        return 'Показание счетчика должно быть больше последнего значения';
     }
 }

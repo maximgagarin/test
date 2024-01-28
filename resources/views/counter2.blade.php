@@ -17,29 +17,29 @@
 <div class="row">
 
     <div class="col-3">
-        <form  action="{{ route('store2') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Показания</label>
-                <input type="number" class="form-control" name="value">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Тариф</label>
-                <select name="select" class="form-select" aria-label="Default select example">
-                    <option selected>Выберите тариф</option>
-                    @foreach($tariffs as $tariff)
-                        <option value="{{ $tariff->value }}">{{ $tariff->value }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-3">
-                <input type="date" class="form-control" name="date">
-            </div>
-            <div class="mb-3">
-                <input type="hidden" class="form-control" name="areas_id" value="{{$id}}">
-            </div>
-            <button type="submit" class="btn btn-primary">Отправить</button>
-        </form>
+{{--        <form  action="{{ route('store2') }}" method="POST">--}}
+{{--            @csrf--}}
+{{--            <div class="mb-3">--}}
+{{--                <label for="exampleInputEmail1" class="form-label">Показания</label>--}}
+{{--                <input type="number" class="form-control" name="value">--}}
+{{--            </div>--}}
+{{--            <div class="mb-3">--}}
+{{--                <label for="exampleInputEmail1" class="form-label">Тариф</label>--}}
+{{--                <select name="select" class="form-select" aria-label="Default select example">--}}
+{{--                    <option selected>Выберите тариф</option>--}}
+{{--                    @foreach($tariffs as $tariff)--}}
+{{--                        <option value="{{ $tariff->value }}">{{ $tariff->value }}</option>--}}
+{{--                    @endforeach--}}
+{{--                </select>--}}
+{{--            </div>--}}
+{{--            <div class="mb-3">--}}
+{{--                <input type="date" class="form-control" name="date">--}}
+{{--            </div>--}}
+{{--            <div class="mb-3">--}}
+{{--                <input type="hidden" class="form-control" name="areas_id" value="{{$id}}">--}}
+{{--            </div>--}}
+{{--            <button type="submit" class="btn btn-primary">Отправить</button>--}}
+{{--        </form>--}}
     </div>
     <div class="col-3 p-3">
         @if (empty($lastValue))

@@ -12,34 +12,62 @@ use Illuminate\Http\Request;
 
 class PrepayController extends Controller
 {
+
+    public function index($id)
+
+    {
+        //dd($id);
+        $counts = Prepay::where('areas_id', $id)->where('saldo', 'приход')->get();
+        return view('prepay', compact('counts', 'id'));
+    }
+
+    public function store()
+    {
+        $id= \request('areas_id');
+
+        $value = \request('value');
+        $data = [
+            'sum'=>  $value,
+            'areas_id' => $id,
+            'date'=> now(),
+            'saldo'=>'приход',
+        ];
+
+        Prepay::create($data);
+
+        return redirect()->route('dashboard', compact('id'));
+    }
+
+    public function delete($id)
+    {
+        $prepay = Prepay::find($id);
+
+        if ($prepay) {
+            $prepay->delete();
+            return redirect()->route('dashboard', ['id' => $prepay->areas_id])->with('success', 'Запись успешно удалена.');
+        } else {
+            return redirect()->route('dashboard')->with('error', 'Запись не найдена.');
+        }
+    }
+
+
     public function prepay($id)
     {
         $type = \request('type');
-
-
         $data = request()->validate([
             'value' => '',
         ]);
-
         $value= $data['value'];
-
-
-
-
-
         $payments = Payment::select(['id', 'sum'])
             ->where('areas_id', $id)
             ->where('type', $type)
             ->get();
-
         $allPaymentsPaid = 1;
 
         foreach ($payments as $payment) {
             $paymentId = $payment['id'];
             $paymentSumm = $payment['sum'];
             $paidSum = Payment::withSum('payment_mov as sumpaid', 'sum')->where('type', $type)->where('id', $paymentId)->value('sumpaid');//сколько оплачено
-
-
             $remainingSumm = $paymentSumm - $paidSum; // Сколько осталось доплатить
 
             if ($remainingSumm == 0) {
