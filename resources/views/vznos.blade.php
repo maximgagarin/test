@@ -1,4 +1,3 @@
-
 @extends('layout')
 @section('content')
 
@@ -12,11 +11,12 @@
         </div>
     @endif
 
-    <div class="row mb-3"> <h3>Начислить всем участинкам взносы</h3></div>
 
-    <div class="row">
+    <div class="row mb-3"><h3>Начислить всем участинкам взносы</h3></div>
+
+    <div class="row ">
         <div class="col-2">
-            <form  action="{{route('vznos.calculation')}}" method="POST">
+            <form action="{{route('vznos.calculation')}}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <input type="text" class="form-control" name="value" placeholder="введите значение">
@@ -36,31 +36,34 @@
     </div>
     <div class="row mb-5"></div>
     <div class="row mb-3">
-        <div class="col-3">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>тариф</th>
-                    <th>тип</th>
-                    <th>дата начисления</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($counts as $count)
+
+        <div class="col-4">
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <td> {{$count->value}}</td>
-                        <td> {{$count->type}}</td>
-                        <td> {{$count->created_at}}</td>
-                        <td> <button class="btn btn-danger btn-sm">Удалить</button></td>
+                        <th>тариф</th>
+                        <th>тип</th>
+                        <th>дата начисления</th>
+                        <th></th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-3">
+                    </thead>
+                    <tbody>
+                    @foreach($counts as $count)
+                        <tr>
+                            <td> {{$count->value}}</td>
+                            <td> {{$count->type}}</td>
+                            <td> {{$count->created_at}}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm">Удалить</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+
+        <div class="col-4">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -76,7 +79,9 @@
                         <td> {{$count->value}}</td>
                         <td> {{$count->type}}</td>
                         <td> {{$count->created_at}}</td>
-                        <td> <button class="btn btn-danger btn-sm">Удалить</button></td>
+                        <td>
+                            <button class="btn btn-danger btn-sm">Удалить</button>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -84,7 +89,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3">
+
+        <div class="col-4">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -100,15 +106,17 @@
                         <td> {{$count->value}}</td>
                         <td> {{$count->type}}</td>
                         <td> {{$count->created_at}}</td>
-                        <td> <button class="btn btn-danger btn-sm">Удалить</button></td>
+                        <td>
+                            <button class="btn btn-danger btn-sm">Удалить</button>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-3">
+
+
+        <div class="col-4">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -124,7 +132,9 @@
                         <td> {{$count->value}}</td>
                         <td> {{$count->type}}</td>
                         <td> {{$count->created_at}}</td>
-                        <td> <button class="btn btn-danger btn-sm">Удалить</button></td>
+                        <td>
+                            <button class="btn btn-danger btn-sm">Удалить</button>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
