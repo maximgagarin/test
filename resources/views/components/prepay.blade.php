@@ -1,4 +1,4 @@
-<h6>Аванс: {{$d}}</h6>
+<h6>Аванс: {{$d}}р.</h6>
 <form class="myForm" action="{{ route('prepay', $id->id) }}" method="POST">
     @csrf
     <input type="hidden" value="{{$d}}" name="value">

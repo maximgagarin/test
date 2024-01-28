@@ -84,6 +84,8 @@ class PaymentController extends Controller
                 ]);
                 Payment::where('id', $paymentId)->update(['status' => 'оплачен']);
                 $allPaymentsPaid = 0;
+
+                payment_mov::where('sum', 0)->delete();
                 continue;
             }
             else{
@@ -93,6 +95,8 @@ class PaymentController extends Controller
                     'date' => now(), // Use Laravel's now() helper to get the current date and time
                 ]);
                 $value = 0;
+
+                payment_mov::where('sum', 0)->delete();
 
             }
         }
@@ -138,15 +142,17 @@ class PaymentController extends Controller
     }
     public function  destroy($id)
     {
+        payment_mov::where('sum', 0)->delete();
 
         $payment = Payment::find($id);
         if (Payment::has('payment_mov')->exists()) {
-            echo 'есть оплаты';
+             return redirect()->back();
         } else {
-            echo 'нет';
+            $payment->delete();
+            return redirect()->back();
         }
-        $payment->delete();
-       // return redirect()->back();
+
+
         }
 
 }
