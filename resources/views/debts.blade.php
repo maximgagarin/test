@@ -29,14 +29,16 @@
         </div>
         <div class="col-1">
             <x-formdebts :button="$button = 'камеры'" >
-                видеокамеры
+                видеонаблюдение
             </x-formdebts>
         </div>
 
 
-
     </div>
     <div class="row">
+
+
+        <h6>Всего: {{$formattedTotal}}р.</h6>
 
         <table class="table table-bordered">
 
@@ -58,10 +60,13 @@
                     <td> {{$result->total_payment_movs_sum}}</td>
                     <td> {{  $result->total_payments_sum - $result->total_payment_movs_sum}}р.</td>
                     <td><a href="{{ route('dashboard', $result->id) }}">Перейти</a></td>
+
                 </tr>
             @endforeach
             </tbody>
         </table>
+
     </div>
 </div>
+
 @endsection

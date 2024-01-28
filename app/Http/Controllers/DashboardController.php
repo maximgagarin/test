@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $lastValue = Counter::where('areas_id', $id->id)->latest('id')->value('value'); //послед показ счетчика
         $lastValuedate = Counter::where('areas_id', $id->id)->latest('id')->value('date'); //послед показ счетчика
 
-        $tariffs = tariff::query()->select('value')->get();
+        $tariffs = tariff::query()->select('value')->where('type', 'свет')->get();
 
 
         return view('dashboard', compact('id' , 'comment', 'payments',  'tariffs' , 'D', 'lastValue', 'lastValuedate'));

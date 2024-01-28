@@ -17,7 +17,7 @@
             <td>{{$road}}р.</td>
         </tr>
         <tr>
-            <td>Камеры</td>
+            <td>в.наблюдение</td>
             <td>{{$camera}}р.</td>
         </tr>
         <tr>

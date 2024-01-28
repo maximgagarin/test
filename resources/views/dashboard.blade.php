@@ -82,7 +82,7 @@
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="camera-tab" data-bs-toggle="tab" data-bs-target="#camera" type="button"
-                    role="tab" aria-controls="camera" aria-selected="false">Камеры
+                    role="tab" aria-controls="camera" aria-selected="false">Видеонаблюдение
             </button>
         </li>
     </ul>
@@ -279,14 +279,14 @@
                         </form>
                     </div>
                     <div class="col-2">
-                        <x-formpaypayment :id="$id" :type="$type='видеокамеры'" :button="$button='оплатить камеры взнос'"/>
+                        <x-formpaypayment :id="$id" :type="$type='видеонаблюдение'" :button="$button='оплатить камеры взнос'"/>
                     </div>
                 </div>
                 <div class="row">
-                    <x-tablesumpayment :type="'видеокамеры'" :id="$id"/>
+                    <x-tablesumpayment :type="'видеонаблюдение'" :id="$id"/>
                 </div>
                 <div class="row">
-                    <x-payment-table :type="'видеокамеры'" :id="$id"/>
+                    <x-payment-table :type="'видеонаблюдение'" :id="$id"/>
                 </div>
                 <div class="row">
                     <x-tablepay :id="$id"/>

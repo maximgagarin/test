@@ -13,15 +13,17 @@ class TariffController extends Controller
 {
     public function index()
     {
-        $counts = tariff::all();
+        $counts = tariff::where('type', 'свет')->get();
         return view('tariff', compact('counts'));
-   }
+    }
 
     public function store()
     {
-       $data = request()->validate([
-         'value' =>'',
-       ]);
+        $data = request()->validate([
+            'value' => '',
+            'type' => '',
+        ]);
+        $data['type'] = 'свет';
         tariff::create($data);
         return redirect()->route('tariff');
     }
@@ -29,7 +31,12 @@ class TariffController extends Controller
 
     public function vznos()
     {
-        return view('vznos');
+        $counts = tariff::where('type', 'чвзнос')->get();
+        $counts_road = tariff::where('type', 'дороги')->get();
+        $counts_trash = tariff::where('type', 'мусор')->get();
+        $counts_camera = tariff::where('type', 'видеонаблюдение')->get();
+        return view('vznos', compact('counts', 'counts_road','counts_trash', 'counts_camera' ));
+
     }
 
     public function calculation()
@@ -61,7 +68,12 @@ class TariffController extends Controller
             // Сохранение записи в базу данных
             Payment::create($data);
         }
+        $data2 = [
+            'value' => $value,
+            'type' => $type,
+        ];
 
-
+        tariff::create($data2);
+        return redirect()->back();
     }
 }

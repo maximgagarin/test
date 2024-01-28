@@ -38,7 +38,12 @@ class DebtsController extends Controller
 
 
         $results = DB::select($query);
-        return view('debts', compact('results'));
+        $total = 0;
+        foreach ($results as $result){
+            $total = $total + ($result->total_payments_sum - $result->total_payment_movs_sum);
+        }
+        $formattedTotal = number_format($total, 2, ',', ' ');
+        return view('debts', compact('results', 'formattedTotal'));
     }
 
 
@@ -89,7 +94,12 @@ class DebtsController extends Controller
             areas ORDER BY total_payments_sum DESC
     ";
             $results = DB::select($query);
-            return view('debts', compact('results'));
+            $total = 0;
+            foreach ($results as $result){
+                $total = $total + ($result->total_payments_sum - $result->total_payment_movs_sum);
+            }
+            $formattedTotal = number_format($total, 2, ',', ' ');
+            return view('debts', compact('results', 'formattedTotal'));
         }
     }
 
