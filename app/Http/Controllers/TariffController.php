@@ -47,19 +47,19 @@ class TariffController extends Controller
             $new = $square * $value;
 
             // Создание новой записи в таблице payments
-            $payment = new Payment([
+            $data = [
                 'areas_id' => $area->id,
-                'type' => 'взнос',
+                'type' => $type,
                 'unit' => 'руб',
                 'amount' => $square,
                 'tariff' => $value,
                 'sum' => $new,
                 'date' => now(),
                 'status' => 'неоплачен',
-            ]);
+            ];
 
             // Сохранение записи в базу данных
-            $payment->save();
+            Payment::create($data);
         }
 
 
