@@ -50,24 +50,6 @@ class DebtsController extends Controller
 
     public function index2()
     {
-        $query = "
-        SELECT
-            areas.id,
-            areas.number,
-            (
-                SELECT COALESCE(SUM(payments.sum), 0)
-                FROM payments
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
-            ) AS total_payments_sum,
-            (
-                SELECT COALESCE(SUM(payment_movs.sum), 0)
-                FROM payments
-                LEFT JOIN payment_movs ON payments.id = payment_movs.payments_id
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
-            ) AS total_payment_movs_sum
-        FROM
-            areas ORDER BY total_payments_sum DESC
-    ";
 
         $data = request();
         //$value = $data['value'];
@@ -94,11 +76,17 @@ class DebtsController extends Controller
             areas ORDER BY total_payments_sum DESC
     ";
             $results = DB::select($query);
+
+
             $total = 0;
             foreach ($results as $result){
                 $total = $total + ($result->total_payments_sum - $result->total_payment_movs_sum);
             }
+
+
+
             $formattedTotal = number_format($total, 2, ',', ' ');
+
             return view('debts', compact('results', 'formattedTotal'));
         }
     }

@@ -21,14 +21,16 @@ Route::get('/main', 'MainController@index')->name('main');
 Route::get('name', 'MainController@search')->name('name');
 
 
-Route::get('Counter', 'CounterController@index')->name('counter') ;
-Route::post('store', 'CounterController@store')->name('store') ;
-Route::delete('/delete-record/{id}', 'CounterController@delete')->name('delete') ;
+//Route::get('Counter', 'CounterController@index')->name('counter') ;
+//Route::post('store', 'CounterController@store')->name('store') ;
+
 
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dashboard') ;
 Route::get('Counter2/{id}', 'Counter2Controller@index')->name('counter2') ;
 Route::post('store2', 'Counter2Controller@store')->name('store2') ;
 Route::post('store3', 'Counter2Controller@store3')->name('store3') ;
+Route::delete('Counter/{id}', 'Counter2Controller@delete')->name('counter.delete') ;
+Route::post('Counterupdate', 'Counter2Controller@update')->name('counter.update');
 
 Route::get('Payments', 'PaymentController@index')->name('payments');
 Route::post('Payments/{id}', 'PaymentController@store')->name('payments.store');
@@ -56,6 +58,15 @@ Route::post('Areaupdate', 'AreasController@update2')->name('area.update') ; //о
 Route::delete('/paymentmovs/{id}', 'PaymentmovsController@destroy')->name('payment_mov.delete');
 Route::get('Areas/create', 'AreasController@create')->name('area.create');
 Route::post('Areas', 'AreasController@store')->name('area.store');
+
+
+Route::get('test', 'TestController@test')->name('test');
+
+
+
+
+
+
 
 
 

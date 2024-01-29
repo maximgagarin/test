@@ -18,7 +18,6 @@
         <div class="row p-3">
            <div> {{$areas->links()}} </div>
             <table class="table mt-3">
-                {{$value}}
                 <thead>
                 <tr>
                     <th scope="col">номер</th>

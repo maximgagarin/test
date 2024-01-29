@@ -68,4 +68,33 @@ class Counter2Controller extends Controller
 
         return redirect()->route('dashboard',['id' => $id]);
     }
+
+
+    public function delete($id)
+    {
+        $counter = Counter::find($id);
+
+        if ($counter) {
+            $counter->delete();
+            return redirect()->route('dashboard', ['id' => $counter->areas_id])->with('success', 'Запись успешно удалена.');
+        } else {
+            return redirect()->route('dashboard', ['id' => $counter->areas_id])->with('success', 'Запись не найдена');
+        }
+    }
+
+    public function update()
+    {
+        $data = request()->validate([
+            'value' => ['required', 'numeric', 'digits:5'],
+            'id'=>'',
+        ]);
+
+        $counter = Counter::find($data['id']);
+
+        $counter->update([
+            'value' => $data['value'],
+        ]);
+
+        return redirect()->route('dashboard', ['id' => $counter->areas_id])->with('success', 'Запись успешно удалена.');
+    }
 }
