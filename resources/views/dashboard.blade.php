@@ -268,7 +268,7 @@
                                 <input type="text" class="form-control" name="sum" placeholder="сумма">
                             </div>
                             <div class="col-auto">
-                                <input type="hidden" class="form-control" name="type" value="видеокамеры"
+                                <input type="hidden" class="form-control" name="type" value="видеонаблюдение"
                                        placeholder="сумма">
                             </div>
 
