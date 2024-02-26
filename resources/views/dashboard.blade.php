@@ -51,87 +51,78 @@
                 </div>
             </form>
         </div>
-    </div>
-
-    <div class="col-2">
-        <x-prepay :d="$D" :id="$id">
-            свет
-        </x-prepay>
-    </div>
-
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                    role="tab" aria-controls="home" aria-selected="true">Свет
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-                    role="tab" aria-controls="profile" aria-selected="false">Ч.взнос
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-                    role="tab" aria-controls="contact" aria-selected="false">Дороги
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="trash-tab" data-bs-toggle="tab" data-bs-target="#trash" type="button"
-                    role="tab" aria-controls="trash" aria-selected="false">Мусор
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="camera-tab" data-bs-toggle="tab" data-bs-target="#camera" type="button"
-                    role="tab" aria-controls="camera" aria-selected="false">Видеонаблюдение
-            </button>
-        </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="row p-3">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-2 ">
-{{--                            <form class="myForm" id="form1" action="{{route('payments.store', $id->id)}}" method="POST">--}}
-{{--                                @csrf--}}
-{{--                                <div class="col-auto">--}}
-{{--                                    <input type="text" class="form-control" name="amount" placeholder="количество квт">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-auto">--}}
-{{--                                    <input type="text" class="form-control" name="tariff" placeholder="тариф">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-auto">--}}
-{{--                                    <input type="text" class="form-control" name="sum" placeholder="сумма">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-auto">--}}
-{{--                                    <input type="hidden" class="form-control" name="type" value="свет"--}}
-{{--                                           placeholder="сумма">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-auto">--}}
-{{--                                    <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж--}}
-{{--                                    </button>--}}
-{{--                                </div>--}}
-{{--                            </form>--}}
-                        </div>
-                        <div class="col-2">
-                            <x-formpaypayment :id="$id" :type="$type='свет'" :button="$button='оплатить свет'"/>
-                        </div>
-                        <div class="col-2">
-                            <x-counter :id="$id" :lastValue="$lastValue"  :lastValuedate="$lastValuedate" :tariffs="$tariffs"/>
-                        </div>
-                    </div>
-                        <div>
-                            <x-tablesumpayment :type="'свет'" :id="$id"/>
-                        </div>
-                        <x-payment-table :type="'свет'" :id="$id"/>
-                        <x-tablepay :id="$id"/>
-                </div>
-            </div>
+        <div class="col-2">
+            <x-prepay :d="$D" :id="$id">
+                свет
+            </x-prepay>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="row p-3">
-                <div class="row">
-                    <div class="col-2">
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-4">
+            <h5>Добавить начисление</h5>
+            <form class="myForm" action="" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <select class="form-select" aria-label="Default select example" name="selectType" id="selectType">
+                        <option selected>Выберите тип начисления</option>
+                        <option value="1">Свет</option>
+                        <option value="2">Чвзнос</option>
+                        <option value="3">Мусор</option>
+                        <option value="4">Дороги</option>
+                        <option value="5">Видеонаблюдение</option>
+                    </select>
+                </div>
+
+                <div id="div1" style="display: none;">
+                    <h6>Счетчик</h6>
+                    <div><a href="{{ route('counter2', $id->id) }}">История показаний</a></div>
+                    @if (empty($lastValue))
+                        нет показаний
+                        <form class="myForm" action="{{ route('store2') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <input type="number" class="form-control" name="value" placeholder="показание">
+                            </div>
+                            <div class="mb-3">
+                                <input type="date" class="form-control" name="date" value="{{ now()->format('Y-m-d') }}">
+                            </div>
+                            <div class="mb-3">
+                                <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Отправить</button>
+                        </form>
+                    @else
+                        <h6>Последнее показание: {{$lastValue}}</h6>
+                        <h6> {{$lastValuedate}}</h6>
+                        <form class="myForm"  action="{{ route('store3') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <input type="number" class="form-control" name="value" placeholder="показание">
+                            </div>
+                            <div class="mb-3">
+                                <select name="select" class="form-select" aria-label="Default select example">
+                                    <option selected>Выберите тариф</option>
+                                    @foreach($tariffs as $tariff)
+                                        <option value="{{ $tariff->value }}">{{ $tariff->value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <input type="date" class="form-control" name="date" value="{{ now() }}" >
+                            </div>
+                            <div class="mb-3">
+                                <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Отправить</button>
+                        </form>
+
+                    @endif
+                </div>
+                <div id="div2" style="display: none;">
+                    <div class="col-3">
                         <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
                             @csrf
                             <div class="mb-3">
@@ -155,174 +146,85 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-2 p-4">
-                        <x-formpaypayment :id="$id" :type="$type='чвзнос'" :button="$button='оплатить чвзнос'"/>
-                    </div>
                 </div>
-                <div class="row">
-                    <x-tablesumpayment :type="'чвзнос'" :id="$id"/>
+                <div id="div3" style="display: none;">
+                    Контент для Мусора
                 </div>
-                <div class="row">
-                    <x-payment-table :type="'чвзнос'" :id="$id"/>
+                <div id="div4" style="display: none;">
+                    Контент для Дорог
                 </div>
-                <div class="row">
-                    <x-tablepay :id="$id"/>
+                <div id="div5" style="display: none;">
+                    Контент для Видеонаблюдения
                 </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-            <div class="row p-3">
-                <div class="row">
-                    <div class="col-2">
-                        <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
-                            @csrf
-                            <div class="col-auto">
-                                <input type="hidden" class="form-control" name="amount" value="1">
-                            </div>
-                            <div class="col-auto">
-                                <input type="hidden" class="form-control" name="tariff" value="0" placeholder="цена за сотку">
-                            </div>
-                            <div class="col-auto">
-                                <input type="text" class="form-control" name="sum" placeholder="сумма">
-                            </div>
-                            <div class="col-auto">
-                                <input type="hidden" class="form-control" name="type" value="дороги"
-                                       placeholder="сумма">
-                            </div>
+            </form>
 
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-2">
-                        <x-formpaypayment :id="$id" :type="$type='дороги'" :button="$button='оплатить дорожный взнос'"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <x-tablesumpayment :type="'дороги'" :id="$id"/>
-                </div>
-                <div class="row">
-                    <x-payment-table :type="'дороги'" :id="$id"/>
-                </div>
-                <div class="row">
-                    <x-tablepay :id="$id"/>
-                </div>
-            </div>
         </div>
-        <div class="tab-pane fade" id="trash" role="tabpanel" aria-labelledby="contact-tab">
-            <div class="row p-3">
-                <div class="row">
-                    <div class="col-2">
-                        <form class="myForm" id="form3" action="{{route('payments.store', $id->id)}}" method="POST">
-                            @csrf
-                            <div class="col-auto">
-                                <input type="hidden" class="form-control" name="amount" value="1">
-                            </div>
-                            <div class="col-auto">
-                                <input type="hidden" class="form-control" name="tariff" value="0" placeholder="цена за сотку">
-                            </div>
-                            <div class="col-auto">
-                                <input type="text" class="form-control" name="sum" placeholder="сумма">
-                            </div>
-                            <div class="col-auto">
-                                <input type="hidden" class="form-control" name="type" value="мусор"
-                                       placeholder="сумма">
-                            </div>
+        <div class="col-4">
+            <h5>Добавить оплату</h5>
+            <form class="myForm"  action="" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <input type="number" class="form-control" name="value_prihod" placeholder="сумма прихода">
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control" name="number_bank_blank" placeholder="номер платёжки банка">
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control" name="svet" placeholder="свет">
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control" name="chvzos" placeholder="чвзнос">
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control" name="trash" placeholder="мусор">
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control" name="road" placeholder="дороги">
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control" name="camera" placeholder="видеонаблюдение">
+                </div>
+                    <div class="mb-3">
+                        <input type="date" class="form-control" name="date" value="{{ now() }}" >
+                    </div>
+                    <div class="mb-3">
+                        <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary btn-sm">Отправить</button>
+            </form>
+        </div>
 
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить мусор
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-2">
-                        <x-formpaypayment :id="$id" :type="$type='мусор'" :button="$button='оплатить мусор взнос'"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <x-tablesumpayment :type="'мусор'" :id="$id"/>
-                </div>
-                <div class="row">
-                    <x-payment-table :type="'мусор'" :id="$id"/>
-                </div>
-                <div class="row">
-                    <x-tablepay :id="$id"/>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="camera" role="tabpanel" aria-labelledby="contact-tab">
-            <div class="row p-3">
-                <div class="row">
-                    <div class="col-2">
-                        <form class="myForm" id="form3" action="{{route('payments.store', $id->id)}}" method="POST">
-                            @csrf
-                            <div class="col-auto">
-                                <input type="hidden" class="form-control" name="amount" value="1">
-                            </div>
-                            <div class="col-auto">
-                                <input type="hidden" class="form-control" name="tariff" value="0" placeholder="цена за сотку">
-                            </div>
-                            <div class="col-auto">
-                                <input type="text" class="form-control" name="sum" placeholder="сумма">
-                            </div>
-                            <div class="col-auto">
-                                <input type="hidden" class="form-control" name="type" value="видеонаблюдение"
-                                       placeholder="сумма">
-                            </div>
-
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить взнос в.камеры
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-2">
-                        <x-formpaypayment :id="$id" :type="$type='видеонаблюдение'" :button="$button='оплатить камеры взнос'"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <x-tablesumpayment :type="'видеонаблюдение'" :id="$id"/>
-                </div>
-                <div class="row">
-                    <x-payment-table :type="'видеонаблюдение'" :id="$id"/>
-                </div>
-                <div class="row">
-                    <x-tablepay :id="$id"/>
-                </div>
-            </div>
-        </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+    <x-payment-table :type="'свет'" :id="$id"/>
+    <x-payment-table :type="'чвзнос'" :id="$id"/>
+
+    <x-tablepay :id="$id"/>
+
+
+
 
 
 
 <script>
     $(document).ready(function () {
-        // При загрузке страницы проверяем, есть ли сохраненная информация о текущей вкладке в localStorage
-        var activeTabId = localStorage.getItem('activeTab');
-        if (activeTabId) {
-            $('#' + activeTabId).tab('show');
-        } else {
-            // Если сохраненной информации нет, активируем вкладку по умолчанию
-            $('.nav-link:first').tab('show');
-        }
 
-        // При отправке формы сохраняем информацию о текущей вкладке в localStorage
-        $('.myForm').submit(function (event) {
-            var activeTab = $('.nav-link.active');
-            localStorage.setItem('activeTab', activeTab.attr('id'));
+        $('#selectType').change(function(){
+            var selectedValue = $(this).val();
+            $('div[id^="div"]').hide(); // скрываем все div
+            $('#div' + selectedValue).show(); // показываем нужный div
         });
 
-        // $('#tariff').on('input', function () {
-        //     // Получаем значения amount и tariff
-        //     var amount = parseFloat($('#amount').val()) || 0;
-        //     var tariff = parseFloat($(this).val()) || 0;
-        //
-        //     // Вычисляем сумму и устанавливаем в поле sum
-        //     var sum = amount * tariff;
-        //     $('#sum').val(sum.toFixed(2)); // Устанавливаем значение с округлением до двух знаков после запятой
-        // });
     });
 
     function showEditForm(paymentId) {
