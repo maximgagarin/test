@@ -21,4 +21,7 @@ class MainController extends Controller
         $areas = $query->paginate(350);
         return view('main', compact('areas'));
     }
+
+
+
 }

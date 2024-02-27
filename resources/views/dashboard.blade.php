@@ -61,10 +61,9 @@
 
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-3">
             <h5>Добавить начисление</h5>
-            <form class="myForm" action="" method="POST">
-                @csrf
+
                 <div class="mb-3">
                     <select class="form-select" aria-label="Default select example" name="selectType" id="selectType">
                         <option selected>Выберите тип начисления</option>
@@ -81,7 +80,7 @@
                     <div><a href="{{ route('counter2', $id->id) }}">История показаний</a></div>
                     @if (empty($lastValue))
                         нет показаний
-                        <form class="myForm" action="{{ route('store2') }}" method="POST">
+                        <form class="myForm" action="{{ route('store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <input type="number" class="form-control" name="value" placeholder="показание">
@@ -120,6 +119,7 @@
                         </form>
 
                     @endif
+
                 </div>
                 <div id="div2" style="display: none;">
                     <div class="col-3">
@@ -149,25 +149,92 @@
                 </div>
                 <div id="div3" style="display: none;">
                     Контент для Мусора
+                    <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label >Площадь</label>
+                            <input type="text" class="form-control" name="amount" id="amount" value="{{$id->square}}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="tariff" id="tariff" placeholder="цена за сотку">
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
+                        </div>
+                        <div class="col-auto">
+                            <input type="hidden" class="form-control" name="type" value="мусор"
+                                   placeholder="сумма">
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div id="div4" style="display: none;">
                     Контент для Дорог
+                    <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label >Площадь</label>
+                            <input type="text" class="form-control" name="amount" id="amount" value="{{$id->square}}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="tariff" id="tariff" placeholder="цена за сотку">
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
+                        </div>
+                        <div class="col-auto">
+                            <input type="hidden" class="form-control" name="type" value="дороги"
+                                   placeholder="сумма">
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div id="div5" style="display: none;">
                     Контент для Видеонаблюдения
+                    <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label >Площадь</label>
+                            <input type="text" class="form-control" name="amount" id="amount" value="{{$id->square}}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="tariff" id="tariff" placeholder="цена за сотку">
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
+                        </div>
+                        <div class="col-auto">
+                            <input type="hidden" class="form-control" name="type" value="видеонаблюдение"
+                                   placeholder="сумма">
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+
 
         </div>
         <div class="col-4">
             <h5>Добавить оплату</h5>
-            <form class="myForm"  action="" method="POST">
+            <form class="myForm"  action="{{route('incoming')}}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <input type="number" class="form-control" name="value_prihod" placeholder="сумма прихода">
+                    <input type="number" class="form-control" name="sum_incoming" placeholder="сумма прихода">
                 </div>
+                <p>Осталось:</p>
                 <div class="mb-3">
-                    <input type="number" class="form-control" name="number_bank_blank" placeholder="номер платёжки банка">
+                    <input type="number" class="form-control" name="number" placeholder="номер платёжки банка">
                 </div>
                 <div class="mb-3">
                     <input type="number" class="form-control" name="svet" placeholder="свет">
@@ -208,6 +275,9 @@
 
     <x-payment-table :type="'свет'" :id="$id"/>
     <x-payment-table :type="'чвзнос'" :id="$id"/>
+    <x-payment-table :type="'мусор'" :id="$id"/>
+    <x-payment-table :type="'дороги'" :id="$id"/>
+    <x-payment-table :type="'видеонаблюдение'" :id="$id"/>
 
     <x-tablepay :id="$id"/>
 

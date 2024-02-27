@@ -18,15 +18,21 @@ Route::middleware(['admin'])->group(function () {
 
 Route::get('/main', 'MainController@index')->name('main');
 
+
+Route::get('test', 'TestController@test')->name('test');
+
+Route::post('incoming', 'IncomingController@index')->name('incoming');
+
 Route::get('name', 'MainController@search')->name('name');
 
 
-
+//Route::post('countered', 'Counter2Controller@countered')->name('countered') ;
 
 
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dashboard') ;
 Route::get('Counter2/{id}', 'Counter2Controller@index')->name('counter2') ;
-Route::post('store2', 'Counter2Controller@store2')->name('store2') ;
+Route::post('store', 'Counter2Controller@store')->name('store') ;
+
 Route::post('store3', 'Counter2Controller@store3')->name('store3') ;
 Route::delete('Counter/{id}', 'Counter2Controller@delete')->name('counter.delete') ;
 Route::post('Counterupdate', 'Counter2Controller@update')->name('counter.update');
@@ -59,7 +65,7 @@ Route::get('Areas/create', 'AreasController@create')->name('area.create');
 Route::post('Areas', 'AreasController@store')->name('area.store');
 
 
-Route::get('test', 'TestController@test')->name('test');
+
 
 Route::post('paymentn', 'PaymentnController@store')->name('payment_new');
 

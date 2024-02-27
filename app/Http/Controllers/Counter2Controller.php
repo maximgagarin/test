@@ -19,12 +19,9 @@ class Counter2Controller extends Controller
         return view('counter2', compact('counts', 'id', 'tariffs', 'lastValue'));
    }
 
-   public function store()
-   {
-       dd('321');
-   }
 
-    public function store2()
+
+    public function store()
     {
 
         $id = request('areas_id');
