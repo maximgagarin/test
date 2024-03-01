@@ -230,70 +230,101 @@
             <form class="myForm"  action="{{route('incoming')}}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <input type="number" class="form-control" name="sum_incoming" placeholder="сумма прихода">
+                    <input type="number" class="form-control" id="sum_incoming" name="sum_incoming" placeholder="сумма прихода">
                 </div>
                 <p>Осталось:</p>
+                <p id="left"></p>
+                <div class="mb-3">
+                    <input type="number" class="form-control" id="sum_left" value="" name="sum_left" placeholder="осталось">
+                </div>
                 <div class="mb-3">
                     <input type="number" class="form-control" name="number" placeholder="номер платёжки банка">
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" name="svet" placeholder="свет">
+                    <input type="number" class="form-control" id="svet" name="svet" placeholder="свет">
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" name="chvzos" placeholder="чвзнос">
+                    <input type="number" class="form-control" id="chvznos" name="chvznos" placeholder="чвзнос">
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" name="trash" placeholder="мусор">
+                    <input type="number" class="form-control" id="trash" name="trash" placeholder="мусор">
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" name="road" placeholder="дороги">
+                    <input type="number" class="form-control" id="road" name="road" placeholder="дороги">
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" name="camera" placeholder="видеонаблюдение">
+                    <input type="number" class="form-control" id="camera" name="camera" placeholder="видеонаблюдение">
                 </div>
-                    <div class="mb-3">
-                        <input type="date" class="form-control" name="date" value="{{ now() }}" >
-                    </div>
-                    <div class="mb-3">
-                        <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
-                    </div>
+                <div class="mb-3">
+                    <input type="date" class="form-control" name="date" value="{{ now() }}" >
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" class="form-control" id="sum_paid" name="sum_paid" value="">
+                </div>
                     <button type="submit" class="btn btn-outline-primary btn-sm">Отправить</button>
             </form>
         </div>
-
+        <div class="col-4">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">тариф</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($counts as $count)
+                    <tr>
+                        <td> {{$count->value}}</td>
+                        <td> <button class="btn btn-danger btn-sm">Удалить</button></td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
     <x-payment-table :type="'свет'" :id="$id"/>
     <x-payment-table :type="'чвзнос'" :id="$id"/>
     <x-payment-table :type="'мусор'" :id="$id"/>
     <x-payment-table :type="'дороги'" :id="$id"/>
     <x-payment-table :type="'видеонаблюдение'" :id="$id"/>
-
     <x-tablepay :id="$id"/>
-
-
-
-
-
 
 <script>
     $(document).ready(function () {
 
         $('#selectType').change(function(){
+
             var selectedValue = $(this).val();
             $('div[id^="div"]').hide(); // скрываем все div
             $('#div' + selectedValue).show(); // показываем нужный div
         });
+
+        $('#svet, #chvznos, #trash, #road, #camera').on('keyup', function() {
+            // Get values from input elements
+            var svet = parseFloat($('#svet').val()) || 0;
+            var chvznos = parseFloat($('#chvznos').val()) || 0;
+            var trash = parseFloat($('#trash').val()) || 0;
+            var road = parseFloat($('#road').val()) || 0;
+            var camera = parseFloat($('#camera').val()) || 0;
+
+            var sumincoming = parseFloat($('#sum_incoming').val()) || 0;
+
+            // Calculate the remaining value and update the text of the element with ID 'left'
+            $('#left').text(sumincoming - svet - chvznos - trash - road - camera);
+
+            // Update the value attribute of the element with ID 'sum_left'
+            $('#sum_left').attr('value', sumincoming - svet - chvznos - trash - road - camera);
+
+            // Update the value attribute of the element with ID 'sum_paid'
+            $('#sum_paid').attr('value', svet + chvznos + trash + road + camera);
+        });
+
+
+
+
 
     });
 

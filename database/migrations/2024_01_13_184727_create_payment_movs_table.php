@@ -20,6 +20,8 @@ class CreatePaymentMovsTable extends Migration
             $table->decimal('sum',  $precision = 10, $scale = 4);
             $table->string('prepays')->nullable();
             $table->timestamp('date')->nullable();
+            $table->integer('incoming');
+
         });
     }
 

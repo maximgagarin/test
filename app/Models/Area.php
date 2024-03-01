@@ -25,11 +25,8 @@ class Area extends Model
             ->sum('sum');
     }
 
-    public function getTotalPaymentMovsSum()
+    public function paymentsmovs()
     {
-        return $this->hasMany(Payment::class)
-            ->leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')
-            ->where('status', 'неоплачен')
-            ->sum('payment_movs.sum');
+        return $this->hasManyThrough(payment_mov::class, Payment::class, 'areas_id', 'payments_id', 'id', 'id');
     }
 }

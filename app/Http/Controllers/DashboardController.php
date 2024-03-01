@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\Counter;
+use App\Models\Incoming;
 use App\Models\Payment;
 use App\Models\payment_mov;
 use App\Models\Prepay;
@@ -28,6 +29,8 @@ class DashboardController extends Controller
 
         $comment = Area::where('id', $id->id)->value('comment');
 
+        $incoming= Incoming::where('areas_id', $id->id)->get();
+
 
         $lastValue = Counter::where('areas_id', $id->id)->latest('id')->value('value'); //послед показ счетчика
         $lastValuedate = Counter::where('areas_id', $id->id)->latest('id')->value('date'); //послед показ счетчика
@@ -35,6 +38,6 @@ class DashboardController extends Controller
         $tariffs = tariff::query()->select('value')->where('type', 'свет')->get();
 
 
-        return view('dashboard', compact('id' , 'comment', 'payments',  'tariffs' , 'D', 'lastValue', 'lastValuedate'));
+        return view('dashboard', compact('id' , 'comment', 'incoming', 'payments',  'tariffs' , 'D', 'lastValue', 'lastValuedate'));
     }
 }

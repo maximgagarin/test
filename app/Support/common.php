@@ -1,21 +1,12 @@
 <?php
 
+
 use App\Models\Payment;
 use App\Models\payment_mov;
-use App\Models\Prepay;
 
-public function pay($id, $type, $value)
+function calculation($id, $value, $type, $lastIdIncoming)
 {
-   // $type = \request('type');
 
-//    $data = request()->validate([
-//        'value' => '',
-//    ]);
-//
-//    $value = $data['value'];
-
-
-   // $TypePayment = 'свет';
     $payments = Payment::select(['id', 'sum'])
         ->where('areas_id', $id)
         ->where('type', $type)
@@ -46,6 +37,7 @@ public function pay($id, $type, $value)
                 'payments_id' => $paymentId,
                 'sum' => $remainingSumm,
                 'date' => now(),
+                'incoming' => $lastIdIncoming,
             ]);
             Payment::where('id', $paymentId)->update(['status' => 'оплачен']);
             $allPaymentsPaid = 0;
@@ -57,23 +49,12 @@ public function pay($id, $type, $value)
                 'payments_id' => $paymentId,
                 'sum' => $value,
                 'date' => now(), // Use Laravel's now() helper to get the current date and time
+                'incoming' => $lastIdIncoming,
             ]);
             $value = 0;
 
             payment_mov::where('sum', 0)->delete();
 
         }
-    }
-    if ($allPaymentsPaid == 0 && $value > 0) {
-        echo 'Remaining Value: ' . $value;
-        $data = [
-            'sum' => $value,
-            'areas_id' => $id,
-            'date' => now(),
-            'saldo' => 'приход'
-        ];
-        Prepay::create($data);
-
-
     }
 }
