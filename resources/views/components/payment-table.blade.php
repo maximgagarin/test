@@ -22,7 +22,7 @@
             <td> {{$payment->amount}}</td>
             <td> {{$payment->tariff}}р.</td>
             <td> {{$payment->sum}}р.</td>
-            <td> {{$payment->date}}</td>
+            <td>{{ \Carbon\Carbon::parse($payment->date)->format('d-m-Y') }}</td>
             <td> {{$payment->status}}</td>
             <td> {{$payment->sumpaid}}</td>
             <td>{{$payment->sum - $payment->sumpaid}}р.</td>

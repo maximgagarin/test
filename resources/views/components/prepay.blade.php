@@ -12,6 +12,24 @@
     <input type="hidden" value="чвзнос" name="type">
     <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на чвзнос</button>
 </form>
+<form class="myForm" action="{{ route('prepay', $id->id) }}" method="POST">
+    @csrf
+    <input type="hidden" value="{{$d}}" name="value">
+    <input type="hidden" value="мусор" name="type">
+    <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на мусор</button>
+</form>
+<form class="myForm" action="{{ route('prepay', $id->id) }}" method="POST">
+    @csrf
+    <input type="hidden" value="{{$d}}" name="value">
+    <input type="hidden" value="дороги" name="type">
+    <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на дороги</button>
+</form>
+<form class="myForm" action="{{ route('prepay', $id->id) }}" method="POST">
+    @csrf
+    <input type="hidden" value="{{$d}}" name="value">
+    <input type="hidden" value="видеонаблюдение" name="type">
+    <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на в.наблюд</button>
+</form>
 
 
 

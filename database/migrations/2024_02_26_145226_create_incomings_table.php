@@ -21,6 +21,11 @@ class CreateIncomingsTable extends Migration
             $table->decimal('sum_incoming',  $precision = 10, $scale = 4)->nullable();
             $table->decimal('sum_left',  $precision = 10, $scale = 4)->nullable();
             $table->decimal('sum_paid',  $precision = 10, $scale = 4)->nullable();
+            $table->decimal('svet',  $precision = 10, $scale = 4)->nullable();
+            $table->decimal('chvznos',  $precision = 10, $scale = 4)->nullable();
+            $table->decimal('trash',  $precision = 10, $scale = 4)->nullable();
+            $table->decimal('road',  $precision = 10, $scale = 4)->nullable();
+            $table->decimal('camera',  $precision = 10, $scale = 4)->nullable();
             $table->timestamp('date')->nullable();
 
         });
