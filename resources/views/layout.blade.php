@@ -17,6 +17,7 @@
         <li class="nav-item"><a href="{{route('tariff')}}" class="nav-link">Тарифы</a></li>
         <li class="nav-item"><a href="{{route('vznos')}}" class="nav-link">Взносы</a></li>
         <li class="nav-item"><a href="{{route('debts')}}" class="nav-link">Долги</a></li>
+        <li class="nav-item"><a href="{{route('incomingall')}}" class="nav-link">Все оплаты</a></li>
     </ul>
 
 </header>

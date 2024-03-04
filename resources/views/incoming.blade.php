@@ -1,0 +1,99 @@
+@extends('layout')
+@section('content')
+    <?php $sum1=0 ?>
+    <?php $sum2=0 ?>
+    <?php $sum3=0 ?>
+    <?php $sum4=0 ?>
+    <?php $sum5=0 ?>
+    <?php $sum6=0 ?>
+    <?php $sum7=0 ?>
+    <?php $sum8=0 ?>
+
+    <div class="container">
+        <div class="row mt-5 mb-5">
+            <div class="col-3">
+                <h6>Выбрать дату</h6>
+                <form action="{{route('incoming')}}">
+                <div class=" mb-3">
+                    <input type="date" class="form-control" name="date" value="{{ now() }}" >
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary ">показать
+                    </button>
+                </div>
+                </form>
+            </div>
+            <div class="col-3">
+                <h6>Выбрать период</h6>
+                <form action="{{route('incoming')}}">
+                    <div class=" mb-3">
+                        <input type="date" class="form-control" name="date1" value="" >
+                    </div>
+                    <div class=" mb-3">
+                        <input type="date" class="form-control" name="date2" value="" >
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary ">показать
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+        <table class="table mt-3 table-bordered ">
+            <thead>
+            <tr>
+                <th scope="col">дата занесения в программу</th>
+                <th scope="col">дата оплаты в банке</th>
+                <th scope="col">всего приход</th>
+                <th scope="col">перешло в аванс</th>
+                <th scope="col">всего оплачено</th>
+
+                <th scope="col">свет</th>
+                <th scope="col">чвзнос</th>
+                <th scope="col">мусор</th>
+                <th scope="col">дороги</th>
+                <th scope="col">в наблюдение</th>
+                <th scope="col">учасоток</th>
+                <th scope="col">карточка</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($results as $count)
+                <tr>
+                    <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
+                    <td> {{$count->sum_incoming}}</td>  <?php $sum1 += $count->sum_incoming; ?>
+                    <td> {{$count->sum_left}}</td>       <?php $sum2 += $count->sum_left; ?>
+                    <td> {{$count->sum_paid}}</td>      <?php $sum3 += $count->sum_paid; ?>
+                    <td> {{$count->svet}}</td>         <?php $sum4 += $count->svet; ?>
+                    <td> {{$count->chvznos}}</td>      <?php $sum5 += $count->chvznos; ?>
+                    <td> {{$count->trash}}</td>         <?php $sum6 += $count->trash; ?>
+                    <td> {{$count->road}}</td>         <?php $sum7 += $count->road; ?>
+                    <td> {{$count->camera}}</td>       <?php $sum8 += $count->camera; ?>
+                    <td> {{$count->number}}</td>
+                    <td><a href="{{ route('dashboard', $count->areas_id) }}">Перейти</a></td>
+                </tr>
+            @endforeach
+            <tr class="text-danger ">
+                <td>Итог</td>
+                <td></td>
+                <td>{{$sum1}}р.</td>
+                <td>{{$sum2}}р.</td>
+                <td>{{$sum3}}р.</td>
+                <td>{{$sum4}}р.</td>
+                <td>{{$sum5}}р.</td>
+                <td>{{$sum6}}р.</td>
+                <td>{{$sum7}}р.</td>
+                <td>{{$sum8}}р.</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+
+@endsection
+

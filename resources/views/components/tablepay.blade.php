@@ -19,7 +19,7 @@
                 <td> {{$payment->payments_id}}</td>
                 <td> {{$payment->sum}}р.</td>
                 <td> {{$payment->type}}</td>
-                <td> {{$payment->date}}</td>
+                <td>{{ \Carbon\Carbon::parse($payment->date)->format('d-m-Y') }}</td>
                 <td> {{$payment->prepays}}</td>
                 <td>
                     <form action="{{ route('payment_mov.delete', $payment->id) }}" method="POST">

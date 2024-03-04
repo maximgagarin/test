@@ -98,6 +98,8 @@ class Counter2Controller extends Controller
             'value' => $data['value'],
         ]);
 
+
+
         return redirect()->route('dashboard', ['id' => $counter->areas_id])->with('success', 'Запись успешно удалена.');
     }
 }

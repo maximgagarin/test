@@ -193,7 +193,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж
+                            <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить
                             </button>
                         </div>
                     </form>
@@ -218,7 +218,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить платёж
+                            <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Добавить
                             </button>
                         </div>
                     </form>
@@ -236,7 +236,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="">Осталось</label>
-                    <input type="text" class="form-control" id="sum_left" value="" name="sum_left" placeholder="осталось">
+                    <input type="text" class="form-control" id="sum_left" value="" name="sum_left" placeholder="осталось" >
                 </div>
 {{--                <div class="mb-3">--}}
 {{--                    <input type="text" class="form-control" name="number" placeholder="номер платёжки банка">--}}
@@ -262,7 +262,7 @@
                     <input type="text" class="form-control" id="camera" name="camera" placeholder="видеонаблюдение">
                 </div>
                 <div class="mb-3">
-                    <input type="date" class="form-control" name="date" value="{{ now() }}" >
+                    <input type="date" class="form-control" name="date" value="{{ now()->format('Y-m-d') }}" >
                 </div>
                 <div class="mb-3">
                     <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
@@ -273,38 +273,43 @@
                     <button type="submit" class="btn btn-outline-primary btn-sm">Отправить</button>
             </form>
         </div>
-        <div class="col-6">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">сумма прихода</th>
-                    <th scope="col">в аванс</th>
-                    <th scope="col">всего оплачено</th>
-                    <th scope="col">свет</th>
-                    <th scope="col">чвзнос</th>
-                    <th scope="col">мусор</th>
-                    <th scope="col">дороги</th>
-                    <th scope="col">видео</th>
-                    <th scope="col">дата</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($incoming as $count)
+        <div class="col-7">
+            <h4>Платежи</h4>
+            <div style="max-height: 600px; overflow-y: auto;">
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <td> {{$count->sum_incoming}}</td>
-                        <td> {{$count->sum_left}}</td>
-                        <td> {{$count->sum_paid}}</td>
-                        <td> {{$count->svet}}</td>
-                        <td> {{$count->chvznos}}</td>
-                        <td> {{$count->trash}}</td>
-                        <td> {{$count->road}}</td>
-                        <td> {{$count->camera}}</td>
-                        <td>{{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
-                        <td> <button class="btn btn-danger btn-sm">Удалить</button></td>
+                        <th scope="col">дата занесения</th>
+                        <th scope="col">сумма прихода</th>
+                        <th scope="col">в аванс</th>
+                        <th scope="col">всего оплачено</th>
+                        <th scope="col">свет</th>
+                        <th scope="col">чвзнос</th>
+                        <th scope="col">мусор</th>
+                        <th scope="col">дороги</th>
+                        <th scope="col">видео</th>
+                        <th scope="col">дата</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($incoming as $count)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
+                            <td> {{$count->sum_incoming}}</td>
+                            <td> {{$count->sum_left}}</td>
+                            <td> {{$count->sum_paid}}</td>
+                            <td> {{$count->svet}}</td>
+                            <td> {{$count->chvznos}}</td>
+                            <td> {{$count->trash}}</td>
+                            <td> {{$count->road}}</td>
+                            <td> {{$count->camera}}</td>
+                            <td>{{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
+                            <td> <button class="btn btn-danger btn-sm">Отменить</button></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <x-payment-table :type="'свет'" :id="$id"/>
@@ -323,21 +328,25 @@
             $('#div' + selectedValue).show(); // показываем нужный div
         });
 
-        $('#svet, #chvznos, #trash, #road, #camera').on('input', function() {
+        $('#sum_incoming, #svet, #chvznos, #trash, #road, #camera').on('input', function() {
             var svet = new Decimal($('#svet').val().trim() || '0');
             var chvznos = new Decimal($('#chvznos').val().trim() || '0');
             var trash = new Decimal($('#trash').val().trim() || '0');
             var road = new Decimal($('#road').val().trim() || '0');
             var camera = new Decimal($('#camera').val().trim() || '0');
-
             var sumincoming = new Decimal($('#sum_incoming').val().trim() || '0');
 
             // Perform precise decimal arithmetic
             var sumLeft = sumincoming.minus(svet).minus(chvznos).minus(trash).minus(road).minus(camera);
             var sumPaid = svet.plus(chvznos).plus(trash).plus(road).plus(camera);
 
-            // Output the results
-            console.log(sumLeft.toString());
+            if (sumPaid.greaterThan(sumincoming)) {
+                $(this).val('');  // Reset the value of the current input field
+
+                alert('превышенна сумма!');
+                location.reload(true)
+            }
+
 
             // Set the values for elements with IDs 'sum_left' and 'sum_paid'
             $('#sum_left').val(sumLeft.toString());

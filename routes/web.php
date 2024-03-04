@@ -64,6 +64,8 @@ Route::delete('/paymentmovs/{id}', 'PaymentmovsController@destroy')->name('payme
 Route::get('Areas/create', 'AreasController@create')->name('area.create');
 Route::post('Areas', 'AreasController@store')->name('area.store');
 
+Route::get('incoming', 'IncomingController@all')->name('incomingall');
+
 
 
 

@@ -22,6 +22,7 @@ class CreatePaymentMovsTable extends Migration
             $table->timestamp('date')->nullable();
             $table->integer('incoming')->nullable();
 
+
         });
     }
 
