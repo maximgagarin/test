@@ -5,11 +5,12 @@
         <th>тип</th>
         <th>колич</th>
         <th>тариф</th>
-        <th>сумма</th>
+        <th>начислено</th>
         <th>дата начисл</th>
         <th>статус</th>
         <th>Оплачено</th>
         <th>Осталось</th>
+        <th>период</th>
         <th></th>
         <th></th>
     </tr>
@@ -26,6 +27,8 @@
             <td> {{$payment->status}}</td>
             <td> {{$payment->sumpaid}}</td>
             <td>{{$payment->sum - $payment->sumpaid}}р.</td>
+            <td>{{ \Carbon\Carbon::parse($payment->datestart)->format('d-m-Y') }}//{{ \Carbon\Carbon::parse($payment->dateend)->format('d-m-Y') }}</td>
+
             <td>
                 <button class="btn btn-primary btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
             </td>

@@ -25,7 +25,7 @@ class TariffController extends Controller
         ]);
         $data['type'] = 'свет';
         tariff::create($data);
-        return redirect()->route('tariff');
+        return redirect()->back();
     }
 
 

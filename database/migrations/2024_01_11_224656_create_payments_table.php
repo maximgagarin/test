@@ -24,7 +24,10 @@ class CreatePaymentsTable extends Migration
             $table->decimal('sum',  $precision = 10, $scale = 4);
             $table->timestamp('date')->nullable();
             $table->string('status');
-
+            $table->integer('start')->nullable();
+            $table->integer('end')->nullable();
+            $table->timestamp('datestart')->nullable();
+            $table->timestamp('dateend')->nullable();
         });
     }
 

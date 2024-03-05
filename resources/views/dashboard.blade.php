@@ -10,9 +10,9 @@
             </ul>
         </div>
     @endif
-
-    <div class="row mb-4">
-        <div class="col-3 md-3">
+<div class="container">
+    <div class="row mb-4 mt-4">
+        <div class="  col-lg-3 col-sm-6 md-3">
             <table class="table table-bordered ">
                 <tr>
                     <td colspan="2"><h6>Участок</h6>
@@ -37,10 +37,10 @@
                 </tr>
             </table>
         </div>
-        <div class="col-2">
+        <div class=" col-lg-2 col-sm-6">
           <x-tablealldebts :id="$id"/>
         </div>
-        <div class="col-2">
+        <div class="  col-lg-2 col-sm-6">
             <h7>Комментарий</h7>
             <form class="row g-3" action="{{route('areas.comment')}}" method="POST">
                 @csrf
@@ -51,13 +51,13 @@
                 </div>
             </form>
         </div>
-        <div class="col-2 border">
+        <div class=" col-lg-2 col-sm-6  border">
             <x-prepay :d="$D" :id="$id">
                 свет
             </x-prepay>
         </div>
 
-        <div class="col-2 border">
+        <div class="col-lg-2  col-sm-6 border">
             <h6>Счетчик</h6>
             <div><a href="{{ route('counter2', $id->id) }}">История показаний</a></div>
             @if (empty($lastValue))
@@ -273,7 +273,7 @@
                     <button type="submit" class="btn btn-outline-primary btn-sm">Отправить</button>
             </form>
         </div>
-        <div class="col-7">
+        <div class="col-8">
             <h4>Платежи</h4>
             <div style="max-height: 600px; overflow-y: auto;">
                 <table class="table table-bordered">
@@ -312,12 +312,40 @@
             </div>
         </div>
     </div>
-    <x-payment-table :type="'свет'" :id="$id"/>
-    <x-payment-table :type="'чвзнос'" :id="$id"/>
-    <x-payment-table :type="'мусор'" :id="$id"/>
-    <x-payment-table :type="'дороги'" :id="$id"/>
-    <x-payment-table :type="'видеонаблюдение'" :id="$id"/>
+</div>
+
+<div class="container">
+    <div class="custom-border mt-4">
+        <p class="text22">Начисления по свету</p>
+        <x-payment-table :type="'свет'" :id="$id"/>
+    </div>
+
+    <div class="custom-border mt-4">
+        <h5>Начисления по чвзнос</h5>
+        <x-payment-table :type="'чвзнос'" :id="$id"/>
+    </div>
+
+    <div class="custom-border mt-4">
+        <h5>Начисления по мусор</h5>
+        <x-payment-table :type="'мусор'" :id="$id"/>
+    </div>
+
+    <div class="custom-border mt-4">
+        <h5>Начисления дороги</h5>
+        <x-payment-table :type="'дороги'" :id="$id"/>
+    </div>
+
+    <div class="custom-border mt-4">
+        <h5>Начисления видеонаблюдение</h5>
+        <x-payment-table :type="'видеонаблюдение'" :id="$id"/>
+    </div>
+
+
+
+
     <x-tablepay :id="$id"/>
+</div>
+
 
 <script>
     $(document).ready(function () {

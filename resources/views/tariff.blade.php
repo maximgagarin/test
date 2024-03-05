@@ -12,9 +12,9 @@
         </div>
     @endif
 
-    <div class="row mb-3"> <h3>Тарифы на свет</h3></div>
+    <div class="row mb-3 mt-4 text-center "> <h3>Тарифы на свет</h3></div>
 
-    <div class="row">
+    <div class="row   justify-content-center">
         <div class="col-2">
             <form  action="{{route('tariff.store')}}" method="POST">
                 @csrf
@@ -30,6 +30,7 @@
                 <thead>
                 <tr>
                     <th scope="col">тариф</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>

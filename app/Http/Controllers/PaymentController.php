@@ -145,8 +145,22 @@ class PaymentController extends Controller
         payment_mov::where('sum', 0)->delete();
 
         $payment = Payment::find($id);
-        if (Payment::has('payment_mov')->exists()) {
-             return redirect()->back();
+
+
+        if (Payment::where('id', $id)->has('payment_mov')->exists()) {
+
+           $sum  =  Payment::where('id',$id)->withSum('payment_mov as summ', 'sum')->value('summ');
+
+            $data =[
+                'sum' => $sum,
+                'areas_id' =>$payment->areas_id,
+                'date' => now(),
+                'saldo' => 'приход'
+            ];
+            payment_mov::where('payments_id',$id)->delete();
+            Prepay::create($data);
+            $payment->delete();
+            return redirect()->back();
         } else {
             $payment->delete();
             return redirect()->back();

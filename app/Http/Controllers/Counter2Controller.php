@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Counter;
+use App\Models\Incoming;
 use App\Models\Payment;
 use App\Models\tariff;
 use App\Rules\Uppercase;
@@ -51,22 +52,35 @@ class Counter2Controller extends Controller
             $date = $data['date'];
             $razn = $value - $lastValue;
             $sum = $razn * $tariff;
-            $data2 = [
-                'areas_id' => $id,
-                'type' => 'свет',
-                'unit' => 'квт',
-                'amount' => $razn,
-                'tariff' => $tariff,
-                'sum' => $sum,
-                'date' => $date,
-                'status' => 'неоплачен',
-                ];
+
             $data3=[
                 'value' => $value,
                 'date' => $date,
                 'areas_id' => $id,
             ];
             Counter::create($data3);
+        $secondIdCounter =  Counter::latest('id')->value('id');
+        $dateEnd =  Counter::latest('id')->value('date');
+
+        $previosIdCounter = Counter::latest('id')->skip(1)->take(1)->value('id');
+        $dateStart = Counter::latest('id')->skip(1)->take(1)->value('date');
+
+
+        $data2 = [
+            'areas_id' => $id,
+            'type' => 'свет',
+            'unit' => 'квт',
+            'amount' => $razn,
+            'tariff' => $tariff,
+            'sum' => $sum,
+            'date' => $date,
+            'status' => 'неоплачен',
+            'start' => $previosIdCounter,
+            'end' => $secondIdCounter,
+            'datestart' => $dateStart,
+            'dateend' => $dateEnd,
+        ];
+
            Payment::create($data2);
 
         return redirect()->route('dashboard',['id' => $id]);
@@ -93,11 +107,16 @@ class Counter2Controller extends Controller
         ]);
 
         $counter = Counter::find($data['id']);
+        $counterId = $counter->id;
+        $counterValueOld = $counter->value;
 
         $counter->update([
             'value' => $data['value'],
         ]);
 
+
+        $payment = Payment::where('end', $counterId)->get();
+        $sumPaymentOld = $payment->sum;
 
 
         return redirect()->route('dashboard', ['id' => $counter->areas_id])->with('success', 'Запись успешно удалена.');
