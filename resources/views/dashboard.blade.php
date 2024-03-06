@@ -113,7 +113,7 @@
                 </form>
             @endif
         </div>
-        <div class="col-2 ">
+        <div class="col-3">
             <h5>Начислить взнос</h5>
             <div class="mb-3">
                 <select class="form-select" aria-label="Default select example" name="selectType" id="selectType">

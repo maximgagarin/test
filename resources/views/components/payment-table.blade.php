@@ -29,7 +29,7 @@
             <td> {{$payment->status}}</td>
             <td> {{$payment->sumpaid}}</td>
             <td>{{$payment->sum - $payment->sumpaid}}</td>
-            <td>{{$payment->datestart}}--{{$payment->datestart}}</td>
+            <td>{{$payment->datestart}}--{{$payment->dateend}}</td>
 
             <td>
                 <button class="btn btn-primary btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
