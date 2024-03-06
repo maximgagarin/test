@@ -20,6 +20,7 @@ class CreatePrepaysTable extends Migration
             $table->integer('areas_id');
             $table->timestamp('date')->nullable();
             $table->string('saldo');
+            $table->integer('incoming')->nullable();
         });
     }
 

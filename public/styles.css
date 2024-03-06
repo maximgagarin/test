@@ -9,3 +9,15 @@
     font-size: 20px ;
     color: brown;
 }
+
+.custom-border2{
+    border: 1px solid #1a202c; /* Specify the border thickness and color */
+    padding: 14px; /* Add padding to make the content inside the border */
+    border-radius: 10px; /* Adjust the value to control the roundness */
+    background: #ffffe3;
+}
+
+.card-header{
+    background: #2e74ff;
+    color: #e2e8f0;
+}

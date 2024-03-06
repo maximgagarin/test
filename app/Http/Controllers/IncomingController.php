@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\Counter;
 use App\Models\Incoming;
+use App\Models\Payment;
 use App\Models\payment_mov;
 use App\Models\Prepay;
 use App\Rules\Uppercase;
@@ -40,6 +41,7 @@ class IncomingController extends Controller
                 'areas_id'=>$areas_id,
                 'date'=>now(),
                 'saldo'=>'приход',
+                'incoming' => $lastIdIncoming
             ];
             Prepay::create($dataPrepay);
         }
@@ -111,5 +113,33 @@ class IncomingController extends Controller
 
 
         return view('incoming', compact('results' ));
+    }
+
+    public function destroy()
+    {
+        $id = \request('id');
+
+// Step 1: Retrieve payments based on a condition
+        $payments = Payment::whereHas('payment_mov', function ($query) use ($id) {
+            $query->where('incoming', $id);
+        })->get();
+
+// Step 2: Find and delete an incoming record with a specific ID
+        $incoming = Incoming::find($id);
+        if ($incoming) {
+            $incoming->delete();
+        }
+
+// Step 3: Delete related records in Prepay and payment_mov tables based on the incoming ID
+        Prepay::where('incoming', $id)->delete();
+        payment_mov::where('incoming', $id)->delete(); // Ensure the correct capitalization
+
+// Step 4: Update the status column of the retrieved payments to 'неоплачен'
+        $payments->each(function ($payment) {
+            $payment->update(['status' => 'неоплачен']);
+        });
+
+
+        return redirect()->back();
     }
 }

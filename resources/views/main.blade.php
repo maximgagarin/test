@@ -15,9 +15,10 @@
             </div>
         </div>
 
-        <div class="row p-3">
-           <div> {{$areas->links()}} </div>
-            <table class="table mt-3">
+        <div class="row mt-5 justify-content-center">
+           <div class="col-3"> {{$areas->links()}} </div>
+        </div>
+            <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">номер</th>
@@ -43,7 +44,9 @@
                 @endforeach
                 </tbody>
             </table>
-            {{$areas->links()}}
+        <div class="row  justify-content-center">
+            <div class="col-3"> {{$areas->links()}} </div>
+        </div>
         </div>
 
     </div>

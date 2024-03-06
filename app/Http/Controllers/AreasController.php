@@ -19,6 +19,15 @@ class AreasController extends Controller
 
    }
 
+    public function new()
+    {
+        $number = \request('number');
+        $square = \request('square');
+
+        return view('areaneworner', compact('number','square'));
+
+    }
+
     public function comment()
     {
       $id = \request('id');

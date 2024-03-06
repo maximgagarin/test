@@ -59,12 +59,14 @@ Route::post('Debts2', 'DebtsController@index2')->name('debts2') ;
 
 Route::post('Areascomment', 'AreasController@comment')->name('areas.comment') ; //обновление комментария
 Route::get('Areasupdate/{id}', 'AreasController@update')->name('areas.update') ; //страница обновление участка
+Route::get('Areasnew', 'AreasController@new')->name('areas.new') ; //страница обновление участка
 Route::post('Areaupdate', 'AreasController@update2')->name('area.update') ; //обновление участка
 Route::delete('/paymentmovs/{id}', 'PaymentmovsController@destroy')->name('payment_mov.delete');
 Route::get('Areas/create', 'AreasController@create')->name('area.create');
 Route::post('Areas', 'AreasController@store')->name('area.store');
 
 Route::get('incoming', 'IncomingController@all')->name('incomingall');
+Route::delete('incomingdelete', 'IncomingController@destroy')->name('incoming.delete');
 
 
 

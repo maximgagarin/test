@@ -17,10 +17,10 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('areas_id')->constrained('areas');
-            $table->string('type');
-            $table->string('unit');
-            $table->decimal('amount',  $precision = 10, $scale = 4);
-            $table->decimal('tariff',  $precision = 10, $scale = 4);
+            $table->string('type')->nullable();
+            $table->string('unit')->nullable();
+            $table->decimal('amount',  $precision = 10, $scale = 4)->nullable();
+            $table->decimal('tariff',  $precision = 10, $scale = 4)->nullable();
             $table->decimal('sum',  $precision = 10, $scale = 4);
             $table->timestamp('date')->nullable();
             $table->string('status');

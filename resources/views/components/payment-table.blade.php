@@ -1,4 +1,5 @@
 <table class="table">
+
     <thead>
     <tr>
         <th>номер</th>
@@ -18,16 +19,17 @@
     <tbody>
     @foreach($payments as $payment)
         <tr id="editForm2{{$payment->id}}">
+
             <td> {{$payment->id}}</td>
             <td> {{$payment->type}}</td>
             <td> {{$payment->amount}}</td>
             <td> {{$payment->tariff}}р.</td>
             <td> {{$payment->sum}}р.</td>
-            <td>{{ \Carbon\Carbon::parse($payment->date)->format('d-m-Y') }}</td>
+            <td>{{$payment->date}}</td>
             <td> {{$payment->status}}</td>
             <td> {{$payment->sumpaid}}</td>
-            <td>{{$payment->sum - $payment->sumpaid}}р.</td>
-            <td>{{ \Carbon\Carbon::parse($payment->datestart)->format('d-m-Y') }}//{{ \Carbon\Carbon::parse($payment->dateend)->format('d-m-Y') }}</td>
+            <td>{{$payment->sum - $payment->sumpaid}}</td>
+            <td>{{$payment->datestart}}--{{$payment->datestart}}</td>
 
             <td>
                 <button class="btn btn-primary btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
