@@ -18,11 +18,7 @@
                     <td colspan="2"><h6>Участок</h6>
                         <a href="{{route('areas.update', $id->id)}}">Редактировать участок</a>
                         <br>
-                        <form action="{{route('areas.new', $id->id)}}">
-                            <input type="hidden" name="number" value="{{$id->number}}">
-                            <input type="hidden" name="square" value="{{$id->square}}">
-                            <button  type="submit">Создать нового владельца</button>
-                        </form>
+
                     </td>
                 </tr>
                 <tr>
@@ -50,6 +46,11 @@
         <div class=" col-lg-2 col-sm-6 ">
           <x-tablealldebts :id="$id"/>
         </div>
+        <div class=" col-lg-2 col-sm-6  border">
+            <x-prepay :d="$D" :id="$id">
+                свет
+            </x-prepay>
+        </div>
         <div class="  col-lg-2 col-sm-6">
             <h7>Комментарий</h7>
             <form class="row g-3" action="{{route('areas.comment')}}" method="POST">
@@ -60,11 +61,6 @@
                     <button type="submit" class="btn btn-outline-primary btn-sm mb-2">Сохранить</button>
                 </div>
             </form>
-        </div>
-        <div class=" col-lg-2 col-sm-6  border">
-            <x-prepay :d="$D" :id="$id">
-                свет
-            </x-prepay>
         </div>
     </div>
 
@@ -113,7 +109,7 @@
                 </form>
             @endif
         </div>
-        <div class="col-3">
+        <div class="col-lg-3 col-sm-6">
             <h5>Начислить взнос</h5>
             <div class="mb-3">
                 <select class="form-select" aria-label="Default select example" name="selectType" id="selectType">
@@ -206,7 +202,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-5 custom-border">
+        <div class="col-lg-5  col-sm-6 custom-border">
             <h5>Оплатить</h5>
             <form class="myForm"  action="{{route('incoming')}}" method="POST">
                 @csrf
@@ -259,18 +255,16 @@
                     <div class="col-3">
                         <button type="submit" class="btn btn-outline-primary btn-sm">Сохранить</button>
                     </div>
+                </div>
             </form>
 
         </div>
     </div>
-    </div>
 
-
-
-
-        <div class="col-11 custom-border2 mt-3">
-            <h4>Приход денег </h4>
-            <div style="max-height: 600px; overflow-y: auto;">
+    <div class="row">
+    <div class="col-10 custom-border2 mt-3">
+            <h4>Приход денег
+            </h4>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -314,12 +308,13 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
+
         </div>
     </div>
-</div>
 
-<div class="container">
+
+
+
     <div class="row mt-5"><h4>Начисления:</h4></div>
     <div class="custom-border mt-4">
         <p class="text22">Начисления по свету</p>
@@ -346,53 +341,16 @@
         <x-payment-table :type="'видеонаблюдение'" :id="$id"/>
     </div>
 
+    <form action="{{route('areas.new', $id->id)}}">
+        <input type="hidden" name="number" value="{{$id->number}}">
+        <input type="hidden" name="square" value="{{$id->square}}">
+        <button  class="btn bnt-sm" type="submit">Создать нового владельца</button>
+    </form>
 
 
-
-    <x-tablepay :id="$id"/>
+{{--    <x-tablepay :id="$id"/>--}}
 </div>
-    <div class="col-3">
-    <div class="card card-primary">
-        <div class="card-header">
-            <h5 class="card-title">Quick Example</h5>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form>
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-            </div>
-            <!-- /.card-body -->
 
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
-    </div>
-    </div>
 
 <script>
     $(document).ready(function () {
@@ -410,14 +368,12 @@
             var road = new Decimal($('#road').val().trim() || '0');
             var camera = new Decimal($('#camera').val().trim() || '0');
             var sumincoming = new Decimal($('#sum_incoming').val().trim() || '0');
-
             // Perform precise decimal arithmetic
             var sumLeft = sumincoming.minus(svet).minus(chvznos).minus(trash).minus(road).minus(camera);
             var sumPaid = svet.plus(chvznos).plus(trash).plus(road).plus(camera);
 
             if (sumPaid.greaterThan(sumincoming)) {
                 $(this).val('');  // Reset the value of the current input field
-
                 alert('превышенна сумма!');
                 location.reload(true)
             }

@@ -24,7 +24,7 @@ class AreasController extends Controller
         $number = \request('number');
         $square = \request('square');
 
-        return view('areaneworner', compact('number','square'));
+        return view('areanewowner', compact('number','square'));
 
     }
 

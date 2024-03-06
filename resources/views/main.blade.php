@@ -4,9 +4,9 @@
         <div class="row">
             <h3>Все участки</h3>
             <a href="{{route('area.create')}}">Добавить участок</a>
-            <div class="col-3">
+            <div class="col-lg-3 col-sm-6">
                 <form action="{{route('main')}}" class="d-flex mt-3">
-                    <input class="form-control me-2" type="search" name="value" placeholder="Найти участок">
+                    <input class="form-control me-2" type="search" name="value" placeholder="Поиск по владельцу">
                     <button class="btn btn-outline-success" type="submit">Поиск</button>
                 </form>
             </div>

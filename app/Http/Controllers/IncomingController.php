@@ -93,7 +93,8 @@ class IncomingController extends Controller
         if($data['date1']) {
             $startDate = $data['date1'];
             $endDate = $data['date2'];
-           // $results = Incoming::whereBetween('created_at', [$startDate, $endDate])->get();
+            $endDate = date('Y-m-d', strtotime($endDate . ' +1 day'));
+
             $results = Incoming::leftJoin('areas', 'areas.id', '=', 'incomings.areas_id')
                 ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
                     'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number')
