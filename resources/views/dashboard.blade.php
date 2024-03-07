@@ -58,7 +58,7 @@
                 <input type="hidden" value="{{$id->id}}" name="id">
                 <textarea class="form-control" id="exampleFormControlTextarea1" name="text"  rows="3">{{$comment}}</textarea>
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-outline-primary btn-sm mb-2">Сохранить</button>
+                    <button type="submit" class="btn btn-primary btn-sm mb-2">Сохранить комментарий</button>
                 </div>
             </form>
         </div>
@@ -105,7 +105,7 @@
                     <div class="mb-3">
                         <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
                     </div>
-                    <button type="submit" class="btn btn-outline-primary btn-sm">Сохранить</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
                 </form>
             @endif
         </div>
@@ -139,7 +139,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Начислить
+                        <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
                         </button>
                     </div>
                 </form>
@@ -158,7 +158,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Начислить
+                        <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
                         </button>
                     </div>
                 </form>
@@ -177,7 +177,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Начислить
+                        <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
                         </button>
                     </div>
                 </form>
@@ -196,26 +196,41 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Начислить
+                        <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="col-lg-5  col-sm-6 custom-border">
+        <div class="col-lg-5  col-sm-12 custom-border">
             <h5>Оплатить</h5>
             <form class="myForm"  action="{{route('incoming')}}" method="POST">
                 @csrf
                 <div class="row">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="mb-3">
+                                <label for="">Сумма прихода</label>
+                                <input type="text" class="form-control" id="sum_incoming" name="sum_incoming" placeholder="сумма прихода">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="mb-3">
+                                <label for="">Осталось</label>
+                                <input type="text" class="form-control" id="sum_left" value="" name="sum_left" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="mb-3">
+                                <label for="">Оплачено</label>
+                                <input type="text" class="form-control" id="sum_paid" name="sum_paid" value="">
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="col-6">
-                        <div class="mb-3">
-                            <label for="">Сумма прихода</label>
-                            <input type="text" class="form-control" id="sum_incoming" name="sum_incoming" placeholder="сумма прихода">
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Осталось</label>
-                            <input type="text" class="form-control" id="sum_left" value="" name="sum_left" placeholder="осталось" >
-                        </div>
+
                         {{--                <div class="mb-3">--}}
                         {{--                    <input type="text" class="form-control" name="number" placeholder="номер платёжки банка">--}}
                         {{--                </div>--}}
@@ -227,6 +242,10 @@
                             <label for="">Чвзнос</label>
                             <input type="text" class="form-control" id="chvznos" name="chvznos" placeholder="чвзнос">
                         </div>
+                        <div class="mb-3">
+                            <label for="">В.наблюдение</label>
+                            <input type="text" class="form-control" id="camera" name="camera" placeholder="видеонаблюдение">
+                        </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
@@ -237,10 +256,7 @@
                             <label for="">Дороги</label>
                             <input type="text" class="form-control" id="road" name="road" placeholder="дороги">
                         </div>
-                        <div class="mb-3">
-                            <label for="">В.наблюдение</label>
-                            <input type="text" class="form-control" id="camera" name="camera" placeholder="видеонаблюдение">
-                        </div>
+
                         <div class="mb-3">
                             <label for="">Дата оплаты банк</label>
                             <input type="date" class="form-control" name="date" value="{{ now()->format('Y-m-d') }}" >
@@ -248,12 +264,11 @@
                         <div class="mb-3">
                             <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
                         </div>
-                        <div class="mb-3">
-                            <input type="hidden" class="form-control" id="sum_paid" name="sum_paid" value="">
-                        </div>
                     </div>
+
+
                     <div class="col-3">
-                        <button type="submit" class="btn btn-outline-primary btn-sm">Сохранить</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
                     </div>
                 </div>
             </form>

@@ -18,5 +18,23 @@ class TestController extends Controller
         return view('test', compact('sum'));
     }
 
+    public function test2()
+    {
+
+        $result = Counter::all();
+      //  return $result;
+        return view('test2', compact('result'));
+    }
+
+    public function test3()
+    {
+
+        $result = Counter::all();
+          return $result;
+
+    }
+
+
 }
+
 

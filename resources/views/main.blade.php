@@ -11,10 +11,8 @@
                 </form>
             </div>
             <div class="col-3">
-
             </div>
         </div>
-
         <div class="row mt-5 justify-content-center">
            <div class="col-3"> {{$areas->links()}} </div>
         </div>
@@ -26,7 +24,6 @@
                     <th scope="col">телефон</th>
                     <th scope="col">имя</th>
                     <th scope="col">площадь</th>
-
                     <th scope="col">перейти</th>
                 </tr>
                 </thead>
@@ -38,7 +35,6 @@
                         <td> {{$al->telephone}}</td>
                         <td> {{$al->name}}</td>
                         <td> {{$al->square}}</td>
-
                         <td><a href="{{ route('dashboard', $al->id) }}">Перейти</a></td>
                     </tr>
                 @endforeach
@@ -48,7 +44,6 @@
             <div class="col-3"> {{$areas->links()}} </div>
         </div>
         </div>
-
     </div>
 
 @endsection
