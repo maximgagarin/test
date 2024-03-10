@@ -31,6 +31,11 @@ class FormController extends Controller
         return view('form', compact('name','number', 'svet', 'trash', 'road', 'chvznos', 'totalsum', 'camera'));
     }
 
+    public function check()
+    {
+
+    }
+
 
 
 
