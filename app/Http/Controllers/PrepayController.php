@@ -26,6 +26,7 @@ class PrepayController extends Controller
         $id= \request('areas_id');
 
         $value = \request('value');
+
         $data = [
             'sum'=>  $value,
             'areas_id' => $id,

@@ -9,6 +9,8 @@ use App\Models\tariff;
 use App\Rules\Uppercase;
 use App\TestPay;
 use Illuminate\Http\Request;
+use Kily\Payment\QR\Gost;
+use Kily\Payment\QR\Exception as QRException;
 
 class FormController extends Controller
 {
@@ -33,7 +35,22 @@ class FormController extends Controller
 
     public function check()
     {
+        $data = \request();
+        $totalsum = $data['totalsum'];
+        $totalsumForg = $totalsum*100;
+        $name = $data['name'];
 
+        $g = new Gost();
+        $g->Name = 'Мирошников Максим Викторович';
+        $ParsonalAcc = $g->PersonalAcc = '40817810254986004300';
+        $BankName = $g->BankName = 'Филиал № 3652 Банка ВТБ (публичное акционерное общество) в г. Воронеже';
+        $BIC = $g->BIC = '042007855';
+        $g->CorrespAcc = '30101810545250000855';
+        $g->Purpose = 'ДолгСНТ';
+        $g->Sum = $totalsumForg;
+        $g->validate();
+        $g->render("qr.png");
+        return view('check', compact('ParsonalAcc', 'BankName', 'BIC', 'totalsum' , 'name'));
     }
 
 

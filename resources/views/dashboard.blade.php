@@ -43,15 +43,15 @@
                 </tr>
             </table>
         </div>
-        <div class=" col-lg-2 col-sm-6 ">
+        <div class=" col-lg-3 col-sm-6 ">
           <x-tablealldebts :id="$id"/>
         </div>
-        <div class=" col-lg-2 col-sm-6  border">
+        <div class=" col-lg-3 col-sm-6  border">
             <x-prepay :d="$D" :id="$id">
                 свет
             </x-prepay>
         </div>
-        <div class="  col-lg-2 col-sm-6">
+        <div class="  col-lg-3 col-sm-6">
             <h7>Комментарий</h7>
             <form class="row g-3" action="{{route('areas.comment')}}" method="POST">
                 @csrf
