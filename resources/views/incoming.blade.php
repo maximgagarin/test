@@ -11,7 +11,7 @@
 
     <div class="container">
         <div class="row mt-5 mb-5">
-            <div class="col-3">
+            <div class="col-lg-3 col-sm-6">
                 <h6>Выбрать дату</h6>
                 <form action="{{route('incoming')}}">
                 <div class=" mb-3">
@@ -23,7 +23,7 @@
                 </div>
                 </form>
             </div>
-            <div class="col-3">
+            <div class="col-lg-3 col-sm-6">
                 <h6>Выбрать период</h6>
                 <form action="{{route('incoming')}}">
                     <div class=" mb-3">

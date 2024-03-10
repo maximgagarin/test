@@ -26,13 +26,14 @@ class PaymentController extends Controller
             'tariff' => '',
             'sum' => '',
             'type' => '',
+            'date' => '',
         ]);
 
         $data['areas_id'] = $id;
-       // $data['type'] = 'свет';
+
         $data['unit'] = 'квт';
         $data['status'] = 'неоплачен';
-        $data['date'] = now();
+
 
         Payment::create($data);
 

@@ -14,8 +14,7 @@ class TestController extends Controller
 {
     public function test()
     {
-        $sum = Area::withCount('paymentsmovs')->get();
-        return view('test', compact('sum'));
+        return view('test');
     }
 
     public function test2()

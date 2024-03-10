@@ -54,7 +54,7 @@ Route::delete('Prepay/delete/{id}', 'PrepayController@delete')->name('prepay.del
 Route::get('Tariff', 'TariffController@index')->name('tariff');
 Route::post('Tariff', 'TariffController@store')->name('tariff.store') ;
 Route::get('vznos', 'TariffController@vznos')->name('vznos');
-Route::post('vznos/calculation', 'TariffController@calculation')->name('vznos.calculation');
+Route::post('vznos/calculation', 'TariffController@calculationon')->name('vznos.calculation');
 
 Route::get('Debts', 'DebtsController@index')->name('debts') ;
 Route::post('Debts2', 'DebtsController@index2')->name('debts2') ;
@@ -72,6 +72,11 @@ Route::delete('incomingdelete', 'IncomingController@destroy')->name('incoming.de
 
 
 Route::post('paymentn', 'PaymentnController@store')->name('payment_new');
+
+Route::post('form', 'FormController@index')->name('form');
+
+
+
 
 
 });

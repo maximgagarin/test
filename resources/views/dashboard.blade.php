@@ -137,6 +137,10 @@
                         <input type="hidden" class="form-control" name="type" value="чвзнос"
                                placeholder="сумма">
                     </div>
+                    <label >Дата</label>
+                    <div class="mb-3">
+                        <input type="date" class="form-control" name="date" value="{{ now() }}" >
+                    </div>
 
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
@@ -155,6 +159,10 @@
                     <div class="col-auto">
                         <input type="hidden" class="form-control" name="type" value="мусор"
                                placeholder="сумма">
+                    </div>
+                    <div class="mb-3">
+                        <label>Дата</label>
+                        <input type="date" class="form-control" name="date" value="{{ now() }}" >
                     </div>
 
                     <div class="mb-3">
@@ -175,7 +183,10 @@
                         <input type="hidden" class="form-control" name="type" value="дороги"
                                placeholder="сумма">
                     </div>
-
+                    <div class="mb-3">
+                        <label>Дата</label>
+                        <input type="date" class="form-control" name="date" value="{{ now() }}" >
+                    </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
                         </button>
@@ -193,6 +204,10 @@
                     <div class="col-auto">
                         <input type="hidden" class="form-control" name="type" value="видеонаблюдение"
                                placeholder="сумма">
+                    </div>
+                    <div class="mb-3">
+                        <label>Дата</label>
+                        <input type="date" class="form-control" name="date" value="{{ now() }}" >
                     </div>
 
                     <div class="mb-3">

@@ -25,4 +25,15 @@
         </tr>
 
     </table>
+    <form action="{{route('form')}}" method="POST">
+        @csrf
+        <input type="hidden" name="id"  value="{{$id->id}}">
+        <input type="hidden" name="svet" value="{{$svet}}">
+        <input type="hidden" name="chvznos" value="{{$chvznos}}">
+        <input type="hidden" name="road" value="{{$road}}">
+        <input type="hidden" name="camera" value="{{$camera}}">
+        <input type="hidden" name="trash" value="{{$trash}}">
+        <input type="hidden" name="totalsum" value="{{$totalsum}}">
+        <button>Печатная форма</button>
+    </form>
 

@@ -39,7 +39,7 @@ class TariffController extends Controller
 
     }
 
-    public function calculation()
+    public function calculationon()
     {
 
         $type = \request('type');
