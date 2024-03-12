@@ -14,7 +14,7 @@
                 </div>
                 <div class="mb-3">
                     <label>Владелец</label>
-                    <input type="text" class="form-control" name="name" value="{{$name}}" >
+                    <input type="text" class="form-control" name="namesnt" value="{{$name}}" >
                 </div>
                 <div class="mb-3">
                     <label>Сумма</label>
@@ -38,23 +38,27 @@
                 <h5>Реквизиты банка</h5>
                 <div class="mb-3">
                     <label>Name</label>
-                    <input type="" class="form-control" name="Name" value="ИП Богданов Александр Сергеевич" >
+                    <input type="" class="form-control" name="Name" value="" >
                 </div>
                 <div class="mb-3">
-                    <label>PersonalAcc</label>
-                    <input type="text" class="form-control" name="PersonalAcc" value="40802810700020000317" placeholder="номер расчетного счета получателя платежа" >
+                    <label>Счет получателя</label>
+                    <input type="text" class="form-control" name="PersonalAcc" value="40817810254986004300" placeholder="" >
                 </div>
                 <div class="mb-3">
                     <label>BankName</label>
-                    <input type="text" class="form-control" name="BankName" value="ОАО АКБ «АВАНГАРД»" >
+                    <input type="text" class="form-control" name="BankName" value="Филиал № 3652 Банка ВТБ (публичное акционерное общество) в г. Воронеже" >
                 </div>
                 <div class="mb-3">
                     <label>BIC</label>
-                    <input type="text" class="form-control" name="BIC" value="044525201" >
+                    <input type="text" class="form-control" name="BIC" value="0442007855" >
                 </div>
                 <div class="mb-3">
-                    <label>CorrespAcc</label>
-                    <input type="text" class="form-control" name="CorrespAcc" value="30101810000000000201" placeholder="корреспондирующий счет банка получателя платежа">
+                    <label>К/С</label>
+                    <input type="text" class="form-control" name="CorrespAcc" value="30101810545250000855" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label>Назначение платежа</label>
+                    <input type="text" class="form-control" name="Purpose" value="ДолгСНТ" placeholder="">
                 </div>
 
             </div>

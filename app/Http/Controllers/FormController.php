@@ -36,21 +36,31 @@ class FormController extends Controller
     public function check()
     {
         $data = \request();
+
+        $Name = $data['Name'];
+        $personalAcc = $data['PersonalAcc'];
+        $BankName = $data['BankName'];
+        $BIC = $data['BIC'];
+        $CorrespAcc = $data['CorrespAcc'];
+        $Purpose = $data['Purpose'];
         $totalsum = $data['totalsum'];
-        $totalsumForg = $totalsum*100;
-        $name = $data['name'];
+        $Sum = $totalsum*100;
+
+
+
+        $namesnt = $data['namesnt'];
 
         $g = new Gost();
-        $g->Name = 'Мирошников Максим Викторович';
-        $ParsonalAcc = $g->PersonalAcc = '40817810254986004300';
-        $BankName = $g->BankName = 'Филиал № 3652 Банка ВТБ (публичное акционерное общество) в г. Воронеже';
-        $BIC = $g->BIC = '042007855';
-        $g->CorrespAcc = '30101810545250000855';
-        $g->Purpose = 'ДолгСНТ';
-        $g->Sum = $totalsumForg;
+        $g->Name = $Name;
+         $g->PersonalAcc = $personalAcc;
+        $g->BankName = $BankName;
+         $g->BIC = "042007855";
+        $g->CorrespAcc = $CorrespAcc;
+        $g->Purpose = $Purpose;
+        $g->Sum = $Sum;
         $g->validate();
         $g->render("qr.png");
-        return view('check', compact('ParsonalAcc', 'BankName', 'BIC', 'totalsum' , 'name'));
+        return view('check', compact('personalAcc', 'CorrespAcc','BankName', 'BIC', 'totalsum' , 'namesnt'));
     }
 
 

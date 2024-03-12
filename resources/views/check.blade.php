@@ -21,13 +21,13 @@
             <td><strong>БИК:</strong>  {{$BIC}}</td>
         </tr>
         <tr>
-            <td><strong>Счет:</strong></td>
+            <td><strong>Счет:</strong>{{$personalAcc}}</td>
         </tr>
         <tr>
-            <td><strong>Корр счет:</strong></td>
+            <td><strong>Корр счет:</strong>{{$CorrespAcc}}</td>
         </tr>
         <tr>
-            <td><strong>Плательщик:</strong> {{$name}}</td>
+            <td><strong>Плательщик:</strong> {{$namesnt}}</td>
         </tr>
         <tr>
             <td><strong>Сумма:</strong> {{$totalsum}}р.</td>
@@ -54,7 +54,7 @@
             <td><strong>Корр счет:</strong></td>
         </tr>
         <tr>
-            <td><strong>Плательщик:</strong> {{$name}}</td>
+            <td><strong>Плательщик:</strong> {{$namesnt}}</td>
         </tr>
         <tr>
             <td><strong>Сумма:</strong> {{$totalsum}}р.</td>
