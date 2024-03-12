@@ -47,8 +47,6 @@
                 <th>Участок</th>
 
 
-                <th>начислено</th>
-                <th>оплачено</th>
                 <th class="text-danger">долг</th>
                 <th ></th>
 
@@ -57,8 +55,8 @@
             <tbody>
             @foreach($results as $result)
                 <tr>
-                    <td> {{$result->number}}</td>
-                    <td> {{$result->total_payments_sum}}</td>
+{{--                    <td> {{$result->number}}</td>--}}
+{{--                    <td> {{$result->total_payments_sum}}</td>--}}
                     <td> {{$result->total_payment_movs_sum}}</td>
 
                     <td> {{  $result->total_payments_sum - $result->total_payment_movs_sum}}р.</td>

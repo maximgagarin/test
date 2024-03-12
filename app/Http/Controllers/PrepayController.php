@@ -17,7 +17,7 @@ class PrepayController extends Controller
 
     {
         //dd($id);
-        $counts = Prepay::where('areas_id', $id)->where('saldo', 'приход')->get();
+        $counts = Prepay::where('areas_id', $id)->get();
         return view('prepay', compact('counts', 'id'));
     }
 

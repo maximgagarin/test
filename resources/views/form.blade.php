@@ -61,7 +61,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-3 ">
-                <button type="submit" class="btn btn-primary btn-sm mb-3">Создать квитанцию
+                <button type="submit" class="btn btn-primary mb-3">Создать квитанцию
                 </button>
             </div>
         </div>

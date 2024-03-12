@@ -273,7 +273,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="">Дата оплаты банк</label>
+                            <label for="">Дата оплаты в банке</label>
                             <input type="date" class="form-control" name="date" value="{{ now()->format('Y-m-d') }}" >
                         </div>
                         <div class="mb-3">
@@ -307,7 +307,7 @@
                         <th scope="col">мусор</th>
                         <th scope="col">дороги</th>
                         <th scope="col">видео</th>
-                        <th scope="col">дата</th>
+                        <th scope="col">дата банк</th>
                     </tr>
                     </thead>
                     <tbody>
