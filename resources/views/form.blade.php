@@ -38,7 +38,7 @@
                 <h5>Реквизиты банка</h5>
                 <div class="mb-3">
                     <label>Name</label>
-                    <input type="" class="form-control" name="Name" value="" >
+                    <input type="" class="form-control" name="Name" value="Мирошников Максим Викторович" >
                 </div>
                 <div class="mb-3">
                     <label>Счет получателя</label>
