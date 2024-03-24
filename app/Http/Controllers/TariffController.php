@@ -20,7 +20,7 @@ class TariffController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'value' => '',
+            'value' => ['numeric'],
             'type' => '',
         ]);
         $data['type'] = 'свет';

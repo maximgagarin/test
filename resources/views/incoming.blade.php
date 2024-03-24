@@ -72,7 +72,7 @@
                     <td> {{$count->road}}</td>         <?php $sum7 += $count->road; ?>
                     <td> {{$count->camera}}</td>       <?php $sum8 += $count->camera; ?>
                     <td> {{$count->number}}</td>
-                    <td><a href="{{ route('dashboard', $count->areas_id) }}">Перейти</a></td>
+                    <td><a href="{{ route('dashboard', $count->areas_id) }}">Карточка</a></td>
                 </tr>
             @endforeach
             <tr class="text-danger ">

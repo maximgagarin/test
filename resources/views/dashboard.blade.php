@@ -279,9 +279,10 @@
                         <div class="mb-3">
                             <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
                         </div>
+                        <div class="mb-3">
+                            <input type="hidden" class="form-control" id="form_alldebt" name="alldebt" value="">
+                        </div>
                     </div>
-
-
                     <div class="col-3">
                         <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
                     </div>
@@ -385,6 +386,8 @@
 <script>
     $(document).ready(function () {
 
+
+
         $('#selectType').change(function(){
             var selectedValue = $(this).val();
             $('div[id^="div"]').hide(); // скрываем все div
@@ -409,11 +412,39 @@
             }
 
 
+
+
             // Set the values for elements with IDs 'sum_left' and 'sum_paid'
             $('#sum_left').val(sumLeft.toString());
             $('#sum_paid').val(sumPaid.toString());
         });
+        var alldebt = $('#alldebt').text();
+
+        var svetdebt = $('#svetdebt').text();
+        var trashdebt = $('#trashdebt').text();
+        var roaddebt = $('#roaddebt').text();
+        var chvznosdebt = $('#chvznosdebt').text();
+        var cameradebt = $('#cameradebt').text();
+        if (svetdebt == 0){
+            $('#svet').prop('disabled', true);
+        }
+        if (trashdebt == 0){
+            $('#trash').prop('disabled', true);
+        }
+        if (roaddebt == 0){
+            $('#road').prop('disabled', true);
+        }
+        if (chvznosdebt == 0){
+            $('#chvznos').prop('disabled', true);
+        }
+        if (cameradebt == 0){
+            $('#camera').prop('disabled', true);
+        }
+
+
+        $('#form_alldebt').attr('value', alldebt);
     });
+
 
     function showEditForm(paymentId) {
         // Show the clicked edit form

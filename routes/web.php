@@ -71,7 +71,7 @@ Route::get('incoming', 'IncomingController@all')->name('incomingall');
 Route::delete('incomingdelete', 'IncomingController@destroy')->name('incoming.delete');
 
 
-Route::post('paymentn', 'PaymentnController@store')->name('payment_new');
+//Route::post('paymentn', 'PaymentnController@store')->name('payment_new');
 
 Route::post('form', 'FormController@index')->name('form');
 Route::post('check', 'FormController@check')->name('check');

@@ -22,16 +22,16 @@ class PaymentController extends Controller
 
         $data = request()->validate([
            // 'areas_id' => '',
-            'amount' => '',
-            'tariff' => '',
-            'sum' => '',
+            'amount' => ['numeric'],
+            'tariff' => ['numeric'],
+            'sum' => ['numeric'],
             'type' => '',
-            'date' => '',
+            'date' => ['date'],
         ]);
 
         $data['areas_id'] = $id;
 
-        $data['unit'] = 'квт';
+
         $data['status'] = 'неоплачен';
 
 

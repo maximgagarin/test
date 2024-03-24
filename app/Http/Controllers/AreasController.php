@@ -37,19 +37,20 @@ class AreasController extends Controller
     }
     public function update2()
     {
-        $data = request()->all(); // Получаем все данные из запроса
 
+        $data = request()->validate([
+            'number' => ['string'],
+            'name' => ['string'],
+            'address' => ['string'],
+            'telephone' => ['string'],
+            'square' => ['numeric'],
+            'id' => ['numeric'],
+        ]);
         $id = $data['id'];
+        $data['balance'] = 0;
 
-        $updatedData = [
-            'number' => $data['number'],
-            'name' => $data['name'],
-            'address' => $data['address'],
-            'telephone' => $data['telephone'],
-            'square' => $data['square'],
-        ];
 
-        Area::where('id', $id)->update($updatedData);
+        Area::where('id', $id)->update($data);
 
         return redirect()->route('dashboard', compact('id'));
     }
@@ -61,14 +62,24 @@ class AreasController extends Controller
 
     public function store()
     {
-        $data = [
-            'number' => \request('number'),
-            'name' => \request('name'),
-            'address' => \request('address'),
-            'telephone' => \request('telephone'),
-            'square' => \request('square'),
-            'balance' => 0,
-        ]   ;
+        $data = request()->validate([
+            'number' => ['string'],
+            'name' => ['string'],
+            'address' => ['string'],
+            'telephone' => ['string'],
+            'square' => ['numeric'],
+
+        ]);
+        $data['balance'] = 0;
+
+//        $data = [
+//            'number' => \request('number'),
+//            'name' => \request('name'),
+//            'address' => \request('address'),
+//            'telephone' => \request('telephone'),
+//            'square' => \request('square'),
+//            'balance' => 0,
+//        ]   ;
         Area::create($data);
         return redirect()->route('main');
     }

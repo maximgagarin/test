@@ -9,6 +9,7 @@ use App\Models\tariff;
 use App\Rules\Uppercase;
 use App\TestPay;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Kily\Payment\QR\Gost;
 use Kily\Payment\QR\Exception as QRException;
 
@@ -30,13 +31,26 @@ class FormController extends Controller
         $totalsum = $data['totalsum'];
 
 
+
+
+
         return view('form', compact('name','number', 'svet', 'trash', 'road', 'chvznos', 'totalsum', 'camera'));
     }
 
     public function check()
     {
-        $data = \request();
 
+        $fileToDelete = public_path('qr.png');
+
+        if (File::exists($fileToDelete)) {
+            File::delete($fileToDelete);
+            echo 'File deleted successfully.';
+        } else {
+            echo 'File not found.';
+        }
+
+
+        $data = \request();
         $Name = $data['Name'];
         $personalAcc = $data['PersonalAcc'];
         $BankName = $data['BankName'];

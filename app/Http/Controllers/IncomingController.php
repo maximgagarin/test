@@ -19,11 +19,18 @@ class IncomingController extends Controller
     public function index()
     {
         $data = \request();
+        $alldebt = $data['alldebt'];
+
+
         $sum_left = $data['sum_left'];
         $sum_paid = $data['sum_paid'];
         $sum_incoming = $data['sum_incoming'];
         $areas_id = $data['areas_id'];
         $date = $data['date'];
+
+        if($sum_incoming < $alldebt && $sum_paid < $sum_incoming || $sum_incoming>$alldebt && $sum_paid < $alldebt ){
+            return redirect()->back();
+        }
 
         $incoming_data =[
             'areas_id' =>$areas_id,

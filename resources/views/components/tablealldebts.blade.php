@@ -1,27 +1,27 @@
 
     <table class="table table-bordered ">
         <tr style="background-color: darkred">
-            <td colspan="2"><h6 style="color: #edf2f7">Задолженность : {{$totalsum}}</h6></td>
+            <td colspan="2"><h6  style="color: #edf2f7">Задолженность : <span id="alldebt">{{$totalsum}}</span></h6></td>
         </tr>
         <tr>
             <td>Свет</td>
-            <td>{{$svet}}р.</td>
+            <td><span id="svetdebt">{{$svet}}</span>р.</td>
         </tr>
         <tr>
             <td>Чвзнос</td>
-            <td>{{$chvznos}}р.</td>
+            <td><span id="chvznosdebt">{{$chvznos}}</span>р.</td>
         </tr>
         <tr>
             <td>Дороги</td>
-            <td>{{$road}}р.</td>
+            <td><span id="roaddebt">{{$road}}</span>р.</td>
         </tr>
         <tr>
             <td>в.наблюдение</td>
-            <td>{{$camera}}р.</td>
+            <td><span id="cameradebt">{{$camera}}</span>р.</td>
         </tr>
         <tr>
             <td>Мусор</td>
-            <td>{{$trash}}р.</td>
+            <td><span id="trashdebt">{{$trash}}</span>р.</td>
         </tr>
 
     </table>

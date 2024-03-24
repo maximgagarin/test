@@ -26,7 +26,7 @@
 
         <div class="mb-3">
             <label>Площадь участка</label>
-            <input type="number" class="form-control" name="square" >
+            <input type="text" class="form-control" name="square" >
         </div>
 
         <div class="col-auto">
