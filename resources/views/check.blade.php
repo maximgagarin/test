@@ -11,7 +11,7 @@
 <div>
     <table class="table-check">
         <tr>
-            <td rowspan="8" class="td-td"><img src="/qr.png" alt=""></td>
+            <td rowspan="9" class="td-td"><img src="/qr.png?t=<?php echo time(); ?>" alt=""></td>
             <td>Получатель:</td>
         </tr>
         <tr>
@@ -19,6 +19,9 @@
         </tr>
         <tr>
             <td><strong>БИК:</strong>  {{$BIC}}</td>
+        </tr>
+        <tr>
+            <td><strong>ИНН:</strong>  {{$PayeeINN}}</td>
         </tr>
         <tr>
             <td><strong>Счет:</strong>{{$personalAcc}}</td>
@@ -32,13 +35,14 @@
         <tr>
             <td><strong>Сумма:</strong> {{$totalsum}}р.</td>
         </tr>
-        <tr>
-            <td>Подпись:_________Дата: "__" _______20__ г.</td>
+        <tr class="table_tr">
+            <td >Подпись:_________Дата: "__" _______20__ г.</td>
         </tr>
+
     </table>
     <table class="table-check">
         <tr>
-            <td rowspan="8" class="td-td"></td>
+            <td rowspan="9" class="td-td"></td>
             <td>Получатель:</td>
         </tr>
         <tr>
@@ -46,6 +50,9 @@
         </tr>
         <tr>
             <td><strong>БИК:</strong>  {{$BIC}}</td>
+        </tr>
+        <tr>
+            <td><strong>ИНН:</strong>  {{$PayeeINN}}</td>
         </tr>
         <tr>
             <td><strong>Счет:</strong></td>
@@ -95,6 +102,11 @@
 
     .td-td{
         width: 250px;
+    }
+
+    .table_tr{
+        font-size: 16px;
+        line-height: 30px;
     }
 
 </style>

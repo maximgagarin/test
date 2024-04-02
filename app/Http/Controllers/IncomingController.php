@@ -28,7 +28,7 @@ class IncomingController extends Controller
         $areas_id = $data['areas_id'];
         $date = $data['date'];
 
-        if($sum_incoming < $alldebt && $sum_paid < $sum_incoming || $sum_incoming>$alldebt && $sum_paid < $alldebt ){
+        if($sum_incoming < $alldebt && $sum_paid < $sum_incoming || $sum_incoming>$alldebt && $sum_paid < $alldebt || $sum_incoming < $alldebt && $sum_paid < $sum_incoming ){
             return redirect()->back();
         }
 

@@ -40,14 +40,6 @@ class FormController extends Controller
     public function check()
     {
 
-        $fileToDelete = public_path('qr.png');
-
-        if (File::exists($fileToDelete)) {
-            File::delete($fileToDelete);
-            echo 'File deleted successfully.';
-        } else {
-            echo 'File not found.';
-        }
 
 
         $data = \request();
@@ -57,6 +49,8 @@ class FormController extends Controller
         $BIC = $data['BIC'];
         $CorrespAcc = $data['CorrespAcc'];
         $Purpose = $data['Purpose'];
+        $PayeeINN = $data['PayeeINN'];
+
         $totalsum = $data['totalsum'];
         $Sum = $totalsum*100;
 
@@ -68,13 +62,15 @@ class FormController extends Controller
         $g->Name = $Name;
          $g->PersonalAcc = $personalAcc;
         $g->BankName = $BankName;
-         $g->BIC = "042007855";
+         $g->BIC = $BIC;
         $g->CorrespAcc = $CorrespAcc;
         $g->Purpose = $Purpose;
         $g->Sum = $Sum;
+        $g->PayeeINN=$PayeeINN;
         $g->validate();
         $g->render("qr.png");
-        return view('check', compact('personalAcc', 'CorrespAcc','BankName', 'BIC', 'totalsum' , 'namesnt'));
+        sleep(1);
+        return view('check', compact('personalAcc', 'CorrespAcc','BankName', 'BIC', 'totalsum' , 'namesnt', 'PayeeINN'));
     }
 
 

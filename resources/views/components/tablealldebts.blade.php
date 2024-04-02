@@ -34,6 +34,6 @@
         <input type="hidden" name="camera" value="{{$camera}}">
         <input type="hidden" name="trash" value="{{$trash}}">
         <input type="hidden" name="totalsum" value="{{$totalsum}}">
-        <button>Печатная форма</button>
+        <button>Создать квитанцию</button>
     </form>
 

@@ -1,5 +1,4 @@
-<table class="table">
-
+<table class="table table-bordered">
     <thead>
     <tr>
         <th>номер</th>
@@ -19,7 +18,6 @@
     <tbody>
     @foreach($payments as $payment)
         <tr id="editForm2{{$payment->id}}">
-
             <td> {{$payment->id}}</td>
             <td> {{$payment->type}}</td>
             <td> {{$payment->amount}}</td>
@@ -30,7 +28,6 @@
             <td> {{$payment->sumpaid}}</td>
             <td>{{$payment->sum - $payment->sumpaid}}</td>
             <td>{{$payment->datestart}}--{{$payment->dateend}}</td>
-
             <td>
                 <button class="btn btn-primary btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
             </td>
@@ -38,28 +35,32 @@
                 <form action="{{ route('payment.delete', $payment->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Удалить</button>
+                    <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Удалить
+                    </button>
                 </form>
             </td>
         </tr>
         <tr id="editForm{{$payment->id}}" style="display: none; background-color: #f8f9fa;">
-            <form class= "myForm" action="{{route('payments.update')}}"  method="post" >
+            <form class="myForm" action="{{route('payments.update')}}" method="post">
                 @csrf
 
                 <td>{{$payment->id}}</td>
                 <td>{{$payment->type}}</td>
-
                 <td>
-                    <input type="text" class="form-control" name="amount" placeholder="квт" value="{{$payment->amount}}">
+                    <input type="text" class="form-control" name="amount" placeholder="квт"
+                           value="{{$payment->amount}}">
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="tariff" placeholder="тариф" value="{{$payment->tariff}}">
+                    <input type="text" class="form-control" name="tariff" placeholder="тариф"
+                           value="{{$payment->tariff}}">
                 </td>
                 <td>
                     <input type="text" class="form-control" name="sum" placeholder="сумма" value="{{$payment->sum}}">
                 </td>
                 <td>
-                    <input type="hidden" class="form-control" name="type" placeholder="сумма" value="{{$payment->type}}">
+                    <input type="hidden" class="form-control" name="type" placeholder="сумма"
+                           value="{{$payment->type}}">
                 </td>
                 <td>
                     <input type="hidden" class="form-control" name="id" placeholder="сумма" value="{{$payment->id}}">
@@ -67,7 +68,6 @@
                 <td>
                     <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
                     <button type="button" class="btn btn-primary btn-sm" onclick="Reload()">Закрыть</button>
-
                 </td>
                 <td></td>
                 <td></td>

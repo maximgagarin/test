@@ -2,7 +2,7 @@
 @extends('layout')
 @section('content')
 <div class="container">
-    <h4 class="text-center mb-4 mt-4">Данные на квитанцию</h4>
+    <h4 class="text-center mb-4 mt-4">Проверить Данные на квитанцию</h4>
     <form class="myForm" id="form1" action="{{route('check')}}" method="POST">
         @csrf
         <div class="row justify-content-center">
@@ -20,41 +20,33 @@
                     <label>Сумма</label>
                     <input type="text" class="form-control" name="totalsum" value="{{$totalsum}}" >
                 </div>
-                <div class="mb-3">
-                    <label></label>
-                    <input type="text" class="form-control" name="address" value="" >
-                </div>
-                <div class="mb-3">
-                    <label></label>
-                    <input type="text" class="form-control" name="telephone" value="" >
-                </div>
 
-                <div class="mb-3">
-                    <label></label>
-                    <input type="text" class="form-control" name="square" value="" >
-                </div>
             </div>
             <div class="col-4">
                 <h5>Реквизиты банка</h5>
                 <div class="mb-3">
                     <label>Name</label>
-                    <input type="" class="form-control" name="Name" value="Мирошников Максим Викторович" >
+                    <input type="" class="form-control" name="Name" value="СНТ Заря-2" >
                 </div>
                 <div class="mb-3">
                     <label>Счет получателя</label>
-                    <input type="text" class="form-control" name="PersonalAcc" value="40817810254986004300" placeholder="" >
+                    <input type="text" class="form-control" name="PersonalAcc" value="40703810835164901873" placeholder="" >
                 </div>
                 <div class="mb-3">
-                    <label>BankName</label>
-                    <input type="text" class="form-control" name="BankName" value="Филиал № 3652 Банка ВТБ (публичное акционерное общество) в г. Воронеже" >
+                    <label>Банк</label>
+                    <input type="text" class="form-control" name="BankName" value="Липецкое отделение №8593 ПАО Сбербанк г.Липецк" >
                 </div>
                 <div class="mb-3">
-                    <label>BIC</label>
-                    <input type="text" class="form-control" name="BIC" value="0442007855" >
+                    <label>БИК</label>
+                    <input type="text" class="form-control" name="BIC" value="044206604" >
                 </div>
                 <div class="mb-3">
                     <label>К/С</label>
-                    <input type="text" class="form-control" name="CorrespAcc" value="30101810545250000855" placeholder="">
+                    <input type="text" class="form-control" name="CorrespAcc" value="30101810800000000604" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label>ИНН</label>
+                    <input type="text" class="form-control" name="PayeeINN" value="4813003083" placeholder="">
                 </div>
                 <div class="mb-3">
                     <label>Назначение платежа</label>
