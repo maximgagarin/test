@@ -24,9 +24,9 @@ class PaymentController extends Controller
            // 'areas_id' => '',
             'amount' => ['numeric'],
             'tariff' => ['numeric'],
-            'sum' => ['numeric'],
+            'sum' => ['numeric', 'required'],
             'type' => '',
-            'date' => ['date'],
+            'date' => ['date', 'required'],
         ]);
 
         $data['areas_id'] = $id;

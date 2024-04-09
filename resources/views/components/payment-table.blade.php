@@ -1,6 +1,6 @@
-<table class="table table-bordered">
+<table class="table table-bordered mb-5">
     <thead>
-    <tr>
+    <tr class="bg-light">
         <th>номер</th>
         <th>тип</th>
         <th>колич</th>
@@ -10,7 +10,8 @@
         <th>статус</th>
         <th>Оплачено</th>
         <th>Осталось</th>
-        <th>период</th>
+        <th>от</th>
+        <th>до</th>
         <th></th>
         <th></th>
     </tr>
@@ -21,15 +22,17 @@
             <td> {{$payment->id}}</td>
             <td> {{$payment->type}}</td>
             <td> {{$payment->amount}}</td>
-            <td> {{$payment->tariff}}р.</td>
-            <td> {{$payment->sum}}р.</td>
-            <td>{{$payment->date}}</td>
+            <td>{{number_format($payment->tariff,2,'.','')}}р.</td>
+            <td>{{number_format($payment->sum,2,'.','')}}р.</td>
+            <td>{{ \Carbon\Carbon::parse($payment->date)->format('d-m-Y') }}</td>
             <td> {{$payment->status}}</td>
-            <td> {{$payment->sumpaid}}</td>
+            <td>{{number_format($payment->sumpaid,2,'.','')}}р.</td>
+
             <td>{{$payment->sum - $payment->sumpaid}}</td>
-            <td>{{$payment->datestart}}--{{$payment->dateend}}</td>
+            <td>{{$payment->datestart}}</td>
+            <td>{{$payment->dateend}}</td>
             <td>
-                <button class="btn btn-primary btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
+                <button class="btn btn-dark btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
             </td>
             <td>
                 <form action="{{ route('payment.delete', $payment->id) }}" method="POST">
@@ -41,22 +44,22 @@
                 </form>
             </td>
         </tr>
-        <tr id="editForm{{$payment->id}}" style="display: none; background-color: #f8f9fa;">
-            <form class="myForm" action="{{route('payments.update')}}" method="post">
+        <tr id="editForm{{$payment->id}}" style="display: none; background-color: darkgrey;">
+            <form class="myForm" style="margin: 0" action="{{route('payments.update')}}" method="post">
                 @csrf
 
                 <td>{{$payment->id}}</td>
                 <td>{{$payment->type}}</td>
                 <td>
-                    <input type="text" class="form-control" name="amount" placeholder="квт"
+                    <input type="text" class="form-control" style="width: 50px; height: 30px ; padding: 0; margin: 0" name="amount" placeholder="квт"
                            value="{{$payment->amount}}">
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="tariff" placeholder="тариф"
+                    <input type="text" class="form-control"  style="width: 50px; height: 30px ; padding: 0; margin: 0"  name="tariff" placeholder="тариф"
                            value="{{$payment->tariff}}">
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="sum" placeholder="сумма" value="{{$payment->sum}}">
+                    <input type="text" class="form-control"  style="width: 80px; height: 30px ; padding: 0; margin: 0"  name="sum" placeholder="сумма" value="{{$payment->sum}}">
                 </td>
                 <td>
                     <input type="hidden" class="form-control" name="type" placeholder="сумма"
@@ -65,14 +68,17 @@
                 <td>
                     <input type="hidden" class="form-control" name="id" placeholder="сумма" value="{{$payment->id}}">
                 </td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
-                    <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="Reload()">Закрыть</button>
+                    <button type="submit" class="btn btn-primary btn-sm" >Сохранить</button>
                 </td>
-                <td></td>
-                <td></td>
-                <th>
-                </th>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm"  onclick="Reload()">Закрыть</button>
+                </td>
             </form>
         </tr>
     @endforeach

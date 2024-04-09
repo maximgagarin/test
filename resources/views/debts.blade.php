@@ -46,16 +46,16 @@
             <tr>
                 <th>Участок</th>
                 <th class="text-danger">долг</th>
-                <th></th>
+
 
             </tr>
             </thead>
             <tbody>
             @foreach($results as $result)
-                <tr>
+                <tr class="tr-link" onclick="window.location='{{ route('dashboard', $result->id) }}';">
                     <td> {{$result->number}}</td>
                     <td> {{  $result->total_payments_sum - $result->total_payment_movs_sum}}р.</td>
-                    <td><a href="{{ route('dashboard', $result->id) }}">Карточка</a></td>
+
                 </tr>
             @endforeach
             </tbody>

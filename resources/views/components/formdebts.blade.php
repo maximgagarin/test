@@ -6,8 +6,13 @@
     </div>
 
     <div class="col-auto">
-        <button type="submit" class="btn btn-outline-primary btn-sm mb-3">{{$button}}</button>
+        <button type="submit" class="btn btn-outline-primary btn-sm mb-3 custom-button">{{$button}}</button>
+
     </div>
 </form>
 
-
+<style>
+.custom-button {
+width: 80px; /* Задайте желаемую ширину кнопки здесь */
+}
+</style>

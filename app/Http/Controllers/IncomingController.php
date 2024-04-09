@@ -18,6 +18,21 @@ class IncomingController extends Controller
 {
     public function index()
     {
+
+       $validate = [
+            'alldebt' => 'numeric',
+            'sum_left' => 'numeric',
+            'sum_paid' => 'numeric',
+            'sum_incoming' => 'numeric',
+            'svet' => 'numeric',
+            'chvznos' => 'numeric',
+            'trash' => 'numeric',
+            'road' => 'numeric',
+            'camera' => 'numeric',
+            'areas_id' => 'numeric',
+            'date' => 'date',
+        ];
+
         $data = \request();
         $alldebt = $data['alldebt'];
 

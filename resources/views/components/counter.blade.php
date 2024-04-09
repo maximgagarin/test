@@ -1,8 +1,8 @@
 
-    <h6>Счетчик</h6>
+    <h6>11111111Счетчик</h6>
     <div><a href="{{ route('counter2', $id->id) }}">История показаний</a></div>
     @if (empty($lastValue))
-        нет показаний
+        <span>нет показаний, введите первое показание</span>
         <form class="myForm" action="{{ route('store2') }}" method="POST">
             @csrf
             <div class="mb-3">
@@ -38,7 +38,7 @@
             <div class="mb-3">
                 <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
             </div>
-            <button type="submit" class="btn btn-outline-primary btn-sm">Отправить</button>
+            <button type="submit" class="btn btn-outline-primary btn-sm">Рассчитать</button>
         </form>
 
     @endif

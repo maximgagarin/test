@@ -44,24 +44,22 @@
         <table class="table mt-3 table-bordered ">
             <thead>
             <tr>
-                <th scope="col">дата занесения в программу</th>
-                <th scope="col">дата оплаты в банке</th>
-                <th scope="col">всего приход</th>
-                <th scope="col">перешло в аванс</th>
-                <th scope="col">всего оплачено</th>
-
-                <th scope="col">свет</th>
-                <th scope="col">чвзнос</th>
-                <th scope="col">мусор</th>
-                <th scope="col">дороги</th>
-                <th scope="col">в наблюдение</th>
-                <th scope="col">учасоток</th>
-                <th scope="col">карточка</th>
+                <th>дата занесения в программу</th>
+                <th>дата оплаты в банке</th>
+                <th>всего приход</th>
+                <th>перешло в аванс</th>
+                <th>всего оплачено</th>
+                <th>свет</th>
+                <th>чвзнос</th>
+                <th>мусор</th>
+                <th>дороги</th>
+                <th>в наблюдение</th>
+                <th>учасоток</th>
             </tr>
             </thead>
             <tbody>
             @foreach($results as $count)
-                <tr>
+                <tr class="tr-link" onclick="window.location='{{ route('dashboard', $count->areas_id) }}';">
                     <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
                     <td> {{$count->sum_incoming}}</td>  <?php $sum1 += $count->sum_incoming; ?>
@@ -73,7 +71,6 @@
                     <td> {{$count->road}}</td>         <?php $sum7 += $count->road; ?>
                     <td> {{$count->camera}}</td>       <?php $sum8 += $count->camera; ?>
                     <td> {{$count->number}}</td>
-                    <td><a href="{{ route('dashboard', $count->areas_id) }}">Карточка</a></td>
                 </tr>
             @endforeach
             <tr class="text-danger ">
@@ -88,7 +85,7 @@
                 <td>{{$sum7}}р.</td>
                 <td>{{$sum8}}р.</td>
                 <td></td>
-                <td></td>
+
             </tr>
             </tbody>
         </table>

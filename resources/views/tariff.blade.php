@@ -15,7 +15,7 @@
     <div class="row mb-3 mt-4 text-center "> <h3>Тарифы на свет</h3></div>
 
     <div class="row   justify-content-center">
-        <div class="col-2">
+        <div class="col-lg-2 col-sm-12">
             <form  action="{{route('tariff.store')}}" method="POST">
                 @csrf
                 <div class="mb-3">
@@ -25,7 +25,7 @@
                 <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
             </form>
         </div>
-        <div class="col-3">
+        <div class="col-lg-3 col-sm-12">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -36,7 +36,7 @@
                 <tbody>
                 @foreach($counts as $count)
                     <tr>
-                        <td> {{$count->value}}</td>
+                        <td> {{number_format($count->value,2,'.','')}}</td>
                         <td> <button class="btn btn-danger btn-sm">Удалить</button></td>
                     </tr>
                 @endforeach

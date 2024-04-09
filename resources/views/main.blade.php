@@ -24,18 +24,18 @@
                     <th scope="col">телефон</th>
                     <th scope="col">имя</th>
                     <th scope="col">площадь</th>
-                    <th scope="col">перейти</th>
+
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($areas as $al)
-                    <tr>
+                    <tr class="tr-link" onclick="window.location='{{ route('dashboard', $al->id) }}';">
                         <td> {{$al->number}}</td>
                         <td> {{$al->address}}</td>
                         <td> {{$al->telephone}}</td>
                         <td> {{$al->name}}</td>
                         <td> {{$al->square}}</td>
-                        <td><a href="{{ route('dashboard', $al->id) }}">Перейти</a></td>
+
                     </tr>
                 @endforeach
                 </tbody>

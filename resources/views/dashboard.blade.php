@@ -10,13 +10,39 @@
             </ul>
         </div>
     @endif
+
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalldata"> {{$lastValue}}</p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="{{route('main')}}"> <button type="button" class="btn btn-primary">Save changes</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row mb-4 mt-4">
             <div class="col-lg-3 col-sm-6 md-3">
                 <table class="table table-bordered ">
                     <tr>
-                        <td colspan="2"><h6>Участок</h6>
-                            <a href="{{route('areas.update', $id->id)}}">Редактировать участок</a>
+                        <td colspan="2" class="bg-light"><h6>Участок</h6>
+                            <a href="{{route('areas.update', $id->id)}}">Редактировать</a>
                             <br>
                         </td>
                     </tr>
@@ -42,14 +68,30 @@
                     </tr>
                 </table>
             </div>
+
+
+            <!-- все долги -->
             <div class=" col-lg-3 col-sm-6 ">
                 <x-tablealldebts :id="$id"/>
             </div>
-            <div class=" col-lg-3 col-sm-6  border">
-                <x-prepay :d="$D" :id="$id">
-                    свет
-                </x-prepay>
+
+
+            <!-- аванс -->
+            <div class="col-lg-3 col-sm-6">
+
+
+                        <h5>Аванс: {{$prepayActual}}р</h5>
+
+
+                             <x-prepay :prepayActual="$prepayActual" :id="$id">
+                              свет
+                             </x-prepay>
+
+
             </div>
+
+
+            <!-- коммент -->
             <div class="  col-lg-3 col-sm-6">
                 <h7>Комментарий</h7>
                 <form class="row g-3" action="{{route('areas.comment')}}" method="POST">
@@ -75,13 +117,13 @@
 
                     <div class="card-body">
 
-                        <div><a href="{{ route('counter2', $id->id) }}">История показаний</a></div>
+
                         @if (empty($lastValue))
                             нет показаний
                             <form class="myForm" action="{{ route('store') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
-                                    <input type="number" class="form-control" name="value" placeholder="показание">
+                                    <input type="number" class="form-control" name="value" placeholder="первое показание">
                                 </div>
                                 <div class="mb-3">
                                     <input type="date" class="form-control" name="date" value="{{ now()->format('Y-m-d') }}">
@@ -94,9 +136,10 @@
                         @else
                             <p>Последнее показание: <strong>{{$lastValue}}</strong></p>
                             <p>дата посл.показ: {{ \Carbon\Carbon::parse($lastValuedate)->format('d-m-Y') }}</p>
+                            <div><a href="{{ route('counter2', $id->id) }}">История показаний</a></div>
                             <form class="myForm" action="{{ route('store3') }}" method="POST">
                                 @csrf
-                                <div class="mb-3">
+                                <div class="mb-3 mt-3">
                                     <input type="number" class="form-control" name="value" placeholder="показание">
                                 </div>
                                 <div class="mb-3">
@@ -113,122 +156,133 @@
                                 <div class="mb-3">
                                     <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Рассчитать</button>
                             </form>
                         @endif
                     </div>
                </div>
             </div>
 
+
+
+            <!-- начисление взноса -->
             <div class="col-lg-3 col-sm-6">
-                <h5>Начислить взнос</h5>
-                <div class="mb-3">
-                    <select class="form-select" aria-label="Default select example" name="selectType" id="selectType">
-                        <option selected>Выберите взнос</option>
-                        <option value="2">Чвзнос</option>
-                        <option value="3">Мусор</option>
-                        <option value="4">Дороги</option>
-                        <option value="5">Видеонаблюдение</option>
-                    </select>
-                </div>
-                <div id="div2" style="display: none;">
-                    <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label>Площадь</label>
-                            <input type="text" class="form-control" name="amount" id="amount" value="{{$id->square}}">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" name="tariff" id="tariff"
-                                   placeholder="цена за сотку">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
-                        </div>
-                        <div class="mb-3">
-                            <input type="hidden" class="form-control" name="type" value="чвзнос"
-                                   placeholder="сумма">
-                        </div>
-                        <label>Дата</label>
-                        <div class="mb-3">
-                            <input type="date" class="form-control" name="date" value="{{ now() }}">
-                        </div>
-
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div id="div3" style="display: none;">
-                    <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
-                        @csrf
-
-
-                        <div class="col-auto">
-                            <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
-                        </div>
-                        <div class="col-auto">
-                            <input type="hidden" class="form-control" name="type" value="мусор"
-                                   placeholder="сумма">
-                        </div>
-                        <div class="mb-3">
+                <div class="card card-primary">
+                    <div class="card-header bg-primary">
+                        <h5 class="card-title text-white">Начислить взнос</h5>
+                    </div>
+                    <div class="card-body">
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example" name="selectType" id="selectType">
+                            <option selected>Выберите взнос</option>
+                            <option value="2">Чвзнос</option>
+                            <option value="3">Мусор</option>
+                            <option value="4">Дороги</option>
+                            <option value="5">Видеонаблюдение</option>
+                        </select>
+                    </div>
+                    <div id="div2" style="display: none;">
+                        <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label>Площадь</label>
+                                <input type="text" class="form-control" name="amount" id="amount" value="{{$id->square}}">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="tariff" id="tariff"
+                                       placeholder="цена за сотку">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
+                            </div>
+                            <div class="mb-3">
+                                <input type="hidden" class="form-control" name="type" value="чвзнос"
+                                       placeholder="сумма">
+                            </div>
                             <label>Дата</label>
-                            <input type="date" class="form-control" name="date" value="{{ now() }}">
-                        </div>
+                            <div class="mb-3">
+                                <input type="date" class="form-control" name="date" value="{{ now() }}">
+                            </div>
 
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div id="div4" style="display: none;">
-                    <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
-                        @csrf
-
-
-                        <div class="col-auto">
-                            <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
-                        </div>
-                        <div class="col-auto">
-                            <input type="hidden" class="form-control" name="type" value="дороги"
-                                   placeholder="сумма">
-                        </div>
-                        <div class="mb-3">
-                            <label>Дата</label>
-                            <input type="date" class="form-control" name="date" value="{{ now() }}">
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div id="div5" style="display: none;">
-                    <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
-                        @csrf
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="div3" style="display: none;">
+                        <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
+                            @csrf
 
 
-                        <div class="col-auto">
-                            <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
-                        </div>
-                        <div class="col-auto">
-                            <input type="hidden" class="form-control" name="type" value="видеонаблюдение"
-                                   placeholder="сумма">
-                        </div>
-                        <div class="mb-3">
-                            <label>Дата</label>
-                            <input type="date" class="form-control" name="date" value="{{ now() }}">
-                        </div>
+                            <div class="col-auto">
+                                <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
+                            </div>
+                            <div class="col-auto">
+                                <input type="hidden" class="form-control" name="type" value="мусор"
+                                       placeholder="сумма">
+                            </div>
+                            <div class="mb-3">
+                                <label>Дата</label>
+                                <input type="date" class="form-control" name="date" value="{{ now() }}">
+                            </div>
 
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
-                            </button>
-                        </div>
-                    </form>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="div4" style="display: none;">
+                        <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
+                            @csrf
+
+
+                            <div class="col-auto">
+                                <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
+                            </div>
+                            <div class="col-auto">
+                                <input type="hidden" class="form-control" name="type" value="дороги"
+                                       placeholder="сумма">
+                            </div>
+                            <div class="mb-3">
+                                <label>Дата</label>
+                                <input type="date" class="form-control" name="date" value="{{ now() }}">
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="div5" style="display: none;">
+                        <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
+                            @csrf
+
+
+                            <div class="col-auto">
+                                <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
+                            </div>
+                            <div class="col-auto">
+                                <input type="hidden" class="form-control" name="type" value="видеонаблюдение"
+                                       placeholder="сумма">
+                            </div>
+                            <div class="mb-3">
+                                <label>Дата</label>
+                                <input type="date" class="form-control" name="date" value="{{ now() }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
                 </div>
             </div>
+
+
 
             <!-- оплата -->
             <div class="col-lg-5  col-sm-12">
@@ -323,15 +377,15 @@
             </div>
         </div>
 
+
+        <!-- поступление денег -->
         <div class="row">
             <div class="col-12  mt-3">
                 <div class="card card-primary">
-                    <div class="card-header bg-warning">
+                    <div class="card-header bg-light">
                         <h4>Поступление денег</h4>
                     </div>
                     <div class="card-body">
-
-
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -351,14 +405,15 @@
                         @foreach($incoming as $count)
                             <tr>
                                 <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
-                                <td> {{$count->sum_incoming}}</td>
-                                <td> {{$count->sum_left}}</td>
-                                <td> {{$count->sum_paid}}</td>
-                                <td> {{$count->svet}}</td>
-                                <td> {{$count->chvznos}}</td>
-                                <td> {{$count->trash}}</td>
-                                <td> {{$count->road}}</td>
-                                <td> {{$count->camera}}</td>
+                                <td>{{ number_format($count->sum_incoming, 2, '.', '') }}</td>
+
+                                <td> {{number_format($count->sum_left,2,'.','')}}</td>
+                                <td> {{number_format($count->sum_paid,2,'.','')}}</td>
+                                <td> {{number_format($count->svet,2,'.','')}}</td>
+                                <td> {{number_format($count->chvznos,2,'.','')}}</td>
+                                <td> {{number_format($count->trash,2,'.','')}}</td>
+                                <td> {{number_format($count->road,2,'.','')}}</td>
+                                <td> {{number_format($count->camera,2,'.','')}}</td>
                                 <td>{{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
                                 <td>
                                     <form action="{{ route('incoming.delete', $count->id) }}" method="POST">
@@ -385,49 +440,32 @@
 
 
         <div class="row mt-5 mb-5"><h4>Начисления:</h4></div>
-        <div>
-            <div class="card card-primary">
-                <div class="card-header bg-success">
-                    <h5 class="text-white">Счета на свет</h5>
-                </div>
+
+                    <h5>Счета на свет</h5>
+
                 <x-payment-table :type="'свет'" :id="$id"/>
-            </div>
-        </div>
 
-        <div>
-            <div class="card card-primary">
-                <div class="card-header bg-success">
-                    <h5 class="text-white">Счета на членский взнос</h5>
-                </div>
+
+                    <h5>Счета на членский взнос</h5>
+
                 <x-payment-table :type="'чвзнос'" :id="$id"/>
-            </div>
-        </div>
 
-        <div>
-            <div class="card card-primary">
-                <div class="card-header bg-success">
-                    <h5 class="text-white">Счета на мусор</h5>
-                </div>
+
+                    <h5>Счета на мусор</h5>
+
                 <x-payment-table :type="'мусор'" :id="$id"/>
-            </div>
-        </div>
 
-        <div>
-            <div class="card card-primary">
-                <div class="card-header bg-success">
-                    <h5 class="text-white">Счета на дороги</h5>
-                </div>
+
+
+                    <h5>Счета на дороги</h5>
+
                 <x-payment-table :type="'дороги'" :id="$id"/>
-            </div>
-        </div>
-        <div>
-            <div class="card card-primary">
-                <div class="card-header bg-success">
-                    <h5 class="text-white">Счета на видеонаблюдение</h5>
-                </div>
+
+
+                    <h5>Счета на видеонаблюдение</h5>
+
                 <x-payment-table :type="'видеонаблюдение'" :id="$id"/>
-            </div>
-        </div>
+
 
 
         <form action="{{route('areas.new', $id->id)}}">
@@ -439,6 +477,9 @@
 
         {{--    <x-tablepay :id="$id"/>--}}
     </div>
+
+
+
 
 
     <script>
@@ -468,6 +509,9 @@
                 // Set the values for elements with IDs 'sum_left' and 'sum_paid'
                 $('#sum_left').val(sumLeft.toString());
                 $('#sum_paid').val(sumPaid.toString());
+
+
+
             });
             var alldebt = $('#alldebt').text();
 
