@@ -1,37 +1,42 @@
-<table class="table table-bordered mb-5">
+<table class="table table-bordered mb-5 table-payments-svet">
     <thead>
     <tr>
-        <td colspan="13" style="color:white; font-size: 16px;  background-color: #455876">счета на {{$type}}</td>
+        <td colspan="13" style="color:white; font-size: 16px;  background-color: #455876">счета на свет</td>
     </tr>
     <tr class="bg-light">
         <th>№</th>
         <th>тип</th>
-
+        <th>колич</th>
+        <th>тариф</th>
         <th>начислено</th>
         <th>дата начисл</th>
         <th>статус</th>
         <th>Оплачено</th>
         <th>Осталось</th>
-
+        <th>от</th>
+        <th>до</th>
         <th></th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-    @foreach($payments as $payment)
+    @foreach($p as $payment)
         <tr id="editForm2{{$payment->id}}">
             <td> {{$payment->id}}</td>
             <td> {{$payment->type}}</td>
-
+            <td>{{number_format($payment->amount,2,'.','')}}</td>
+            <td>{{number_format($payment->tariff,2,'.','')}}</td>
             <td>{{number_format($payment->sum,2,'.','')}}р.</td>
             <td>{{ \Carbon\Carbon::parse($payment->date)->format('d-m-Y') }}</td>
             <td> {{$payment->status}}</td>
             <td>{{number_format($payment->sumpaid,2,'.','')}}р.</td>
 
-            <td>{{$payment->sum - $payment->sumpaid}}р.</td>
+            <td>{{$payment->sum - $payment->sumpaid}}</td>
+            <td>{{ \Carbon\Carbon::parse($payment->datestart)->format('d-m-Y') }}</td>
+            <td>{{ \Carbon\Carbon::parse($payment->dateend)->format('d-m-Y') }}</td>
 
             <td>
-                <button class="btn btn-dark btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
+                <button class="btn btn-dark btn-sm" onclick="showEditForm({{$payment->id}})">изм.</button>
             </td>
             <td>
                 <form action="{{ route('payment.delete', $payment->id) }}" method="POST">
@@ -49,7 +54,14 @@
 
                 <td>{{$payment->id}}</td>
                 <td>{{$payment->type}}</td>
-
+                <td>
+                    <input type="text" class="form-control" style="width: 50px; height: 30px ; padding: 0; margin: 0" name="amount" placeholder="квт"
+                           value="{{$payment->amount}}">
+                </td>
+                <td>
+                    <input type="text" class="form-control"  style="width: 50px; height: 30px ; padding: 0; margin: 0"  name="tariff" placeholder="тариф"
+                           value="{{$payment->tariff}}">
+                </td>
                 <td>
                     <input type="text" class="form-control"  style="width: 80px; height: 30px ; padding: 0; margin: 0"  name="sum" placeholder="сумма" value="{{$payment->sum}}">
                 </td>
@@ -61,7 +73,10 @@
                     <input type="hidden" class="form-control" name="id" placeholder="сумма" value="{{$payment->id}}">
                 </td>
 
-
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
                     <button type="submit" class="btn btn-primary btn-sm" >Сохранить</button>
                 </td>
@@ -73,4 +88,3 @@
     @endforeach
     </tbody>
 </table>
-

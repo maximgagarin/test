@@ -1,5 +1,6 @@
 {
     "Login" : "логин",
     "Email Address" : "Почта",
-    "Password" : "Пароль"
+    "Password" : "Пароль",
+    "Remember Me" : "Запомнить"
 }

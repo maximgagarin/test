@@ -37,7 +37,14 @@ class DashboardController extends Controller
 
         $tariffs = tariff::query()->select('value')->where('type', 'свет')->get();
 
+        $PaymentTable = Payment::withSum('payment_mov as sumpaid', 'sum')
+        ->where('areas_id', $id->id)
+        ->where('type', 'свет')
+        ->get();
 
-        return view('dashboard', compact('id' , 'comment', 'incoming', 'payments',  'tariffs' , 'prepayActual', 'lastValue', 'lastValuedate'));
+        $counts = Counter::where('areas_id', $id->id)->get();
+
+
+        return view('dashboard', compact('id' , 'PaymentTable', 'counts', 'comment', 'incoming', 'payments',  'tariffs' , 'prepayActual', 'lastValue', 'lastValuedate'));
     }
 }

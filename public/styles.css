@@ -11,3 +11,51 @@ P{
     background: #cbd5e0;
     cursor: grab;
 }
+
+.cart-header-custom{
+    background-color: #455876;
+}
+
+.custom-modal-dialog {
+    margin-left: 800px;
+}
+
+.btn-app {
+    border-radius: 3px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    color: #6c757d;
+    font-size: 12px;
+    height: 60px;
+    margin: 0 0 10px 10px;
+    min-width: 80px;
+    padding: 15px 5px;
+    position: relative;
+    text-align: center;
+}
+
+
+.btn-app:hover {
+    background-color: #f8f9fa;
+    border-color: #aaaaaa;
+    color: #444;
+}
+
+@media (max-width: 1200px) {
+    .table-payments-svet{
+
+        font-size: 14px;
+        padding: 0;
+
+    }
+
+    .table-payments-svet  td{
+        padding: 0;
+        margin: 0;
+    }
+
+    .table-payments-svet  th{
+        padding: 0;
+        margin: 0;
+    }
+}
