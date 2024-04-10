@@ -332,29 +332,29 @@
                                     {{--                </div>--}}
                                     <div class="mb-3">
                                         <label for="">Свет</label>
-                                        <input type="text" class="form-control" id="svet" name="svet"
+                                        <input type="text" class="form-control" id="svet" name="svet" value="0"
                                                placeholder="свет">
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Чвзнос</label>
-                                        <input type="text" class="form-control" id="chvznos" name="chvznos"
+                                        <input type="text" class="form-control" id="chvznos" name="chvznos" value="0"
                                                placeholder="чвзнос">
                                     </div>
                                     <div class="mb-3">
                                         <label for="">В.наблюдение</label>
-                                        <input type="text" class="form-control" id="camera" name="camera"
+                                        <input type="text" class="form-control" id="camera" name="camera" value="0"
                                                placeholder="видеонаблюдение">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label for="">Мусор</label>
-                                        <input type="text" class="form-control" id="trash" name="trash"
+                                        <input type="text" class="form-control" id="trash" name="trash" value="0"
                                                placeholder="мусор">
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Дороги</label>
-                                        <input type="text" class="form-control" id="road" name="road"
+                                        <input type="text" class="form-control" id="road" name="road" value="0"
                                                placeholder="дороги">
                                     </div>
 
@@ -513,20 +513,22 @@
             var roaddebt = $('#roaddebt').text();
             var chvznosdebt = $('#chvznosdebt').text();
             var cameradebt = $('#cameradebt').text();
+
+
             if (svetdebt == 0) {
-                $('#svet').prop('disabled', true);
+                $('#svet').css('background-color', 'gray');
             }
             if (trashdebt == 0) {
-                $('#trash').prop('disabled', true);
+                $('#trash').css('background-color', 'gray');
             }
             if (roaddebt == 0) {
-                $('#road').prop('disabled', true);
+                $('#road').css('background-color', 'gray');
             }
             if (chvznosdebt == 0) {
-                $('#chvznos').prop('disabled', true);
+                $('#chvznos').css('background-color', 'gray');
             }
             if (cameradebt == 0) {
-                $('#camera').prop('disabled', true);
+                $('#camera').css('background-color', 'gray');
             }
             $('#form_alldebt').attr('value', alldebt);
         });

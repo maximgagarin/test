@@ -19,7 +19,8 @@ class IncomingController extends Controller
     public function index()
     {
 
-       $validate = [
+
+        $data = \request()->validate([
             'alldebt' => 'numeric',
             'sum_left' => 'numeric',
             'sum_paid' => 'numeric',
@@ -31,9 +32,8 @@ class IncomingController extends Controller
             'camera' => 'numeric',
             'areas_id' => 'numeric',
             'date' => 'date',
-        ];
+        ]);
 
-        $data = \request();
         $alldebt = $data['alldebt'];
 
 

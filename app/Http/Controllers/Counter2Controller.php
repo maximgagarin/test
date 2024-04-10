@@ -38,6 +38,7 @@ class Counter2Controller extends Controller
     public function store3()
 
     {
+
         $tariff = request('select');
         $id = request('areas_id');
         $latestDate = Counter::where('areas_id', $id)->latest('date')->value('date');
@@ -59,6 +60,9 @@ class Counter2Controller extends Controller
                 'areas_id' => $id,
             ];
             Counter::create($data3);
+
+            sleep(1);
+
         $secondIdCounter =  Counter::latest('id')->value('id');
         $dateEnd =  Counter::latest('id')->value('date');
 
