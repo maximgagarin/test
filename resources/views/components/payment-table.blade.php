@@ -1,12 +1,9 @@
 <table class="table table-bordered mb-5">
     <thead>
-    <tr>
-        <td colspan="13" style="color:white; font-size: 16px;  background-color: #455876">счета на {{$type}}</td>
-    </tr>
+
     <tr class="bg-light">
         <th>№</th>
         <th>тип</th>
-
         <th>начислено</th>
         <th>дата начисл</th>
         <th>статус</th>

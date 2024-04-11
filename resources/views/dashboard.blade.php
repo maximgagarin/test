@@ -11,6 +11,18 @@
         </div>
     @endif
 
+    @if(session('success'))
+        <div class="alert alert-success" style="hide(10)">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('danger'))
+        <div class="alert alert-danger" style="hide(10)">
+            {{ session('danger') }}
+        </div>
+    @endif
+
 
 
 
@@ -28,18 +40,42 @@
     @include('modals.modal-counter')
 
 
-<div>
-    <button class="btn-app"></button>
-    <a class="btn btn-app">
-        <i class="fas fa-edit"></i> Edit
-    </a>
-</div>
 
-    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#CounterModal">
-        История показаний
-    </button>
+
+
+
+
 
     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal"
+                        data-bs-target="#PrepayModal">
+                    Аванс: <strong>{{$prepayActual}}р</strong>
+                </button>
+            </div>
+
+
+
+            <div class="col-2">
+                <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal"
+                        data-bs-target="#PrepayModal">
+                    Аванс: <strong>{{$prepayActual}}р</strong>
+                </button>
+            </div>
+
+
+            <div class="col-2">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#TariffsModal">
+                    Тарифы свет
+                </button>
+            </div>
+        </div>
+
+
+
+
+<!-- участок -->
         <div class="row mb-4 mt-4">
             <div class="col-lg-3 col-sm-6 md-3">
                 <table class="table table-bordered ">
@@ -82,18 +118,9 @@
             </div>
 
 
-            <!-- аванс -->
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal"
-                        data-bs-target="#PrepayModal">
-                    Аванс: <strong>{{$prepayActual}}р</strong>
-                </button>
-                <a href="{{route('prepay.index', $id->id)}}" style="display: block">История авансов</a>
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#TariffsModal">
-                    Тарифы свет
-                </button>
 
-            </div>
+
+
 
 
             <!-- коммент -->
@@ -112,7 +139,6 @@
         </div>
 
         <!-- счетчик -->
-
         <div class="row justify-content-between">
             <div class="col-lg-3  col-sm-6 mb-4">
                 <div class="card card-primary">
@@ -121,8 +147,6 @@
                     </div>
 
                     <div class="card-body">
-
-
                         @if (empty($lastValue))
                             нет показаний
                             <form class="myForm" action="{{ route('store') }}" method="POST">
@@ -143,7 +167,9 @@
                         @else
                             <p>Последнее показание: <strong>{{$lastValue}}</strong></p>
                             <p>дата посл.показ: {{ \Carbon\Carbon::parse($lastValuedate)->format('d-m-Y') }}</p>
-                            <div><a href="{{ route('counter2', $id->id) }}">История показаний</a></div>
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#CounterModal">
+                                История показаний
+                            </button>
                             <form class="myForm" action="{{ route('store3') }}" method="POST">
                                 @csrf
                                 <div class="mb-3 mt-3">
@@ -531,6 +557,18 @@
                 $('#camera').css('background-color', 'gray');
             }
             $('#form_alldebt').attr('value', alldebt);
+
+
+            setTimeout(function ()
+            {
+                $('.alert-success').remove();
+            },3000)
+
+            setTimeout(function ()
+            {
+                $('.alert-danger').remove();
+            },3000)
+
         });
 
 

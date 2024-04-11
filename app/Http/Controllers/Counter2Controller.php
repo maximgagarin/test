@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\tariff;
 use App\Rules\Uppercase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Counter2Controller extends Controller
 {
@@ -32,7 +33,7 @@ class Counter2Controller extends Controller
             'areas_id' => '',
         ]);
         Counter::create($data);
-        return redirect()->route('dashboard',['id' => $id]);
+        return redirect()->route('dashboard',['id' => $id])->with('success', 'Показания добавлены');
     }
 
     public function store3()
@@ -88,6 +89,61 @@ class Counter2Controller extends Controller
            Payment::create($data2);
 
         return redirect()->route('dashboard',['id' => $id]);
+
+        // Валидация данных
+//        $data = request()->validate([
+//            'value' => ['required', 'numeric', 'digits:5', new Uppercase(request('areas_id'))],
+//            'date' => "after:".Counter::where('areas_id', request('areas_id'))->latest('date')->value('date'),
+//            'select' => ['numeric'],
+//            'areas_id' => '',
+//        ]);
+//
+//        $id = $data['areas_id'];
+//        $value = $data['value'];
+//        $tariff = request('select');
+//        $latestDate = Counter::where('areas_id', $id)->latest('date')->value('date');
+//        $lastValue = Counter::where('areas_id', $id)->latest('date')->value('value');
+//        $razn = $value - $lastValue;
+//        $sum = $razn * $tariff;
+//
+//        // Используем транзакцию для обеспечения целостности данных
+//        DB::transaction(function () use ($data, $id, $value, $tariff, $razn, $sum) {
+//            // Создание записи в таблице Counter
+//            $counterData = [
+//                'value' => $value,
+//                'date' => $data['date'],
+//                'areas_id' => $id,
+//            ];
+//            Counter::create($counterData);
+//
+//            // Ожидание 1 секунды (почему?)
+//            sleep(1);
+//
+//            // Получение данных о предыдущем и текущем счетчиках
+//            $latestCounter = Counter::latest('id')->first();
+//            $prevCounter = Counter::find($latestCounter->id - 1);
+//
+//            // Создание записи в таблице Payment
+//            $paymentData = [
+//                'areas_id' => $id,
+//                'type' => 'свет',
+//                'unit' => 'квт',
+//                'amount' => $razn,
+//                'tariff' => $tariff,
+//                'sum' => $sum,
+//                'date' => $data['date'],
+//                'status' => 'неоплачен',
+//                'start' => $prevCounter->id,
+//                'end' => $latestCounter->id,
+//                'datestart' => $prevCounter->date,
+//                'dateend' => $latestCounter->date,
+//            ];
+//            Payment::create($paymentData);
+//        });
+//
+//        return redirect()->route('dashboard', ['id' => $id]);
+
+
     }
 
 

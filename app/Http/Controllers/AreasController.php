@@ -81,7 +81,7 @@ class AreasController extends Controller
 //            'balance' => 0,
 //        ]   ;
         Area::create($data);
-        return redirect()->route('main');
+        return redirect()->route('main')->with('success', 'Сохранено');
     }
 
 }

@@ -1,7 +1,7 @@
 
     <table class="table table-bordered ">
         <tr  class="tr-link" style="background-color: darkred">
-            <td colspan="2"><h6  style="color: #edf2f7">Задолженность : <span id="alldebt">{{$totalsum}}</span></h6></td>
+            <td colspan="2"><h6  style="color: #edf2f7">Долг : <span id="alldebt">{{$totalsum}}</span></h6></td>
         </tr>
         <tr class="tr-link" data-bs-toggle="modal" data-bs-target="#PaymentsSvetModal">
             <td>Свет</td>

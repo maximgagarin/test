@@ -55,10 +55,10 @@
             <td><strong>ИНН:</strong>  {{$PayeeINN}}</td>
         </tr>
         <tr>
-            <td><strong>Счет:</strong></td>
+            <td><strong>Счет:</strong>{{$personalAcc}}</td>
         </tr>
         <tr>
-            <td><strong>Корр счет:</strong></td>
+            <td><strong>Корр счет:</strong>{{$CorrespAcc}}</td>
         </tr>
         <tr>
             <td><strong>Плательщик:</strong> {{$namesnt}}</td>

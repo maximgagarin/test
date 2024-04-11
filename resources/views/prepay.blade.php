@@ -44,14 +44,14 @@
 
                         <td> {{$count->date}}</td>
                         <td> {{$count->saldo}}</td>
-{{--                        <td>--}}
-{{--                            <form action="{{ route('prepay.delete', $count->id) }}" method="POST">--}}
-{{--                                @csrf--}}
-{{--                                @method('DELETE')--}}
-{{--                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Удалить</button>--}}
-{{--                                <input type="hidden" class="form-control" name="areas_id" value="{{$id}} ">--}}
-{{--                            </form>--}}
-{{--                        </td>--}}
+                        <td>
+                            <form action="{{ route('prepay.delete', $count->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Удалить</button>
+                                <input type="hidden" class="form-control" name="areas_id" value="{{$id}} ">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

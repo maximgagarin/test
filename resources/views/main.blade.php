@@ -1,5 +1,10 @@
 @extends('layout')
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success" style="hide(10)">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="container">
         <div class="row">
             <h3>Все участки</h3>

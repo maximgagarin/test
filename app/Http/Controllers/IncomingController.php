@@ -21,7 +21,7 @@ class IncomingController extends Controller
 
 
         $data = \request()->validate([
-            'alldebt' => 'numeric',
+            'alldebt' => '',
             'sum_left' => 'numeric',
             'sum_paid' => 'numeric',
             'sum_incoming' => 'numeric',
@@ -43,8 +43,9 @@ class IncomingController extends Controller
         $areas_id = $data['areas_id'];
         $date = $data['date'];
 
+
         if($sum_incoming < $alldebt && $sum_paid < $sum_incoming || $sum_incoming>$alldebt && $sum_paid < $alldebt || $sum_incoming < $alldebt && $sum_paid < $sum_incoming ){
-            return redirect()->back();
+            return redirect()->back()->with('danger', 'Не добавлено , проверьте данные');
         }
 
         $incoming_data =[

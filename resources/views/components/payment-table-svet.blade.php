@@ -1,8 +1,6 @@
 <table class="table table-bordered mb-5 table-payments-svet">
     <thead>
-    <tr>
-        <td colspan="13" style="color:white; font-size: 16px;  background-color: #455876">счета на свет</td>
-    </tr>
+
     <tr class="bg-light">
         <th>№</th>
         <th>тип</th>
