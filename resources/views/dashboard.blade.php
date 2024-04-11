@@ -47,31 +47,6 @@
 
 
     <div class="container">
-        <div class="row justify-content-center my-3">
-            <div class="col-2">
-                <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal"
-                        data-bs-target="#PrepayModal">
-                    списать аванс: <strong>{{$prepayActual}}р</strong>
-                </button>
-                <a href="{{route('prepay.index', $id->id)}}" style="display: block">История</a>
-            </div>
-
-
-            <div class="col-2">
-                <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#TariffsModal">
-                    Тарифы на свет
-                </button>
-            </div>
-
-            <div class="col-2">
-                <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#TariffsModal">
-                   начислить взнос
-                </button>
-            </div>
-        </div>
-
-
-
 
 <!-- участок -->
         <div class="row mb-4 mt-4">
@@ -79,11 +54,14 @@
                 <table class="table table-bordered ">
                     <tr>
                         <td colspan="2" class="bg-light"><h6>Участок</h6>
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal"
                                     data-bs-target="#AreaEditModal">
                                 Редактировать
                             </button>
-
+                            <button type="button" class="btn btn-outline-primary  btn-sm mb-2" data-bs-toggle="modal"
+                                    data-bs-target="#PrepayModal">
+                                списать аванс: <strong>{{$prepayActual}}р</strong>
+                            </button>
 {{--                            <form action="{{route('areas.new', $id->id)}}">--}}
 {{--                                <input type="hidden" name="number" value="{{$id->number}}">--}}
 {{--                                <input type="hidden" name="square" value="{{$id->square}}">--}}
@@ -127,7 +105,7 @@
                 <div class="card card-primary">
                     <div class="card-header cart-header-custom ">
                         <div class="row">
-                       <div class="col-6"> <p class="text-white">счетчик</p></div>
+                       <div class="col-6"> <p>счетчик</p></div>
                         <div class="col-6">
 
                         </div>
@@ -155,8 +133,11 @@
                         @else
                             <p>Последнее показание: <strong>{{$lastValue}}</strong></p>
                             <p>дата посл.показ: {{ \Carbon\Carbon::parse($lastValuedate)->format('d-m-Y') }}</p>
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#CounterModal">
+                            <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#CounterModal">
                                 История показаний
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#TariffsModal">
+                                Тарифы на свет
                             </button>
                             <form class="myForm" action="{{ route('store3') }}" method="POST">
                                 @csrf
@@ -178,6 +159,7 @@
                                     <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm">Рассчитать</button>
+
                             </form>
                         @endif
                     </div>
@@ -189,7 +171,7 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="card card-primary">
                     <div class="card-header cart-header-custom">
-                        <h7 class="card-title text-white">Начислить взнос</h7>
+                        <h7 class="card-title">Начислить взнос</h7>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
@@ -293,7 +275,6 @@
                                     <label>Дата</label>
                                     <input type="date" class="form-control" name="date" value="{{ now() }}">
                                 </div>
-
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary btn-sm mb-3">Начислить
                                     </button>
@@ -303,26 +284,17 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
         </div>
 
 
         <div class="row justify-content-between">
 
 
-
-
-
             <!-- оплата -->
             <div class="col-lg-5  col-sm-12">
                 <div class="card card-primary">
                     <div class="card-header cart-header-custom">
-                        <h7 class="card-title text-white">Оплатить</h7>
+                        <h7 class="card-title">Оплатить</h7>
                     </div>
 
                     <form class="myForm" action="{{route('incoming')}}" method="POST">

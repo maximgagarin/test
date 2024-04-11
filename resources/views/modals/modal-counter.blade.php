@@ -8,7 +8,6 @@
             <div class="modal-body">
 
                 <div class="container">
-
                     <div class="row  justify-content-center">
                         <div class="col-12 p-3">
                             @if (empty($lastValue))
@@ -60,11 +59,8 @@
                                 </table>
                             @endif
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
         </div>
         <div class="modal-footer">

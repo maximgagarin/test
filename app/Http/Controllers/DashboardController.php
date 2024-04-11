@@ -44,7 +44,9 @@ class DashboardController extends Controller
 
         $counts = Counter::where('areas_id', $id->id)->get();
 
+        $Prepays = Prepay::where('areas_id', $id->id)->get();
 
-        return view('dashboard', compact('id' , 'PaymentTable', 'counts', 'comment', 'incoming', 'payments',  'tariffs' , 'prepayActual', 'lastValue', 'lastValuedate'));
+
+        return view('dashboard', compact('id' , 'Prepays', 'PaymentTable', 'counts', 'comment', 'incoming', 'payments',  'tariffs' , 'prepayActual', 'lastValue', 'lastValuedate'));
     }
 }

@@ -23,7 +23,7 @@ class CreateAreasTable extends Migration
             $table->decimal('square', $precision = 6, $scale = 2)->nullable();
             $table->decimal('balance', $precision = 10, $scale = 4);
             $table->string('comment', 500)->nullable();
-            $table->integer('owner')->nullable();
+//            $table->integer('owner')->nullable();
         });
     }
 

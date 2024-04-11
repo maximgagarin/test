@@ -7,7 +7,7 @@
     @endif
     <div class="container">
         <div class="row mt-3">
-            <h3>Все участки</h3>
+            <h3 class="text-center">Все участки</h3>
             <a href="{{route('area.create')}}">Добавить участок</a>
             <div class="col-lg-3 col-sm-6">
                 <form action="{{route('main')}}" class="d-flex mt-3">

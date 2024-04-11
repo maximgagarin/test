@@ -8,16 +8,18 @@ P{
 
 
 .tr-link:hover{
-    background: #cbd5e0;
+    background: lightgrey;
     cursor: grab;
 }
 
 .cart-header-custom{
-    background-color: #aaaaaa;
+    background-color: lightgrey;
+    color:black;
 }
 
 .custom-modal-dialog {
-    margin-left: 800px;
+    margin-left: 750px;
+    width: 400px;
 }
 
 .btn-app {

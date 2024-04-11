@@ -6,8 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="col-12">
-
+                <div class="col-6">
                     <form class="myForm mt-3" action="{{ route('prepay', $id->id) }}" method="POST">
                         @csrf
                         <input type="hidden" value="{{$prepayActual}}" name="value">
@@ -38,6 +37,35 @@
                         <input type="hidden" value="видеонаблюдение" name="type">
                         <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на в.наблюд</button>
                     </form>
+                </div>
+
+                <div class="col-6">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">сумма</th>
+                            <th scope="col">дата</th>
+                            <th scope="col">приход</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($Prepays as $count)
+                            <tr>
+                                <td> {{number_format($count->sum,2,'.','')}}</td>
+                                <td> {{$count->date}}</td>
+                                <td> {{$count->saldo}}</td>
+                                <td>
+                                    <form action="{{ route('prepay.delete', $count->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Удалить</button>
+                                        <input type="hidden" class="form-control" name="areas_id" value="{{$id}} ">
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
             </div>
