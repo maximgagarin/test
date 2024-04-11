@@ -70,7 +70,7 @@ class FormController extends Controller
         $g->validate();
         $g->render("qr.png");
         sleep(1);
-        return view('check', compact('personalAcc', 'CorrespAcc','BankName', 'BIC', 'totalsum' , 'namesnt', 'PayeeINN'));
+        return view('check', compact('personalAcc', 'Name', 'CorrespAcc','BankName', 'BIC', 'totalsum' , 'namesnt', 'PayeeINN'));
     }
 
 

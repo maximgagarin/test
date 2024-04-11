@@ -1,7 +1,7 @@
 
     <table class="table table-bordered ">
-        <tr  class="tr-link" style="background-color: darkred">
-            <td colspan="2"><h6  style="color: #edf2f7">Долг : <span id="alldebt">{{$totalsum}}</span></h6></td>
+        <tr  class="tr-link" >
+            <td colspan="2"><h6  style="color:red">Долг : <span id="alldebt">{{$totalsum}}</span></h6></td>
         </tr>
         <tr class="tr-link" data-bs-toggle="modal" data-bs-target="#PaymentsSvetModal">
             <td>Свет</td>
@@ -18,7 +18,7 @@
             <td><span id="roaddebt">{{$road}}</span>р.</td>
         </tr>
         <tr class="tr-link" data-bs-toggle="modal" data-bs-target="#PaymentsVideoModal">
-            <td>в.наблюдение</td>
+            <td>видео</td>
             <td><span id="cameradebt">{{$camera}}</span>р.</td>
         </tr>
 
@@ -38,6 +38,6 @@
         <input type="hidden" name="camera" value="{{$camera}}">
         <input type="hidden" name="trash" value="{{$trash}}">
         <input type="hidden" name="totalsum" value="{{$totalsum}}">
-        <button type="submit" class="btn btn-secondary">Создать квитанцию</button>
+        <button type="submit" class="btn btn-primary btn-sm">Создать квитанцию</button>
     </form>
 

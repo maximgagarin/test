@@ -47,27 +47,25 @@
 
 
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center my-3">
             <div class="col-2">
                 <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal"
                         data-bs-target="#PrepayModal">
-                    Аванс: <strong>{{$prepayActual}}р</strong>
+                    списать аванс: <strong>{{$prepayActual}}р</strong>
                 </button>
-            </div>
-
-
-
-            <div class="col-2">
-                <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal"
-                        data-bs-target="#PrepayModal">
-                    Аванс: <strong>{{$prepayActual}}р</strong>
-                </button>
+                <a href="{{route('prepay.index', $id->id)}}" style="display: block">История</a>
             </div>
 
 
             <div class="col-2">
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#TariffsModal">
-                    Тарифы свет
+                <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#TariffsModal">
+                    Тарифы на свет
+                </button>
+            </div>
+
+            <div class="col-2">
+                <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#TariffsModal">
+                   начислить взнос
                 </button>
             </div>
         </div>
@@ -85,6 +83,13 @@
                                     data-bs-target="#AreaEditModal">
                                 Редактировать
                             </button>
+
+{{--                            <form action="{{route('areas.new', $id->id)}}">--}}
+{{--                                <input type="hidden" name="number" value="{{$id->number}}">--}}
+{{--                                <input type="hidden" name="square" value="{{$id->square}}">--}}
+{{--                                <input type="hidden" id="area-debt" name="debt" value="">--}}
+{{--                                <button class="btn bnt-sm" type="submit">Создать нового владельца</button>--}}
+{{--                            </form>--}}
                             <br>
                         </td>
                     </tr>
@@ -117,38 +122,21 @@
                 <x-tablealldebts :id="$id"/>
             </div>
 
-
-
-
-
-
-
-            <!-- коммент -->
-            <div class="  col-lg-3 col-sm-6">
-                <h7>Комментарий</h7>
-                <form class="row g-3" action="{{route('areas.comment')}}" method="POST">
-                    @csrf
-                    <input type="hidden" value="{{$id->id}}" name="id">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="text"
-                              rows="3">{{$comment}}</textarea>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary btn-sm mb-2">Сохранить комментарий</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- счетчик -->
-        <div class="row justify-content-between">
+            <!-- счетчик -->
             <div class="col-lg-3  col-sm-6 mb-4">
                 <div class="card card-primary">
-                    <div class="card-header cart-header-custom">
-                        <h7 class="text-white">счетчик</h7>
+                    <div class="card-header cart-header-custom ">
+                        <div class="row">
+                       <div class="col-6"> <p class="text-white">счетчик</p></div>
+                        <div class="col-6">
+
+                        </div>
+                        </div>
                     </div>
 
                     <div class="card-body">
                         @if (empty($lastValue))
-                            нет показаний
+                           <p class="text-danger mb-2">нет показаний</p>
                             <form class="myForm" action="{{ route('store') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
@@ -208,7 +196,7 @@
                             <select class="form-select" aria-label="Default select example" name="selectType"
                                     id="selectType">
                                 <option selected>Выберите взнос</option>
-                                <option value="2">Чвзнос</option>
+                                <option value="2">Членский взнос</option>
                                 <option value="3">Мусор</option>
                                 <option value="4">Дороги</option>
                                 <option value="5">Видеонаблюдение</option>
@@ -317,6 +305,19 @@
             </div>
 
 
+
+
+
+
+        </div>
+
+
+        <div class="row justify-content-between">
+
+
+
+
+
             <!-- оплата -->
             <div class="col-lg-5  col-sm-12">
                 <div class="card card-primary">
@@ -422,16 +423,17 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">дата занесения</th>
-                                <th scope="col">сумма прихода</th>
-                                <th scope="col">в аванс</th>
-                                <th scope="col">всего оплачено</th>
-                                <th scope="col">свет</th>
-                                <th scope="col">чвзнос</th>
-                                <th scope="col">мусор</th>
-                                <th scope="col">дороги</th>
-                                <th scope="col">видео</th>
-                                <th scope="col">дата банк</th>
+                                <th>дата занесения</th>
+                                <th>сумма прихода</th>
+                                <th>в аванс</th>
+                                <th>всего оплачено</th>
+                                <th>свет</th>
+                                <th>чвзнос</th>
+                                <th>мусор</th>
+                                <th>дороги</th>
+                                <th>видео</th>
+                                <th>дата банк</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -439,7 +441,6 @@
                                 <tr>
                                     <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                                     <td>{{ number_format($count->sum_incoming, 2, '.', '') }}</td>
-
                                     <td> {{number_format($count->sum_left,2,'.','')}}</td>
                                     <td> {{number_format($count->sum_paid,2,'.','')}}</td>
                                     <td> {{number_format($count->svet,2,'.','')}}</td>
@@ -488,11 +489,22 @@
 {{--        <x-payment-table :type="'видеонаблюдение'" :id="$id"/>--}}
 
 
-        <form action="{{route('areas.new', $id->id)}}">
-            <input type="hidden" name="number" value="{{$id->number}}">
-            <input type="hidden" name="square" value="{{$id->square}}">
-            <button class="btn bnt-sm" type="submit">Создать нового владельца</button>
-        </form>
+
+
+
+        <!-- коммент -->
+        <div class="  col-lg-3 col-sm-6">
+            <h7>Комментарий</h7>
+            <form class="row g-3" action="{{route('areas.comment')}}" method="POST">
+                @csrf
+                <input type="hidden" value="{{$id->id}}" name="id">
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="text"
+                          rows="3">{{$comment}}</textarea>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary btn-sm mb-2">Сохранить комментарий</button>
+                </div>
+            </form>
+        </div>
 
 
         {{--    <x-tablepay :id="$id"/>--}}
@@ -556,7 +568,10 @@
             if (cameradebt == 0) {
                 $('#camera').css('background-color', 'gray');
             }
+
+
             $('#form_alldebt').attr('value', alldebt);
+            $('#area-debt').attr('value', alldebt);
 
 
             setTimeout(function ()

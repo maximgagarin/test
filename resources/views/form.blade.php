@@ -25,7 +25,7 @@
             <div class="col-4">
                 <h5>Реквизиты банка</h5>
                 <div class="mb-3">
-                    <label>Name</label>
+                    <label>Получатель</label>
                     <input type="" class="form-control" name="Name" value="СНТ Заря-2" >
                 </div>
                 <div class="mb-3">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="mb-3">
                     <label>Назначение платежа</label>
-                    <input type="text" class="form-control" name="Purpose" value="ДолгСНТ" placeholder="">
+                    <input type="text" class="form-control" name="Purpose" value="Плата за услуги" placeholder="">
                 </div>
 
             </div>

@@ -12,7 +12,7 @@
     <table class="table-check">
         <tr>
             <td rowspan="9" class="td-td"><img src="/qr.png?t=<?php echo time(); ?>" alt=""></td>
-            <td>Получатель:</td>
+            <td><strong>Получатель:</strong> {{$Name}}</td>
         </tr>
         <tr>
             <td><strong>Банк:</strong>{{$BankName}}</td>
@@ -43,7 +43,7 @@
     <table class="table-check">
         <tr>
             <td rowspan="9" class="td-td"></td>
-            <td>Получатель:</td>
+            <td><strong>Получатель:</strong>{{$Name}}</td>
         </tr>
         <tr>
             <td><strong>Банк:</strong>{{$BankName}}</td>

@@ -29,6 +29,11 @@
             <input type="number" class="form-control" name="square" value="{{$square}}" >
         </div>
 
+        <div class="mb-3">
+            <label>Долг на участке</label>
+            <input type="number" class="form-control" name="debt" value="{{$debt}}" >
+        </div>
+
         <div class="col-auto">
             <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Сохранить
             </button>

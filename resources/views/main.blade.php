@@ -6,13 +6,13 @@
         </div>
     @endif
     <div class="container">
-        <div class="row">
+        <div class="row mt-3">
             <h3>Все участки</h3>
             <a href="{{route('area.create')}}">Добавить участок</a>
             <div class="col-lg-3 col-sm-6">
                 <form action="{{route('main')}}" class="d-flex mt-3">
                     <input class="form-control me-2" type="search" name="value" placeholder="Поиск по владельцу">
-                    <button class="btn btn-outline-success" type="submit">Поиск</button>
+                    <button class="btn btn-success" type="submit">Поиск</button>
                 </form>
             </div>
             <div class="col-3">
@@ -24,11 +24,11 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">номер</th>
-                    <th scope="col">адрес</th>
-                    <th scope="col">телефон</th>
-                    <th scope="col">имя</th>
-                    <th scope="col">площадь</th>
+                    <th>номер</th>
+                    <th>адрес собст.</th>
+                    <th>телефон</th>
+                    <th>имя</th>
+                    <th>площадь</th>
 
                 </tr>
                 </thead>
