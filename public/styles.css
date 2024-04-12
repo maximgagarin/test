@@ -45,10 +45,8 @@ P{
 
 @media (max-width: 1200px) {
     .table-payments-svet{
-
-        font-size: 14px;
+      font-size: 10px;
         padding: 0;
-
     }
 
     .table-payments-svet  td{
@@ -59,5 +57,12 @@ P{
     .table-payments-svet  th{
         padding: 0;
         margin: 0;
+    }
+
+    .custom-modal-dialog {
+
+            margin-left: auto;
+            width: auto;
+
     }
 }

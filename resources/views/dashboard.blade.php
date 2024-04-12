@@ -100,21 +100,118 @@
                 <x-tablealldebts :id="$id"/>
             </div>
 
+
+            <!-- оплата -->
+            <div class="col-lg-5  col-sm-12">
+                <div class="card card-primary">
+                    <div class="card-header cart-header-custom">
+                        <h7 class="card-title">Оплатить</h7>
+                    </div>
+
+                    <form class="myForm" action="{{route('incoming')}}" method="POST">
+                        @csrf
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="">Сумма прихода</label>
+                                            <input type="text" class="form-control" id="sum_incoming"
+                                                   name="sum_incoming" placeholder="сумма прихода">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="">Осталось</label>
+                                            <input type="text" class="form-control" id="sum_left" value=""
+                                                   name="sum_left" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="">Оплачено</label>
+                                            <input type="text" class="form-control" id="sum_paid" name="sum_paid"
+                                                   value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    {{--                <div class="mb-3">--}}
+                                    {{--                    <input type="text" class="form-control" name="number" placeholder="номер платёжки банка">--}}
+                                    {{--                </div>--}}
+                                    <div class="mb-3">
+                                        <label for="">Свет</label>
+                                        <input type="text" class="form-control" id="svet" name="svet" value="0"
+                                               placeholder="свет">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="">Чвзнос</label>
+                                        <input type="text" class="form-control" id="chvznos" name="chvznos" value="0"
+                                               placeholder="чвзнос">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="">В.наблюдение</label>
+                                        <input type="text" class="form-control" id="camera" name="camera" value="0"
+                                               placeholder="видеонаблюдение">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="">Мусор</label>
+                                        <input type="text" class="form-control" id="trash" name="trash" value="0"
+                                               placeholder="мусор">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="">Дороги</label>
+                                        <input type="text" class="form-control" id="road" name="road" value="0"
+                                               placeholder="дороги">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="">Дата оплаты в банке</label>
+                                        <input type="date" class="form-control" name="date"
+                                               value="{{ now()->format('Y-m-d') }}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="hidden" class="form-control" id="form_alldebt" name="alldebt"
+                                               value="">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row ">
+
             <!-- счетчик -->
             <div class="col-lg-3  col-sm-6 mb-4">
                 <div class="card card-primary">
                     <div class="card-header cart-header-custom ">
                         <div class="row">
-                       <div class="col-6"> <p>счетчик</p></div>
-                        <div class="col-6">
+                            <div class="col-6"> <p>счетчик</p></div>
+                            <div class="col-6">
 
-                        </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="card-body">
                         @if (empty($lastValue))
-                           <p class="text-danger mb-2">нет показаний</p>
+                            <p class="text-danger mb-2">нет показаний</p>
                             <form class="myForm" action="{{ route('store') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
@@ -142,7 +239,7 @@
                             <form class="myForm" action="{{ route('store3') }}" method="POST">
                                 @csrf
                                 <div class="mb-3 mt-3">
-                                    <input type="number" class="form-control" name="value" placeholder="показание">
+                                    <input type="number" class="form-control" name="value" placeholder="введите показание">
                                 </div>
                                 <div class="mb-3">
                                     <select name="select" class="form-select" aria-label="Default select example">
@@ -284,103 +381,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-
-        <div class="row justify-content-between">
-
-
-            <!-- оплата -->
-            <div class="col-lg-5  col-sm-12">
-                <div class="card card-primary">
-                    <div class="card-header cart-header-custom">
-                        <h7 class="card-title">Оплатить</h7>
-                    </div>
-
-                    <form class="myForm" action="{{route('incoming')}}" method="POST">
-                        @csrf
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="mb-3">
-                                            <label for="">Сумма прихода</label>
-                                            <input type="text" class="form-control" id="sum_incoming"
-                                                   name="sum_incoming" placeholder="сумма прихода">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="mb-3">
-                                            <label for="">Осталось</label>
-                                            <input type="text" class="form-control" id="sum_left" value=""
-                                                   name="sum_left" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="mb-3">
-                                            <label for="">Оплачено</label>
-                                            <input type="text" class="form-control" id="sum_paid" name="sum_paid"
-                                                   value="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    {{--                <div class="mb-3">--}}
-                                    {{--                    <input type="text" class="form-control" name="number" placeholder="номер платёжки банка">--}}
-                                    {{--                </div>--}}
-                                    <div class="mb-3">
-                                        <label for="">Свет</label>
-                                        <input type="text" class="form-control" id="svet" name="svet" value="0"
-                                               placeholder="свет">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Чвзнос</label>
-                                        <input type="text" class="form-control" id="chvznos" name="chvznos" value="0"
-                                               placeholder="чвзнос">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">В.наблюдение</label>
-                                        <input type="text" class="form-control" id="camera" name="camera" value="0"
-                                               placeholder="видеонаблюдение">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label for="">Мусор</label>
-                                        <input type="text" class="form-control" id="trash" name="trash" value="0"
-                                               placeholder="мусор">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Дороги</label>
-                                        <input type="text" class="form-control" id="road" name="road" value="0"
-                                               placeholder="дороги">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="">Дата оплаты в банке</label>
-                                        <input type="date" class="form-control" name="date"
-                                               value="{{ now()->format('Y-m-d') }}">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="hidden" class="form-control" id="form_alldebt" name="alldebt"
-                                               value="">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="col-3">
-                                <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
 
 
