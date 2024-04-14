@@ -33,12 +33,29 @@ class DebtsController extends Controller
             areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
     ";
         $results = DB::select($query);
+
+
+//пагинация
+        $page = \Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 100; // Number of items per page
+        $total = count($results);
+
+        $paginator = new \Illuminate\Pagination\LengthAwarePaginator(
+            array_slice($results, ($page - 1) * $perPage, $perPage),
+            $total,
+            $perPage,
+            $page,
+            ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+
+
+
         $total = 0;
         foreach ($results as $result){
             $total = $total + ($result->total_payments_sum - $result->total_payment_movs_sum);
         }
         $formattedTotal = number_format($total, 2, ',', ' ');
-        return view('debts', compact('results', 'formattedTotal' , 'type'));
+        return view('debts', compact('results', 'formattedTotal' , 'type', 'paginator'));
     }
 
 
@@ -80,6 +97,20 @@ class DebtsController extends Controller
     ";
             $results = DB::select($query);
 
+//пагинация
+            $page = \Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPage();
+            $perPage = 100; // Number of items per page
+            $total = count($results);
+
+            $paginator = new \Illuminate\Pagination\LengthAwarePaginator(
+                array_slice($results, ($page - 1) * $perPage, $perPage),
+                $total,
+                $perPage,
+                $page,
+                ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+            );
+
+
             $total = 0;
             foreach ($results as $result){
                 $total = $total + ($result->total_payments_sum - $result->total_payment_movs_sum);
@@ -89,7 +120,7 @@ class DebtsController extends Controller
             $test =    Area::has('paymentsmovs')->withSum('paymentsmovs', 'sum')->get();
 
 
-            return view('debts', compact('results', 'formattedTotal', 'type', 'test'));
+            return view('debts', compact('results', 'formattedTotal', 'type', 'test' ,'paginator'));
         }
     }
 

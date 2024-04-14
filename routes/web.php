@@ -25,7 +25,7 @@ Route::get('test3', 'TestController@test3')->name('test3');
 
 Route::post('incoming', 'IncomingController@index')->name('incoming');
 
-Route::get('name', 'MainController@search')->name('name');
+//Route::get('mainsearch', 'MainController@search')->name('main.search');
 
 
 //Route::post('countered', 'Counter2Controller@countered')->name('countered') ;
@@ -79,6 +79,7 @@ Route::post('check', 'FormController@check')->name('check');
 
 
 Route::get('report', 'ReportController@index')->name('report');
+Route::post('report/calc', 'ReportController@calc')->name('report.calc');
 
 
 

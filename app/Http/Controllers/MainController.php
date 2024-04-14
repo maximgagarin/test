@@ -30,4 +30,8 @@ class MainController extends Controller
         $areas = Area::paginate(350);
         return view('main', compact('areas'));
     }
+
+
+
 }
+

@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="row mt-5 justify-content-center">
-           <div class="col-3"> {{$areas->links()}} </div>
+           <div class="col-3">{{ $areas->withQueryString()->links() }}</div>
         </div>
             <table class="table">
                 <thead>
@@ -55,7 +55,7 @@
                 </tbody>
             </table>
         <div class="row  justify-content-center">
-            <div class="col-3"> {{$areas->links()}} </div>
+            <div class="col-3"> {{ $areas->withQueryString()->links() }} </div>
         </div>
         </div>
     </div>

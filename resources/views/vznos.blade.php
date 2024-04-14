@@ -49,7 +49,7 @@
                     <th>тип</th>
                     <th>дата начисления</th>
                     <th></th>
-                    <th></th>
+
 
                 </tr>
                 </thead>
@@ -59,7 +59,7 @@
                         <td> {{$count->value}}</td>
                         <td> {{$count->type}}</td>
                         <td> {{$count->created_at}}</td>
-                        <td> {{$count->id}}</td>
+
                         <td>
                             <form action="{{ route('vznos.delete') }}" method="POST">
                                 @csrf

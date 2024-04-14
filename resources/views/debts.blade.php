@@ -42,16 +42,16 @@
 
 
         <table class="mt-4 table table-bordered">
+
+            {{ $paginator->withQueryString()->links() }}
             <thead>
             <tr>
                 <th>Участок</th>
                 <th class="text-danger">долг</th>
-
-
             </tr>
             </thead>
             <tbody>
-            @foreach($results as $result)
+            @foreach($paginator as $result)
                 <tr class="tr-link" onclick="window.location='{{ route('dashboard', $result->id) }}';">
                     <td> {{$result->number}}</td>
                     <td> {{  $result->total_payments_sum - $result->total_payment_movs_sum}}р.</td>
