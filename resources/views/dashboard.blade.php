@@ -38,6 +38,9 @@
     @include('modals.modal-payments-trash')
     @include('modals.modal-payments-video')
     @include('modals.modal-counter')
+    @include('modals.modal-allpayments')
+
+
 
 
 
@@ -98,6 +101,9 @@
             <!-- все долги -->
             <div class=" col-lg-2 col-sm-6 " >
                 <x-tablealldebts :id="$id"/>
+                <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#AllPaymentsModal">
+                    Квитанция
+                </button>
             </div>
 
 

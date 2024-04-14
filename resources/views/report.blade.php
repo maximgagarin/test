@@ -15,7 +15,8 @@
     <div class="row">
         <div class="col-lg-2 col-sm-6">
             <h6>Выбрать период начислено</h6>
-            <form action="{{route('report.calc')}}">
+            <form action="{{route('report.calc')}}" method="POST">
+                @csrf
                 <div class=" mb-3">
                     <input type="date" class="form-control" name="date1" value="" >
                 </div>
@@ -37,6 +38,9 @@
             </form>
         </div>
     </div>
-    {{$sum}}
+<p> Начислено: {{$sumDebt}} р. </p>
+   <p> Оплачено: {{$sumPaid}} р.</p>
+
+
 
 @endsection

@@ -33,7 +33,7 @@
             <td><strong>Плательщик:</strong> {{$namesnt}}</td>
         </tr>
         <tr>
-            <td><strong>Сумма:</strong> {{$totalsum}}р.</td>
+            <td><strong>Сумма:</strong> {{$totalsum}}р.   </td>
         </tr>
         <tr class="table_tr">
             <td >Подпись:_________Дата: "__" _______20__ г.</td>
@@ -61,15 +61,40 @@
             <td><strong>Корр счет:</strong>{{$CorrespAcc}}</td>
         </tr>
         <tr>
-            <td><strong>Плательщик:</strong> {{$namesnt}}</td>
+            <td><strong>Плательщик:</strong> {{$namesnt}}  </td>
         </tr>
         <tr>
-            <td><strong>Сумма:</strong> {{$totalsum}}р.</td>
+            <td><strong>Сумма:</strong> {{$totalsum}}р. </td>
         </tr>
         <tr>
             <td>Подпись:_________Дата: "__" _______20__ г.</td>
         </tr>
     </table>
+</div>
+<br>
+<div>
+    <h7> Расшифровка по взносам</h7>
+    <h7>Участок: {{$numbersnt}}</h7>
+    <h7>Владелец: {{$namesnt}}</h7>
+    <table class="table-check" >
+        <thead>
+        <tr class="tr2">
+            <th>тип</th>
+            <th>сумма</th>
+            <th>год</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($selectedPayments as $count)
+            <tr>
+                <td>{{ $count->type }}</td>
+                <td>{{number_format($count->sum,2,'.','')}}р.</td>
+                <td>{{ \Carbon\Carbon::parse($count->date)->format('Y') }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+
 </div>
 </html>
 
@@ -93,6 +118,7 @@
     td{
         padding: 6px;
         border-right: 1px solid black;
+        border-bottom: 1px solid black;
     }
 
     img{
@@ -108,5 +134,11 @@
         font-size: 16px;
         line-height: 30px;
     }
+
+    .tr2{
+        border: 2px solid black;
+
+    }
+
 
 </style>

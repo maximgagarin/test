@@ -14,4 +14,9 @@ class Payment extends Model
     {
         return $this->hasMany(payment_mov::class, 'payments_id', 'id');
     }
+
+    public function area(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->belongsTo(Area::class);
+    }
 }

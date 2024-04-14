@@ -75,6 +75,7 @@ Route::delete('incomingdelete', 'IncomingController@destroy')->name('incoming.de
 //Route::post('paymentn', 'PaymentnController@store')->name('payment_new');
 
 Route::post('form', 'FormController@index')->name('form');
+Route::post('form/submit', 'FormController@submit')->name('form.submit');
 Route::post('check', 'FormController@check')->name('check');
 
 
