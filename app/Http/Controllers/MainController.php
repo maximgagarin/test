@@ -14,15 +14,20 @@ class MainController extends Controller
     public function index()
     {
 
-        $query = Area::query();
-        if (request('value')) {
-            $data = request()->validate([
-                'value' => ['string']
-            ]);
-            $value = $data['value'];
-            $query->where('name', 'like', "%{$value}%");
+
+        // Проверка наличия данных для поиска по имени
+        if (request()->filled('SearchByName')) {
+            $areas =  Area::where('name', 'like', '%' . request('SearchByName') . '%')->paginate(350);
+            return view('main', compact('areas'));
         }
-        $areas = $query->paginate(350);
+
+        // Проверка наличия данных для поиска по номеру
+        if (request()->filled('SearchByNumber')) {
+            $areas =  Area::where('number', 'like', '%' . request('SearchByNumber') . '%')->paginate(350);
+            return view('main', compact('areas'));
+        }
+
+        $areas = Area::paginate(350);
         return view('main', compact('areas'));
     }
 }

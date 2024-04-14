@@ -28,6 +28,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('end')->nullable();
             $table->timestamp('datestart')->nullable();
             $table->timestamp('dateend')->nullable();
+            $table->integer('NumberAccrualID')->nullable();
         });
     }
 

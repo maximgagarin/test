@@ -55,6 +55,7 @@ Route::get('Tariff', 'TariffController@index')->name('tariff');
 Route::post('Tariff', 'TariffController@store')->name('tariff.store') ;
 Route::get('vznos', 'TariffController@vznos')->name('vznos');
 Route::post('vznos/calculation', 'TariffController@calculationon')->name('vznos.calculation');
+Route::delete('vznos/delete', 'TariffController@destroy')->name('vznos.delete');
 
 Route::get('Debts', 'DebtsController@index')->name('debts') ;
 Route::post('Debts2', 'DebtsController@index2')->name('debts2') ;
@@ -77,12 +78,22 @@ Route::post('form', 'FormController@index')->name('form');
 Route::post('check', 'FormController@check')->name('check');
 
 
+Route::get('report', 'ReportController@index')->name('report');
+
+
 
 
 
 });
 
 
-Auth::routes();
+Auth::routes([
+    'confirm' => false,
+    'forgot' => false,
+    'login' => true,
+    'register' => false,
+    'reset' => false,
+
+]);
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

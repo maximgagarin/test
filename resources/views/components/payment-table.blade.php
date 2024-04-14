@@ -4,6 +4,7 @@
     <tr class="bg-light">
         <th>№</th>
         <th>тип</th>
+        <th>тариф</th>
         <th>начислено</th>
         <th>дата начисл</th>
         <th>статус</th>
@@ -19,6 +20,7 @@
         <tr id="editForm2{{$payment->id}}">
             <td> {{$payment->id}}</td>
             <td> {{$payment->type}}</td>
+            <td>{{number_format($payment->tariff,2,'.','')}}р.</td>
 
             <td>{{number_format($payment->sum,2,'.','')}}р.</td>
             <td>{{ \Carbon\Carbon::parse($payment->date)->format('d-m-Y') }}</td>

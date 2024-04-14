@@ -44,35 +44,62 @@ class TariffController extends Controller
         $type = \request('type');
         $value = \request('value');
 
+        $NumberAccrual = [
+            'value' => $value,
+            'type' => $type,
+        ];
+        tariff::create($NumberAccrual);
+
+        $NumberAccrualID = tariff::latest('id')->value('id');
         $areas = Area::all();
+
+        if ($type==='чвзнос'){
+            $payments = $areas->map(function ($area) use ($value, $type, $NumberAccrualID) {
+                $square = $area->square;
+                $new = $square * $value;
+                return [
+                    'areas_id' => $area->id,
+                    'type' => $type,
+                    'unit' => 'руб',
+                    'amount' => $square,
+                    'tariff' => $value,
+                    'sum' => $new,
+                    'date' => now(),
+                    'status' => 'неоплачен',
+                    'NumberAccrualID' =>  $NumberAccrualID
+                ];
+            });
+
+            Payment::insert($payments->toArray());
+            return redirect()->back();
+        }
+
 
         foreach ($areas as $area) {
             $square = $area->square;
-
-            // Умножение значения на 10
             $new = $square * $value;
-
-            // Создание новой записи в таблице payments
             $data = [
                 'areas_id' => $area->id,
                 'type' => $type,
                 'unit' => 'руб',
                 'amount' => $square,
                 'tariff' => $value,
-                'sum' => $new,
+                'sum' => $value,
                 'date' => now(),
                 'status' => 'неоплачен',
+                'NumberAccrualID' => $NumberAccrualID
             ];
-
-            // Сохранение записи в базу данных
             Payment::create($data);
         }
-        $data2 = [
-            'value' => $value,
-            'type' => $type,
-        ];
+        return redirect()->back();
+    }
 
-        tariff::create($data2);
+    public function destroy()
+    {
+        $NumberAccrualID = \request('NumberAccrualID');
+        Payment::where('NumberAccrualID', $NumberAccrualID)->delete();
+        tariff::where('id', $NumberAccrualID)->delete();
+
         return redirect()->back();
     }
 }

@@ -20,6 +20,7 @@
         <li class="nav-item"><a href="{{route('vznos')}}" class="nav-link">Взносы</a></li>
         <li class="nav-item"><a href="{{route('debts')}}" class="nav-link">Долги</a></li>
         <li class="nav-item"><a href="{{route('incomingall')}}" class="nav-link">Все оплаты</a></li>
+        <li class="nav-item"><a href="{{route('report')}}" class="nav-link">Отчет</a></li>
     </ul>
 
 </header>

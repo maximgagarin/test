@@ -19,6 +19,7 @@
         <div class="mb-3">
             <label>Номер участка</label>
             <input type="text" class="form-control" name="number" >
+            <p style="font-size:12px">Без пробелов, например: 2массив2линия34</p>
         </div>
         <div class="mb-3">
             <label>Собственник</label>
