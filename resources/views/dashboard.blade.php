@@ -148,9 +148,9 @@
                                     {{--                    <input type="text" class="form-control" name="number" placeholder="номер платёжки банка">--}}
                                     {{--                </div>--}}
                                     <div class="mb-3">
-                                        <label for="">Свет</label>
+                                        <label for="">Э/энергия</label>
                                         <input type="text" class="form-control" id="svet" name="svet" value="0"
-                                               placeholder="свет">
+                                               placeholder="энергия">
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Чвзнос</label>
@@ -158,7 +158,7 @@
                                                placeholder="чвзнос">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="">В.наблюдение</label>
+                                        <label for="">благоустройство</label>
                                         <input type="text" class="form-control" id="camera" name="camera" value="0"
                                                placeholder="видеонаблюдение">
                                     </div>
@@ -241,7 +241,7 @@
                                 История показаний
                             </button>
                             <button type="button" class="btn btn-outline-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#TariffsModal">
-                                Тарифы на свет
+                                Тарифы на энергию
                             </button>
                             <form class="myForm" action="{{ route('store3') }}" method="POST">
                                 @csrf
@@ -285,7 +285,7 @@
                                 <option value="2">Членский взнос</option>
                                 <option value="3">Мусор</option>
                                 <option value="4">Дороги</option>
-                                <option value="5">Видеонаблюдение</option>
+                                <option value="5">Благоустройство</option>
                             </select>
                         </div>
                         <div id="div2" style="display: none;">
@@ -434,11 +434,11 @@
                                 <th>сумма прихода</th>
                                 <th>в аванс</th>
                                 <th>всего оплачено</th>
-                                <th>свет</th>
+                                <th>э/энергия</th>
                                 <th>чвзнос</th>
                                 <th>мусор</th>
                                 <th>дороги</th>
-                                <th>видео</th>
+                                <th>благоуст.</th>
                                 <th>дата банк</th>
                                 <th></th>
                             </tr>

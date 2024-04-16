@@ -4,7 +4,7 @@
             <td colspan="2"><h6  style="color:red">Долг : <span id="alldebt">{{$totalsum}}</span></h6></td>
         </tr>
         <tr class="tr-link" data-bs-toggle="modal" data-bs-target="#PaymentsSvetModal">
-            <td>Свет</td>
+            <td>Э/энерия</td>
             <td><span id="svetdebt">{{$svet}}</span>р.
 
             </td>
@@ -18,7 +18,7 @@
             <td><span id="roaddebt">{{$road}}</span>р.</td>
         </tr>
         <tr class="tr-link" data-bs-toggle="modal" data-bs-target="#PaymentsVideoModal">
-            <td>видео</td>
+            <td>Благоустройство</td>
             <td><span id="cameradebt">{{$camera}}</span>р.</td>
         </tr>
 

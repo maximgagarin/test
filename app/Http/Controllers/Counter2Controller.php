@@ -73,7 +73,7 @@ class Counter2Controller extends Controller
 
         $data2 = [
             'areas_id' => $id,
-            'type' => 'свет',
+            'type' => 'энергия',
             'unit' => 'квт',
             'amount' => $razn,
             'tariff' => $tariff,
@@ -126,7 +126,7 @@ class Counter2Controller extends Controller
 //            // Создание записи в таблице Payment
 //            $paymentData = [
 //                'areas_id' => $id,
-//                'type' => 'свет',
+//                'type' => 'энергия',
 //                'unit' => 'квт',
 //                'amount' => $razn,
 //                'tariff' => $tariff,

@@ -51,7 +51,7 @@ class PaymentController extends Controller
         $value= $data['value'];
 
 
-        $TypePayment = 'свет';
+        $TypePayment = 'энергия';
         $payments = Payment::select(['id', 'sum'])
             ->where('areas_id', $id)
             ->where('type', $type)

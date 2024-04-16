@@ -13,7 +13,7 @@ class TariffController extends Controller
 {
     public function index()
     {
-        $counts = tariff::where('type', 'свет')->get();
+        $counts = tariff::where('type', 'энергия')->get();
         return view('tariff', compact('counts'));
     }
 
@@ -23,7 +23,7 @@ class TariffController extends Controller
             'value' => ['numeric'],
             'type' => '',
         ]);
-        $data['type'] = 'свет';
+        $data['type'] = 'энергия';
         tariff::create($data);
         return redirect()->back();
     }

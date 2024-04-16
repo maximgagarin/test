@@ -19,7 +19,7 @@ class DashboardController extends Controller
     public function index(Area $id)
 
     {
-        $payments = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'свет')->get();
+        $payments = Payment::withSum('payment_mov as sumpaid', 'sum')->where('areas_id', $id->id)->where('type', 'энергия')->get();
 
 
         $totalPrepayPrihod = Prepay::where('saldo', 'приход')->where('areas_id', $id->id)->sum('sum');
@@ -35,11 +35,11 @@ class DashboardController extends Controller
         $lastValue = Counter::where('areas_id', $id->id)->latest('id')->value('value'); //послед показ счетчика
         $lastValuedate = Counter::where('areas_id', $id->id)->latest('id')->value('date'); //послед показ счетчика
 
-        $tariffs = tariff::query()->select('value')->where('type', 'свет')->get();
+        $tariffs = tariff::query()->select('value')->where('type', 'энергия')->get();
 
         $PaymentTable = Payment::withSum('payment_mov as sumpaid', 'sum')
         ->where('areas_id', $id->id)
-        ->where('type', 'свет')
+        ->where('type', 'энергия')
         ->get();
 
         $counts = Counter::where('areas_id', $id->id)->get();

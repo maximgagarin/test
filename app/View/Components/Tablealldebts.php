@@ -21,11 +21,11 @@ class Tablealldebts extends Component
         $this->id=$id;
         $sumPaidSvet =DB::table('payments')
             ->Join('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')
-            ->where('payments.type', 'свет')
+            ->where('payments.type', 'энергия')
             ->where('areas_id', $id->id)
             ->where('status', 'неоплачен')
             ->sum('payment_movs.sum');
-        $sumAllSvet = Payment::where('areas_id', $id->id)->where('type', 'свет')->where('status', 'неоплачен')->sum('sum');
+        $sumAllSvet = Payment::where('areas_id', $id->id)->where('type', 'энергия')->where('status', 'неоплачен')->sum('sum');
         $sumLeft = $sumAllSvet - $sumPaidSvet;
         $this->svet=$sumLeft;
 

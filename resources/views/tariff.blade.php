@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <div class="row mb-3 mt-4 text-center "> <h3>Тарифы на свет</h3></div>
+    <div class="row mb-3 mt-4 text-center "> <h3>Тарифы на энергия</h3></div>
 
     <div class="row   justify-content-center">
         <div class="col-lg-2 col-sm-12">

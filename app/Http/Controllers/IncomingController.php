@@ -75,7 +75,7 @@ class IncomingController extends Controller
         if (($data['svet']))
         {
 
-            $type = 'свет';
+            $type = 'энергия';
             $value=$data['svet'];
             calculation($areas_id, $value, $type, $lastIdIncoming);
             Incoming::where('id',  $lastIdIncoming)->update(['svet' => $value]);

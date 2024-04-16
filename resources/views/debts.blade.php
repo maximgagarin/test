@@ -9,22 +9,22 @@
             <tr>
                 <td>
                     <form action="{{route('debts')}}" class="d-flex mt-3 mr-2">
-                        <input class="form-control input-hidden"  type="search"  placeholder="свет" style="">
+                        <input class="form-control input-hidden"  type="search"  placeholder="энергия" style="">
                         <button class="btn btn-success btn-sm " type="submit" >все</button>
                     </form>
                 </td>
                 <td>
         <div class="">
             <form action="{{route('debts2')}}" class="d-flex mt-3 mr-2">
-                <input class="form-control input-hidden"  type="search" name="type" value="свет" placeholder="свет" style="">
-                <button class="btn btn-success btn-sm " type="submit" >свет</button>
+                <input class="form-control input-hidden"  type="search" name="type" value="энергия" placeholder="энергия" style="">
+                <button class="btn btn-success btn-sm " type="submit" >энергия</button>
             </form>
         </div>
                 </td>
                 <td>
         <div class="">
             <form action="{{route('debts2')}}" class="d-flex mt-3 mr-2">
-                <input class="form-control input-hidden " type="search" name="type" value="чвзнос" placeholder="свет">
+                <input class="form-control input-hidden " type="search" name="type" value="чвзнос" placeholder="энергия">
                 <button class="btn btn-success btn-sm" type="submit">чвзнос</button>
             </form>
         </div>
@@ -32,7 +32,7 @@
                 <td>
         <div class="">
             <form action="{{route('debts2')}}" class="d-flex mt-3">
-                <input class="form-control input-hidden " type="search" name="type" value="мусор" placeholder="свет">
+                <input class="form-control input-hidden " type="search" name="type" value="мусор" placeholder="энергия">
                 <button class="btn btn-success btn-sm" type="submit">мусор</button>
             </form>
         </div>
@@ -40,7 +40,7 @@
                 <td>
         <div class="">
             <form action="{{route('debts2')}}" class="d-flex mt-3">
-                <input class="form-control input-hidden " type="search" name="type" value="дороги" placeholder="свет">
+                <input class="form-control input-hidden " type="search" name="type" value="дороги" placeholder="энергия">
                 <button class="btn btn-success btn-sm" type="submit">дороги</button>
             </form>
         </div>
@@ -48,7 +48,7 @@
                 <td>
         <div class="">
             <form action="{{route('debts2')}}" class="d-flex mt-3">
-                <input class="form-control input-hidden " type="search" name="type" value="видеонаблюдение" placeholder="свет">
+                <input class="form-control input-hidden " type="search" name="type" value="видеонаблюдение" placeholder="энергия">
                 <button class="btn btn-success btn-sm" type="submit">видео</button>
             </form>
         </div>
