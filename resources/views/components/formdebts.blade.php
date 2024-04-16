@@ -1,4 +1,4 @@
-<form   action="{{route('debts2')}}" method="POST">
+<form   action="{{route('debts3')}}" >
     @csrf
 
     <div class="col-auto">

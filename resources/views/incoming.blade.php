@@ -62,22 +62,22 @@
                 <tr class="tr-link" onclick="window.location='{{ route('dashboard', $count->areas_id) }}';">
                     <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
-                    <td> {{$count->sum_incoming}}</td>  <?php $sum1 += $count->sum_incoming; ?>
-                    <td> {{$count->sum_left}}</td>       <?php $sum2 += $count->sum_left; ?>
-                    <td> {{$count->sum_paid}}</td>      <?php $sum3 += $count->sum_paid; ?>
-                    <td> {{$count->svet}}</td>         <?php $sum4 += $count->svet; ?>
-                    <td> {{$count->chvznos}}</td>      <?php $sum5 += $count->chvznos; ?>
-                    <td> {{$count->trash}}</td>         <?php $sum6 += $count->trash; ?>
-                    <td> {{$count->road}}</td>         <?php $sum7 += $count->road; ?>
-                    <td> {{$count->camera}}</td>       <?php $sum8 += $count->camera; ?>
-                    <td> {{$count->number}}</td>
+                    <td> {{number_format($count->sum_incoming,2,'.','')}}</td>  <?php $sum1 += $count->sum_incoming; ?>
+                    <td>{{number_format($count->sum_left,2,'.','')}}</td>       <?php $sum2 += $count->sum_left; ?>
+                    <td>{{number_format($count->sum_paid,2,'.','')}}</td>      <?php $sum3 += $count->sum_paid; ?>
+                    <td>{{number_format($count->svet,2,'.','')}} </td>         <?php $sum4 += $count->svet; ?>
+                    <td>{{number_format($count->chvznos,2,'.','')}} </td>      <?php $sum5 += $count->chvznos; ?>
+                    <td> {{number_format($count->trash,2,'.','')}}</td>         <?php $sum6 += $count->trash; ?>
+                    <td>{{number_format($count->road,2,'.','')}}</td>         <?php $sum7 += $count->road; ?>
+                    <td>{{number_format($count->camera,2,'.','')}} </td>       <?php $sum8 += $count->camera; ?>
+                    <td>{{$count->number}} </td>
                 </tr>
             @endforeach
             <tr class="text-danger ">
                 <td>Итог</td>
                 <td></td>
                 <td>{{$sum1}}р.</td>
-                <td>{{$sum2}}р.</td>
+                <td></td>
                 <td>{{$sum3}}р.</td>
                 <td>{{$sum4}}р.</td>
                 <td>{{$sum5}}р.</td>

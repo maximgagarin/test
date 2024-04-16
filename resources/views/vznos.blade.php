@@ -16,7 +16,7 @@
     <div class="row mb-3"><h3>Начислить всем участинкам взносы</h3></div>
 
     <div class="row ">
-        <div class="col-2">
+        <div class="col-lg-2 col-sm-6">
             <form action="{{route('vznos.calculation')}}" method="POST">
                 @csrf
 
@@ -41,7 +41,7 @@
 
     <div class="row mb-3 mt-5">
 
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-6">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -75,7 +75,7 @@
         </div>
 
 
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-6">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -108,7 +108,7 @@
     <div class="row ">
 
 
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-6">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -139,7 +139,7 @@
         </div>
 
 
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-6">
             <table class="table table-bordered">
                 <thead>
                 <tr>

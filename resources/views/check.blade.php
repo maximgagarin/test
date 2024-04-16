@@ -73,12 +73,12 @@
 </div>
 <br>
 <div>
-    <h7> Расшифровка по взносам</h7>
+    <p> Расшифровка по взносам</p>
     <h7>Участок: {{$numbersnt}}</h7>
     <h7>Владелец: {{$namesnt}}</h7>
-    <table class="table-check" >
+    <table class="table-check-2" >
         <thead>
-        <tr class="tr2">
+        <tr>
             <th>тип</th>
             <th>сумма</th>
             <th>год</th>
@@ -118,7 +118,7 @@
     td{
         padding: 6px;
         border-right: 1px solid black;
-        border-bottom: 1px solid black;
+
     }
 
     img{
@@ -135,10 +135,17 @@
         line-height: 30px;
     }
 
-    .tr2{
-        border: 2px solid black;
+    .table-check-2 {
+        border: 1px solid black;
+        border-spacing: 0;
+        width: 700px;
+    }
+
+    .table-check-2 td{
+        border: 1px solid gray;
 
     }
+
 
 
 </style>

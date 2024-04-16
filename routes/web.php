@@ -58,7 +58,8 @@ Route::post('vznos/calculation', 'TariffController@calculationon')->name('vznos.
 Route::delete('vznos/delete', 'TariffController@destroy')->name('vznos.delete');
 
 Route::get('Debts', 'DebtsController@index')->name('debts') ;
-Route::post('Debts2', 'DebtsController@index2')->name('debts2') ;
+Route::get('Debts2', 'DebtsController@index2')->name('debts2') ;
+Route::get('Debts3', 'DebtsController@index3')->name('debts3') ;
 
 Route::post('Areascomment', 'AreasController@comment')->name('areas.comment') ; //обновление комментария
 Route::get('Areasupdate/{id}', 'AreasController@update')->name('areas.update') ; //страница обновление участка
@@ -82,10 +83,6 @@ Route::post('check', 'FormController@check')->name('check');
 Route::get('report', 'ReportController@index')->name('report');
 Route::post('report/calc', 'ReportController@calc')->name('report.calc');
 
-
-
-
-
 });
 
 
@@ -95,7 +92,6 @@ Auth::routes([
     'login' => true,
     'register' => false,
     'reset' => false,
-
 ]);
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

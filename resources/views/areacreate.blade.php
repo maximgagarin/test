@@ -12,7 +12,7 @@
     @endif
 <div class="container">
     <h5 class="mt-3">Создание участка</h5>
-    <div class="col-4">
+    <div class="col-lg-4 col-sm-6" >
     <form class="mt-3 " id="form1" action="{{route('area.store')}}" method="POST">
         @csrf
 

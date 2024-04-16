@@ -100,6 +100,7 @@
 
             <!-- все долги -->
             <div class=" col-lg-2 col-sm-6 " >
+
                 <x-tablealldebts :id="$id"/>
                 <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#AllPaymentsModal">
                     Квитанция
@@ -109,7 +110,7 @@
 
             <!-- оплата -->
             <div class="col-lg-5  col-sm-12">
-                <div class="card card-primary">
+                <div class="card card-primary border border-secondary border-1">
                     <div class="card-header cart-header-custom">
                         <h7 class="card-title">Оплатить</h7>
                     </div>
@@ -205,7 +206,7 @@
 
             <!-- счетчик -->
             <div class="col-lg-3  col-sm-6 mb-4">
-                <div class="card card-primary">
+                <div class="card card-primary border border-secondary border-1">
                     <div class="card-header cart-header-custom ">
                         <div class="row">
                             <div class="col-6"> <p>счетчик</p></div>
@@ -271,8 +272,8 @@
 
 
             <!-- начисление взноса -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="card card-primary">
+            <div class="col-lg-3 col-sm-6 mb-2">
+                <div class="card card-primary border border-secondary border-1">
                     <div class="card-header cart-header-custom">
                         <h7 class="card-title">Начислить взнос</h7>
                     </div>
@@ -388,14 +389,41 @@
                 </div>
             </div>
 
+
+            <div class="col-lg-3 col-sm-6 ">
+
+
+                <div class="card card-primary border border-secondary border-1">
+                    <div class="card-header cart-header-custom">
+                        <h7 class="card-title">Комментарий</h7>
+                    </div>
+                    <div class="card-body">
+                        <form class="row g-3" action="{{route('areas.comment')}}" method="POST">
+                            @csrf
+                            <input type="hidden" value="{{$id->id}}" name="id">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="text"
+                                      rows="3">{{$comment}}</textarea>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary btn-sm mb-2">Сохранить комментарий</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
         </div>
 
 
         <!-- поступление денег -->
         <div class="row">
             <div class="col-12  mt-3">
-                <div class="card card-primary">
-                    <div class="card-header" style="background-color: #FED15A">
+                <div class="card card-primary border border-secondary border-1">
+                    <div class="card-header" style="background-color: gainsboro">
                         <p>Поступление денег</p>
                     </div>
                     <div class="card-body">
@@ -472,18 +500,7 @@
 
 
         <!-- коммент -->
-        <div class="  col-lg-3 col-sm-6">
-            <h7>Комментарий</h7>
-            <form class="row g-3" action="{{route('areas.comment')}}" method="POST">
-                @csrf
-                <input type="hidden" value="{{$id->id}}" name="id">
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="text"
-                          rows="3">{{$comment}}</textarea>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary btn-sm mb-2">Сохранить комментарий</button>
-                </div>
-            </form>
-        </div>
+
 
 
         {{--    <x-tablepay :id="$id"/>--}}

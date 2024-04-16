@@ -64,11 +64,11 @@ class Counter2Controller extends Controller
 
             sleep(1);
 
-        $secondIdCounter =  Counter::latest('id')->value('id');
-        $dateEnd =  Counter::latest('id')->value('date');
+       // $secondIdCounter =  Counter::where('areas_id', $id)->latest('date')->value('id');
+      //  $dateEnd =  Counter::latest('id')->value('date');
 
-        $previosIdCounter = Counter::latest('id')->skip(1)->take(1)->value('id');
-        $dateStart = Counter::latest('id')->skip(1)->take(1)->value('date');
+       // $previosIdCounter = Counter::latest('id')->skip(1)->take(1)->value('id');
+      //  $dateStart = Counter::latest('id')->skip(1)->take(1)->value('date');
 
 
         $data2 = [
@@ -80,10 +80,10 @@ class Counter2Controller extends Controller
             'sum' => $sum,
             'date' => $date,
             'status' => 'неоплачен',
-            'start' => $previosIdCounter,
-            'end' => $secondIdCounter,
-            'datestart' => $dateStart,
-            'dateend' => $dateEnd,
+            'start' => 0,
+            'end' => 0,
+            'datestart' => $latestDate,
+            'dateend' => $date,
         ];
 
            Payment::create($data2);

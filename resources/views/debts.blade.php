@@ -2,48 +2,71 @@
 @extends('layout')
 @section('content')
 <div class="container">
-    <div class="row p-3">
-        <h4 class="text-center p-3">Задолженности по участкам</h4>
-        <div class="col-lg-1 col-sm-6 mb-2">
-            <a href="{{route('debts')}}"><button class="btn btn-outline-primary btn-sm">все долги</button></a>
-        </div>
-        <div class="col-lg-1 col-sm-6">
-          <x-formdebts :button="$button = 'свет'" >
-              свет
-          </x-formdebts>
-        </div>
-        <div class="col-lg-1 col-sm-6">
-            <x-formdebts :button="$button = 'чвзнос'"  >
-                чвзнос
-            </x-formdebts>
-        </div>
-        <div class="col-lg-1 col-sm-6">
-            <x-formdebts :button="$button = 'мусор'" >
-                мусор
-            </x-formdebts>
-        </div>
-        <div class="col-lg-1 col-sm-6">
-            <x-formdebts :button="$button = 'дороги'" >
-                дороги
-            </x-formdebts>
-        </div>
-        <div class="col-lg-1 col-sm-6">
-            <x-formdebts :button="$button = 'камеры'" >
-                видеонаблюдение
-            </x-formdebts>
-        </div>
+    <h4 class="text-center p-3">Задолженности по участкам</h4>
+    <div class="row p-3 ">
 
-
+        <table class="table">
+            <tr>
+                <td>
+                    <form action="{{route('debts')}}" class="d-flex mt-3 mr-2">
+                        <input class="form-control input-hidden"  type="search"  placeholder="свет" style="">
+                        <button class="btn btn-success btn-sm " type="submit" >все</button>
+                    </form>
+                </td>
+                <td>
+        <div class="">
+            <form action="{{route('debts2')}}" class="d-flex mt-3 mr-2">
+                <input class="form-control input-hidden"  type="search" name="type" value="свет" placeholder="свет" style="">
+                <button class="btn btn-success btn-sm " type="submit" >свет</button>
+            </form>
+        </div>
+                </td>
+                <td>
+        <div class="">
+            <form action="{{route('debts2')}}" class="d-flex mt-3 mr-2">
+                <input class="form-control input-hidden " type="search" name="type" value="чвзнос" placeholder="свет">
+                <button class="btn btn-success btn-sm" type="submit">чвзнос</button>
+            </form>
+        </div>
+                </td>
+                <td>
+        <div class="">
+            <form action="{{route('debts2')}}" class="d-flex mt-3">
+                <input class="form-control input-hidden " type="search" name="type" value="мусор" placeholder="свет">
+                <button class="btn btn-success btn-sm" type="submit">мусор</button>
+            </form>
+        </div>
+                </td>
+                <td>
+        <div class="">
+            <form action="{{route('debts2')}}" class="d-flex mt-3">
+                <input class="form-control input-hidden " type="search" name="type" value="дороги" placeholder="свет">
+                <button class="btn btn-success btn-sm" type="submit">дороги</button>
+            </form>
+        </div>
+                </td>
+                <td>
+        <div class="">
+            <form action="{{route('debts2')}}" class="d-flex mt-3">
+                <input class="form-control input-hidden " type="search" name="type" value="видеонаблюдение" placeholder="свет">
+                <button class="btn btn-success btn-sm" type="submit">видео</button>
+            </form>
+        </div>
+                </td>
+            </tr>
+        </table>
     </div>
+
+
     <div class="row">
 
+        <h5 class="mb-5">Всего долг  {{$type}}: {{$formattedTotal}}р.</h5>
+        <div class="row mt-3 ">
+            <div class="col-6">{{ $paginator->withQueryString()->links() }}</div>
+        </div>
 
-        <h5>Всего долг  {{$type}}: {{$formattedTotal}}р.</h5>
 
-
-        <table class="mt-4 table table-bordered">
-
-            {{ $paginator->withQueryString()->links() }}
+        <table class=" table table-bordered">
             <thead>
             <tr>
                 <th>Участок</th>
@@ -60,8 +83,27 @@
             @endforeach
             </tbody>
         </table>
-
+    </div>
+    <div class="row mt-3 ">
+        <div class="col-6">{{ $paginator->withQueryString()->links() }}</div>
     </div>
 </div>
+
+    <style>
+
+        .input-hidden{
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            border: 0 !important;
+        }
+
+
+
+    </style>
 
 @endsection

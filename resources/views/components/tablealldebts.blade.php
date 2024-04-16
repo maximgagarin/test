@@ -1,5 +1,5 @@
 
-    <table class="table table-bordered ">
+    <table class="table table-bordered border-top border-3 border-bottom border-3">
         <tr  class="tr-link" >
             <td colspan="2"><h6  style="color:red">Долг : <span id="alldebt">{{$totalsum}}</span></h6></td>
         </tr>

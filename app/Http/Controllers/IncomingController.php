@@ -44,7 +44,10 @@ class IncomingController extends Controller
         $date = $data['date'];
 
 
-        if($sum_incoming < $alldebt && $sum_paid < $sum_incoming || $sum_incoming>$alldebt && $sum_paid < $alldebt || $sum_incoming < $alldebt && $sum_paid < $sum_incoming ){
+        if($sum_incoming < $alldebt && $sum_paid < $sum_incoming ||
+            $sum_incoming>$alldebt && $sum_paid < $alldebt ||
+            $sum_incoming < $alldebt && $sum_paid < $sum_incoming ||
+            $sum_paid>$alldebt){
             return redirect()->back()->with('danger', 'Не добавлено , проверьте данные');
         }
 
