@@ -34,7 +34,7 @@ class TariffController extends Controller
         $counts = tariff::where('type', 'чвзнос')->get();
         $counts_road = tariff::where('type', 'дороги')->get();
         $counts_trash = tariff::where('type', 'мусор')->get();
-        $counts_camera = tariff::where('type', 'видеонаблюдение')->get();
+        $counts_camera = tariff::where('type', 'благоустройство')->get();
         return view('vznos', compact('counts', 'counts_road','counts_trash', 'counts_camera' ));
     }
 

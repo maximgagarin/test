@@ -23,7 +23,7 @@ class PaymentController extends Controller
         $data = request()->validate([
            // 'areas_id' => '',
             'amount' => ['numeric'],
-            'tariff' => ['numeric'],
+            'tariff' => '',
             'sum' => ['numeric', 'required'],
             'type' => '',
             'date' => ['date', 'required'],

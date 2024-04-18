@@ -49,6 +49,7 @@ class DashboardController extends Controller
         $AllPayments = Area::select('areas.id', 'payments.sum', 'payments.type', 'payments.date' , 'payments.id as idid')
             ->join('payments', 'areas.id', '=', 'payments.areas_id')
             ->where('areas.id', $id->id)
+            ->where('status', 'неоплачен')
             ->get();
 
 

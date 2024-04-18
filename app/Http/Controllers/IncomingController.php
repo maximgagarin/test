@@ -103,7 +103,7 @@ class IncomingController extends Controller
         }
         if (($data['camera']))
         {
-            $type = 'видеонаблюдение';
+            $type = 'благоустройство';
             $value=$data['camera'];
             calculation($areas_id, $value, $type, $lastIdIncoming);
             Incoming::where('id',  $lastIdIncoming)->update(['camera' => $value]);

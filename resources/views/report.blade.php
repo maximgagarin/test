@@ -12,7 +12,7 @@
     </div>
 @endif
 
-<h4 class="mt-3 mb-3 text-center">Отчет</h4>
+<h4 class="mt-3 mb-3 text-center">Рассчеты по участкам {{$PaidChvznos}}</h4>
 
 <div class="container">
     <h6>Выбрать период</h6>
@@ -27,33 +27,59 @@
                     <input type="date" class="form-control" name="date2" value="">
                 </div>
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-primary btn-sm">Показать</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Сформировать</button>
                 </div>
             </form>
         </div>
     </div>
-    <div class="col-lg-6 col-sm-6">
-    <table class="table table-bordered mt-4">
-        <tr>
-            <td>
-                <span>На {{ \Carbon\Carbon::parse(now())->format('d-m-Y') }}</span>
-                <h5>Долг: {{$sumDebt}} р.</h5>
-            </td>
+    <div class="col-8">
+        <table class="table table-bordered">
+            <tr>
+                <td>Вид</td>
+                <td>Начислено</td>
+                <td>Оплачено</td>
+            </tr>
+            <tr>
+                <td>электроэнергия</td>
+                <td>{{$DebtSvet}}</td>
+                <td>{{$PaidSvet}}</td>
+            </tr>
+            <tr>
+                <td>членский взнос</td>
+                <td>{{$DebtChvznos}}</td>
+                <td>{{$PaidChvznos}}</td>
+            </tr>
+            <tr>
+                <td>мусор</td>
+                <td>{{$DebtTrash}}</td>
+                <td>{{$PaidTrash}}</td>
+            </tr>
+            <tr>
+                <td>дороги</td>
+                <td>{{$DebtRoad}}</td>
+                <td>{{$PaidRoad}}</td>
+            </tr>
+            <tr>
+                <td>благоустройство</td>
+                <td>{{$DebtBlag}}</td>
+                <td>{{$PaidBlag}}</td>
+            </tr>
+            <tr>
+                <td>Итого</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
 
-        </tr>
-        <tr>
-            <td>
-                @isset ($date1)
-                <span>c {{ \Carbon\Carbon::parse($date1)->format('d-m-Y') }} по {{ \Carbon\Carbon::parse($date2)->format('d-m-Y') }} пришло денег:</span>
-                <h5>{{$sumPaid}} р.</h5>
-                @else
-                <div> Приход: </div>
-                @endif
-            </td>
-        </tr>
-    </table>
+    <div class="mb-3">
+        <button type="button" class="btn btn-primary btn-sm">Сохранить в файл</button>
+    </div>
+    <div class="mb-3">
+        <button type="button" class="btn btn-primary btn-sm">Печатная форма</button>
+    </div>
 </div>
-</div>
+
 
 
 

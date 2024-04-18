@@ -21,14 +21,11 @@
             <td> {{$payment->id}}</td>
             <td> {{$payment->type}}</td>
             <td>{{number_format($payment->tariff,2,'.','')}}р.</td>
-
             <td>{{number_format($payment->sum,2,'.','')}}р.</td>
             <td>{{ \Carbon\Carbon::parse($payment->date)->format('d-m-Y') }}</td>
             <td> {{$payment->status}}</td>
             <td>{{number_format($payment->sumpaid,2,'.','')}}р.</td>
-
             <td>{{$payment->sum - $payment->sumpaid}}р.</td>
-
             <td>
                 <button class="btn btn-dark btn-sm" onclick="showEditForm({{$payment->id}})">Редактировать</button>
             </td>

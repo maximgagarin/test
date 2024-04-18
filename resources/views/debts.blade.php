@@ -48,8 +48,8 @@
                 <td>
         <div class="">
             <form action="{{route('debts2')}}" class="d-flex mt-3">
-                <input class="form-control input-hidden " type="search" name="type" value="видеонаблюдение" placeholder="энергия">
-                <button class="btn btn-success btn-sm" type="submit">видео</button>
+                <input class="form-control input-hidden " type="search" name="type" value="благоустройство" placeholder="энергия">
+                <button class="btn btn-success btn-sm" type="submit">благоуст.</button>
             </form>
         </div>
                 </td>
@@ -71,6 +71,8 @@
             <tr>
                 <th>Участок</th>
                 <th class="text-danger">долг</th>
+                <th class="text-danger">начисл</th>
+                <th class="text-danger">опл</th>
             </tr>
             </thead>
             <tbody>
@@ -78,7 +80,8 @@
                 <tr class="tr-link" onclick="window.location='{{ route('dashboard', $result->id) }}';">
                     <td> {{$result->number}}</td>
                     <td> {{  $result->total_payments_sum - $result->total_payment_movs_sum}}р.</td>
-
+                    <td> {{  $result->total_payments_sum}}р.</td>
+                    <td> {{  $result->total_payment_movs_sum}}р.</td>
                 </tr>
             @endforeach
             </tbody>

@@ -1,6 +1,7 @@
 
 <!doctype html>
 <html>
+<title>Квитанция</title>
 
 <head>
     <meta charset="utf-8">

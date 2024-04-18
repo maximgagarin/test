@@ -34,7 +34,7 @@
                     <form class="myForm" action="{{ route('prepay', $id->id) }}" method="POST">
                         @csrf
                         <input type="hidden" value="{{$prepayActual}}" name="value">
-                        <input type="hidden" value="видеонаблюдение" name="type">
+                        <input type="hidden" value="благоустройство" name="type">
                         <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на в.наблюд</button>
                     </form>
                 </div>

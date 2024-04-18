@@ -51,11 +51,11 @@ class Tablealldebts extends Component
 
         $sumPaid4 =DB::table('payments')
             ->Join('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')
-            ->where('payments.type', 'видеонаблюдение')
+            ->where('payments.type', 'благоустройство')
             ->where('areas_id', $id->id)
             ->where('status', 'неоплачен')
             ->sum('payment_movs.sum');
-        $sumAll4 = Payment::where('areas_id', $id->id)->where('type', 'видеонаблюдение')->where('status', 'неоплачен')->sum('sum');
+        $sumAll4 = Payment::where('areas_id', $id->id)->where('type', 'благоустройство')->where('status', 'неоплачен')->sum('sum');
         $sumLeft4 = $sumAll4 - $sumPaid4;
         $this->camera=$sumLeft4;
 

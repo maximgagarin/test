@@ -18,6 +18,7 @@ class PaymentTable extends Component
         $this->payments = Payment::withSum('payment_mov as sumpaid', 'sum')
             ->where('areas_id', $id->id)
             ->where('type', $type)
+        //    ->where('status', 'неоплачен')
             ->get();
     }
 

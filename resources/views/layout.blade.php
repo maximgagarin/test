@@ -16,17 +16,14 @@
 <header class="d-flex justify-content-center py-3  "  style="background-color: lightgray">
     <ul class="nav">
         <li class="nav-item"><a href="{{route('main')}}" class="nav-link " aria-current="page">Все участки</a></li>
-
         <li class="nav-item"><a href="{{route('vznos')}}" class="nav-link">Взносы</a></li>
         <li class="nav-item"><a href="{{route('debts')}}" class="nav-link">Долги</a></li>
         <li class="nav-item"><a href="{{route('incomingall')}}" class="nav-link">Все оплаты</a></li>
         <li class="nav-item"><a href="{{route('report')}}" class="nav-link">Отчет</a></li>
+        <li class="nav-item"><a href="" class="nav-link">Реквизиты</a></li>
     </ul>
-
 </header>
 <body>
-
-
 @yield('content')
 
 

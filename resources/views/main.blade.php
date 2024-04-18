@@ -34,22 +34,16 @@
                 <thead>
                 <tr>
                     <th>номер</th>
-                    <th>адрес собст.</th>
-                    <th>телефон</th>
-                    <th>имя</th>
-                    <th>площадь</th>
-
+                    <th>владелец</th>
+                    <th>Долг</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($areas as $al)
                     <tr class="tr-link" onclick="window.location='{{ route('dashboard', $al->id) }}';">
                         <td> {{$al->number}}</td>
-                        <td> {{$al->address}}</td>
-                        <td> {{$al->telephone}}</td>
                         <td> {{$al->name}}</td>
-                        <td> {{$al->square}}</td>
-
+                        <td> {{$al->balance}}</td>
                     </tr>
                 @endforeach
                 </tbody>

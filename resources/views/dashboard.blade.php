@@ -160,7 +160,7 @@
                                     <div class="mb-3">
                                         <label for="">благоустройство</label>
                                         <input type="text" class="form-control" id="camera" name="camera" value="0"
-                                               placeholder="видеонаблюдение">
+                                               placeholder="благоустройство">
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -372,7 +372,7 @@
                                     <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
                                 </div>
                                 <div class="col-auto">
-                                    <input type="hidden" class="form-control" name="type" value="видеонаблюдение"
+                                    <input type="hidden" class="form-control" name="type" value="благоустройство"
                                            placeholder="сумма">
                                 </div>
                                 <div class="mb-3">
@@ -391,8 +391,6 @@
 
 
             <div class="col-lg-3 col-sm-6 ">
-
-
                 <div class="card card-primary border border-secondary border-1">
                     <div class="card-header cart-header-custom">
                         <h7 class="card-title">Комментарий</h7>
@@ -409,13 +407,7 @@
                         </form>
                     </div>
                 </div>
-
-
-
-
-
             </div>
-
         </div>
 
 
@@ -493,7 +485,7 @@
 {{--        <x-payment-table :type="'дороги'" :id="$id"/>--}}
 
 
-{{--        <x-payment-table :type="'видеонаблюдение'" :id="$id"/>--}}
+{{--        <x-payment-table :type="'благоустройство'" :id="$id"/>--}}
 
 
 

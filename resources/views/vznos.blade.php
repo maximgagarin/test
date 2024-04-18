@@ -26,7 +26,7 @@
                         <option>чвзнос</option>
                         <option>мусор</option>
                         <option>дороги</option>
-                        <option>видеонаблюдение</option>
+                        <option>благоустройство</option>
                     </select>
                 </div>
 
