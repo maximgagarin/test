@@ -15,47 +15,48 @@
 </head>
 <div>
     <h5 class="mt-4">СНТ "Заря-2"</h5>
-    <h4 class="mb-4">Рассчеты по участкам за </h4>
+    <h5 class="mb-4">Рассчеты по участкам  </h5>
+    <h6 class="mt-4">период с  {{ \Carbon\Carbon::parse($date1)->format('d-m-Y') }} по  {{ \Carbon\Carbon::parse($date2)->format('d-m-Y') }}</h6>
 </div>
 
 
 
 <div class="col-8">
-    <table class="table table-bordered">
+    <table class="table table-bordered border-dark">
         <tr>
-            <td></td>
-            <td>Начислено</td>
-            <td>Оплачено</td>
+            <th>Вид</th>
+            <th>Начислено</th>
+            <th>Оплачено</th>
         </tr>
         <tr>
             <td>электроэнергия</td>
-            <td></td>
-            <td></td>
+            <td>{{number_format($DebtSvet,2,'.','')}}</td>
+            <td>{{number_format($PaidSvet,2,'.','')}}</td>
         </tr>
         <tr>
             <td>членский взнос</td>
-            <td>{{$DebtChvznos}}</td>
-            <td></td>
+            <td>{{number_format($DebtChvznos,2,'.','')}}</td>
+            <td>{{number_format($PaidChvznos,2,'.','')}}</td>
         </tr>
         <tr>
             <td>мусор</td>
-            <td></td>
-            <td></td>
+            <td>{{number_format($DebtTrash,2,'.','')}}</td>
+            <td>{{number_format($PaidTrash,2,'.','')}}</td>
         </tr>
         <tr>
             <td>дороги</td>
-            <td></td>
-            <td></td>
+            <td>{{number_format($DebtRoad,2,'.','')}}</td>
+            <td>{{number_format($PaidRoad,2,'.','')}}</td>
         </tr>
         <tr>
             <td>благоустройство</td>
-            <td></td>
-            <td></td>
+            <td>{{number_format($DebtBlag,2,'.','')}}</td>
+            <td>{{number_format($PaidBlag,2,'.','')}}</td>
         </tr>
         <tr>
-            <td>Итого</td>
-            <td></td>
-            <td></td>
+            <td><strong>Итого</strong></td>
+            <td><strong>{{$SummDebt}}</strong></td>
+            <td><strong>{{$SummPaid}}</strong></td>
         </tr>
     </table>
 

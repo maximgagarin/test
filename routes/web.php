@@ -82,6 +82,7 @@ Route::post('check', 'FormController@check')->name('check');
 
 Route::get('report', 'ReportController@index')->name('report');
 Route::post('report/calc', 'ReportController@calc')->name('report.calc');
+Route::post('report/print', 'ReportController@print')->name('report.print');
 
 });
 

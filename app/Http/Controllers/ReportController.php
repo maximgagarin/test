@@ -33,9 +33,12 @@ class ReportController extends Controller
        $DebtBlag=0;
        $PaidBlag=0;
 
+       $SummPaid=0;
+       $SummDebt=0;
+
 
        return view('report', compact('sumPaid','sumDebt', 'DebtChvznos',
-           'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag'));
+           'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag', 'SummPaid', 'SummDebt'));
    }
 
    public function calc()
@@ -56,28 +59,29 @@ class ReportController extends Controller
 
 
         //чвзнос
-       $DebtChvznos =   Payment::where('type', 'чвзнос')->where('status', 'неоплачен')->sum('sum');
-       $PaidChvznos = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'чвзнос')->sum('payment_movs.sum');
+       $DebtChvznos =   Payment::where('type', 'чвзнос')->sum('sum');
+       $PaidChvznos = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'чвзнос')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
 
        //свет
-       $DebtSvet =   Payment::where('type', 'свет')->where('status', 'неоплачен')->sum('sum');
-       $PaidSvet = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'свет')->sum('payment_movs.sum');
+       $DebtSvet =   Payment::where('type', 'энергия')->sum('sum');
+       $PaidSvet = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'энергия')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
 
        //мусор
-       $DebtTrash =   Payment::where('type', 'мусор')->where('status', 'неоплачен')->sum('sum');
-       $PaidTrash = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'мусор')->sum('payment_movs.sum');
+       $DebtTrash =   Payment::where('type', 'мусор')->sum('sum');
+       $PaidTrash = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'мусор')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
 
        //дороги
-       $DebtRoad =   Payment::where('type', 'дороги')->where('status', 'неоплачен')->sum('sum');
-       $PaidRoad = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'дороги')->sum('payment_movs.sum');
+       $DebtRoad =   Payment::where('type', 'дороги')->sum('sum');
+       $PaidRoad = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'дороги')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
 
        //благоустройство
-       $DebtBlag =   Payment::where('type', 'благоустройство')->where('status', 'неоплачен')->sum('sum');
-       $PaidBlag = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'благоустройство')->sum('payment_movs.sum');
+       $DebtBlag =   Payment::where('type', 'благоустройство')->sum('sum');
+       $PaidBlag = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'благоустройство')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
 
 
 
-
+        $SummPaid = $PaidChvznos + $PaidBlag +$PaidRoad +$PaidTrash +$PaidSvet;
+        $SummDebt =  $DebtChvznos + $DebtBlag + $DebtRoad + $DebtTrash + $DebtSvet;
 
 
 
@@ -86,6 +90,46 @@ class ReportController extends Controller
        $sumDebt = number_format($Total, 2, ',', ' ');
 
         return view('report', compact('sumPaid', 'sumDebt', 'date1', 'date2', 'DebtChvznos',
-            'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag'));
+            'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag' ,'SummPaid', 'SummDebt'));
    }
+
+   public function print()
+
+
+   {
+
+
+
+
+       $DebtSvet=\request('DebtSvet');
+       $PaidSvet=\request('PaidSvet');
+
+       $DebtTrash=\request('DebtTrash');
+       $PaidTrash=\request('PaidTrash');
+
+       $DebtRoad=\request('DebtRoad');
+       $PaidRoad=\request('PaidRoad');
+
+
+
+       $DebtChvznos = \request('DebtChvznos');
+
+       $PaidChvznos=\request('PaidChvznos');
+
+       $DebtBlag=\request('DebtBlag');
+       $PaidBlag=\request('PaidBlag');
+
+       $SummPaid=\request('SummPaid');
+       $SummDebt=\request('SummDebt');
+
+       $date1=\request('date1');
+       $date2=\request('date2');
+
+
+
+
+       return view('reportprint', compact( 'date1', 'date2', 'DebtChvznos',
+           'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag' ,'SummPaid', 'SummDebt'));
+   }
+
 }
