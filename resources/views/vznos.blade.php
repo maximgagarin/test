@@ -13,6 +13,26 @@
 
 
 
+    <div class="modal fade" id="VzosEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Редактировать участок</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        </div>
+
+    </div>
+
+
+
     <div class="row mb-3"><h3>Начислить всем участинкам взносы</h3></div>
 
     <div class="row ">
@@ -49,6 +69,7 @@
                     <th>тип</th>
                     <th>дата начисления</th>
                     <th></th>
+                    <th></th>
 
 
                 </tr>
@@ -56,9 +77,19 @@
                 <tbody>
                 @foreach($counts as $count)
                     <tr>
-                        <td> {{$count->value}}</td>
+                        <td>{{number_format($count->value,2,'.','')}}</td>
                         <td> {{$count->type}}</td>
                         <td> {{$count->created_at}}</td>
+                        <td>
+                            <form action="{{ route('vznos.edit') }}" method="POST">
+                                @csrf
+
+                                <input type="hidden" name="NumberAccrualID" value="{{$count->id}}">
+                                <input type="hidden" name="NewValue" value="700">
+                                <button type="submit" class="btn btn-danger btn-sm">Редактировать</button>
+                            </form>
+                        </td>
+
 
                         <td>
                             <form action="{{ route('vznos.delete') }}" method="POST">
@@ -88,7 +119,7 @@
                 <tbody>
                 @foreach($counts_road as $count)
                     <tr>
-                        <td> {{$count->value}}</td>
+                        <td>{{number_format($count->value,2,'.','')}}</td>
                         <td> {{$count->type}}</td>
                         <td> {{$count->created_at}}</td>
                         <td>
@@ -121,7 +152,7 @@
                 <tbody>
                 @foreach($counts_trash as $count)
                     <tr>
-                        <td> {{$count->value}}</td>
+                        <td>{{number_format($count->value,2,'.','')}}</td>
                         <td> {{$count->type}}</td>
                         <td> {{$count->created_at}}</td>
                         <td>
@@ -152,7 +183,7 @@
                 <tbody>
                 @foreach($counts_camera as $count)
                     <tr>
-                        <td> {{$count->value}}</td>
+                        <td>{{number_format($count->value,2,'.','')}}</td>
                         <td> {{$count->type}}</td>
                         <td> {{$count->created_at}}</td>
                         <td>

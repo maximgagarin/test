@@ -35,7 +35,7 @@
                 <tr>
                     <th>номер</th>
                     <th>владелец</th>
-                    <th>Долг</th>
+                    <th>Площадь</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,7 +43,7 @@
                     <tr class="tr-link" onclick="window.location='{{ route('dashboard', $al->id) }}';">
                         <td> {{$al->number}}</td>
                         <td> {{$al->name}}</td>
-                        <td> {{$al->balance}}</td>
+                        <td> {{$al->square}}</td>
                     </tr>
                 @endforeach
                 </tbody>

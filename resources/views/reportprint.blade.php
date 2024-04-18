@@ -15,7 +15,7 @@
 </head>
 <div>
     <h5 class="mt-4">СНТ "Заря-2"</h5>
-    <h5 class="mb-4">Рассчеты по участкам  </h5>
+    <h5 class="mb-4">Рассчеты   </h5>
     <h6 class="mt-4">период с  {{ \Carbon\Carbon::parse($date1)->format('d-m-Y') }} по  {{ \Carbon\Carbon::parse($date2)->format('d-m-Y') }}</h6>
 </div>
 
@@ -55,8 +55,8 @@
         </tr>
         <tr>
             <td><strong>Итого</strong></td>
-            <td><strong>{{$SummDebt}}</strong></td>
-            <td><strong>{{$SummPaid}}</strong></td>
+            <td><strong>{{number_format($SummDebt, 2, ',', ' ')}}</strong></td>
+            <td><strong>{{number_format($SummPaid, 2, ',', ' ')}}</strong></td>
         </tr>
     </table>
 

@@ -37,7 +37,7 @@
         <h6 class="mt-4">период с  {{ \Carbon\Carbon::parse($date1)->format('d-m-Y') }} по  {{ \Carbon\Carbon::parse($date2)->format('d-m-Y') }}</h6>
     @endif
 
-    <div class="col-8">
+    <div class="col-lg-8 col-sm-6">
         <table class="table table-bordered border-dark">
             <tr>
                 <th>Вид</th>
@@ -71,8 +71,8 @@
             </tr>
             <tr>
                 <td><strong>Итого</strong></td>
-                <td><strong>{{$SummDebt}}</strong></td>
-                <td><strong>{{$SummPaid}}</strong></td>
+                <td><strong>{{number_format($SummDebt, 2, ',', ' ')}}</strong></td>
+                <td><strong>{{number_format($SummPaid, 2, ',', ' ')}}</strong></td>
             </tr>
         </table>
     </div>
@@ -130,9 +130,12 @@
             @endif
 
 
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary btn-sm">Печатная форма</button>
-            </div>
+            @if(isset($date1))
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary btn-sm">Печатная форма</button>
+                </div>
+            @endif
+
         </form>
     </div>
 </div>

@@ -56,6 +56,7 @@ Route::post('Tariff', 'TariffController@store')->name('tariff.store') ;
 Route::get('vznos', 'TariffController@vznos')->name('vznos');
 Route::post('vznos/calculation', 'TariffController@calculationon')->name('vznos.calculation');
 Route::delete('vznos/delete', 'TariffController@destroy')->name('vznos.delete');
+Route::post('vznos/edit', 'TariffController@edit')->name('vznos.edit');
 
 Route::get('Debts', 'DebtsController@index')->name('debts') ;
 Route::get('Debts2', 'DebtsController@index2')->name('debts2') ;

@@ -252,7 +252,7 @@
                                     <select name="select" class="form-select" aria-label="Default select example">
                                         <option selected>Выберите тариф</option>
                                         @foreach($tariffs as $tariff)
-                                            <option value="{{ $tariff->value }}">{{ $tariff->value }}</option>
+                                            <option value="{{ $tariff->value }}">{{number_format( $tariff->value,2,'.','')}}</option>
                                         @endforeach
                                     </select>
                                 </div>
