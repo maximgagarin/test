@@ -176,7 +176,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="">Дата оплаты в банке</label>
+                                        <label class="text-danger"><strong>Дата оплаты в банке</strong></label>
                                         <input type="date" class="form-control" name="date"
                                                value="{{ now()->format('Y-m-d') }}">
                                     </div>

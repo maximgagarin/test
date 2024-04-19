@@ -24,28 +24,48 @@
 {{--                </div>--}}
 {{--                </form>--}}
 {{--            </div>--}}
-            <div class="col-lg-3 col-sm-6">
+
                 <h6>Выбрать период</h6>
                 <form action="{{route('incoming')}}">
-                    <div class=" mb-3">
+                    <div class="row">
+                    <div class="col-lg-2 col-sm-2">
                         <input type="date" class="form-control" name="date1" value="" >
                     </div>
-                    <div class=" mb-3">
+                    <div class="col-lg-2 col-sm-2">
                         <input type="date" class="form-control" name="date2" value="" >
                     </div>
-                    <div class="mb-3">
+                    <div class="col-lg-2 col-sm-2">
                         <button type="submit" class="btn btn-primary btn-sm ">показать
                         </button>
                     </div>
+                    </div>
                 </form>
-            </div>
+
         </div>
         <div>
+
+
+
+
+         @if(isset($startDate))
+
+                <form action="{{route('incoming.print')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="startDate" value="{{$startDate}}">
+                    <input type="hidden" name="endDate" value="{{$endDate}}">
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary btn-sm ">Печать
+                        </button>
+                    </div>
+                </form>
+
+             <p>период с {{$startDate}} по {{$endDate}}</p>
+         @endif
+
         <table class="table mt-3 table-bordered ">
             <thead>
             <tr>
-                <th>дата занесения в программу</th>
-                <th>дата оплаты в банке</th>
+                <th>дата оплаты</th>
                 <th>всего приход</th>
                 <th>перешло в аванс</th>
                 <th>всего оплачено</th>
@@ -55,12 +75,12 @@
                 <th>дороги</th>
                 <th>благоуст.</th>
                 <th>учасоток</th>
+                <th>владелец</th>
             </tr>
             </thead>
             <tbody>
             @foreach($results as $count)
                 <tr class="tr-link" onclick="window.location='{{ route('dashboard', $count->areas_id) }}';">
-                    <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
                     <td> {{number_format($count->sum_incoming,2,'.','')}}</td>  <?php $sum1 += $count->sum_incoming; ?>
                     <td>{{number_format($count->sum_left,2,'.','')}}</td>       <?php $sum2 += $count->sum_left; ?>
@@ -71,11 +91,11 @@
                     <td>{{number_format($count->road,2,'.','')}}</td>         <?php $sum7 += $count->road; ?>
                     <td>{{number_format($count->camera,2,'.','')}} </td>       <?php $sum8 += $count->camera; ?>
                     <td>{{$count->number}} </td>
+                    <td>{{$count->name}} </td>
                 </tr>
             @endforeach
             <tr class="text-danger ">
                 <td>Итог</td>
-                <td></td>
                 <td>{{$sum1}}р.</td>
                 <td></td>
                 <td>{{$sum3}}р.</td>
@@ -85,7 +105,7 @@
                 <td>{{$sum7}}р.</td>
                 <td>{{$sum8}}р.</td>
                 <td></td>
-
+                <td></td>
             </tr>
             </tbody>
         </table>

@@ -123,19 +123,19 @@ class IncomingController extends Controller
 
             $results = Incoming::leftJoin('areas', 'areas.id', '=', 'incomings.areas_id')
                 ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
-                    'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number')
-                ->whereBetween('incomings.created_at', [$startDate, $endDate])
+                    'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number','areas.name')
+                ->whereBetween('incomings.date', [$startDate, $endDate])
                 ->get();
 
-            return view('incoming', compact('results' ));
+            return view('incoming', compact('results', 'startDate', 'endDate' ));
         }
 
 
-       // $results = Incoming::whereDate('created_at', $date)->get();
+
         $results = Incoming::leftJoin('areas', 'areas.id', '=', 'incomings.areas_id')
             ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
-                'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number')
-            ->whereDate('incomings.created_at', $date)
+                'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number', 'areas.name')
+            ->whereDate('incomings.date', $date)
             ->get();
 
 
@@ -168,5 +168,22 @@ class IncomingController extends Controller
 
 
         return redirect()->back();
+    }
+
+    public function print()
+    {
+
+      $startDate=\request('startDate');
+      $endDate=\request('endDate');
+
+        $endDatePlus = date('Y-m-d', strtotime($endDate . ' +1 day'));
+
+        $results = Incoming::leftJoin('areas', 'areas.id', '=', 'incomings.areas_id')
+            ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
+                'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number','areas.name')
+            ->whereBetween('incomings.date', [$startDate, $endDatePlus])
+            ->get();
+
+        return view('incoming-print', compact('results', 'startDate', 'endDate' ));
     }
 }

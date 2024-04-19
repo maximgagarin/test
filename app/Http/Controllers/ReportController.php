@@ -97,10 +97,6 @@ class ReportController extends Controller
 
 
    {
-
-
-
-
        $DebtSvet=\request('DebtSvet');
        $PaidSvet=\request('PaidSvet');
 
@@ -109,8 +105,6 @@ class ReportController extends Controller
 
        $DebtRoad=\request('DebtRoad');
        $PaidRoad=\request('PaidRoad');
-
-
 
        $DebtChvznos = \request('DebtChvznos');
 

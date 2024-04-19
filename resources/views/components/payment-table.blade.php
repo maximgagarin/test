@@ -3,7 +3,7 @@
 
     <tr class="bg-light">
         <th>№</th>
-        <th>тип</th>
+        <th>колич</th>
         <th>тариф</th>
         <th>начислено</th>
         <th>дата начисл</th>
@@ -43,11 +43,16 @@
             <form class="myForm" style="margin: 0" action="{{route('payments.update')}}" method="post">
                 @csrf
 
-                <td>{{$payment->id}}</td>
-                <td>{{$payment->type}}</td>
 
+                <td>{{$payment->type}}</td>
                 <td>
-                    <input type="text" class="form-control"  style="width: 80px; height: 30px ; padding: 0; margin: 0"  name="sum" placeholder="сумма" value="{{$payment->sum}}">
+                    <input type="text" class="form-control" name="amount" placeholder="квт" value="{{$payment->amount}}">
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="tariff" placeholder="тариф" value="{{number_format($payment->tariff,2,'.','')}}">
+                </td>
+                <td>
+                    <input type="text" class="form-control"  style="width: 80px; height: 30px ; padding: 0; margin: 0"  name="sum" placeholder="сумма" value="{{number_format($payment->sum,2,'.','')}}">
                 </td>
                 <td>
                     <input type="hidden" class="form-control" name="type" placeholder="сумма"

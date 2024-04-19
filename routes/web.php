@@ -71,7 +71,8 @@ Route::get('Areas/create', 'AreasController@create')->name('area.create');
 Route::post('Areas', 'AreasController@store')->name('area.store');
 
 Route::get('incoming', 'IncomingController@all')->name('incomingall');
-Route::delete('incomingdelete', 'IncomingController@destroy')->name('incoming.delete');
+Route::delete('incoming/delete', 'IncomingController@destroy')->name('incoming.delete');
+Route::post('incoming/print', 'IncomingController@print')->name('incoming.print');
 
 
 //Route::post('paymentn', 'PaymentnController@store')->name('payment_new');
