@@ -70,27 +70,17 @@
                     <th>дата начисления</th>
                     <th></th>
                     <th></th>
-
-
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($counts as $count)
-                    <tr>
+                    <tr id="editForm4{{$count->id}}">
                         <td>{{number_format($count->value,2,'.','')}}</td>
                         <td> {{$count->type}}</td>
                         <td> {{$count->created_at}}</td>
                         <td>
-                            <form action="{{ route('vznos.edit') }}" method="POST">
-                                @csrf
-
-                                <input type="hidden" name="NumberAccrualID" value="{{$count->id}}">
-                                <input type="hidden" name="NewValue" value="700">
-                                <button type="submit" class="btn btn-danger btn-sm">Редактировать</button>
-                            </form>
+                                <button class="btn btn-primary btn-sm" onclick="showEditFormCounter({{$count->id}})">Редактировать</button>
                         </td>
-
-
                         <td>
                             <form action="{{ route('vznos.delete') }}" method="POST">
                                 @csrf
@@ -99,6 +89,20 @@
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Удалить</button>
                             </form>
                         </td>
+                    </tr>
+                    <tr id="editForm5{{$count->id}}" style="display: none; background-color: #f8f9fa;">
+                        <form class= "myForm" action="{{route('vznos.edit')}}"  method="post" >
+                            @csrf
+                            <input type="hidden" name="NumberAccrualID" value="{{$count->id}}">
+                            <td>
+                            <input type="text" name="NewValue" value="{{$count->value}}">
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="Reload()">Закрыть</button>
+                            </td>
+                            <td></td>
+                        </form>
                     </tr>
                 @endforeach
                 </tbody>
@@ -200,5 +204,18 @@
             </table>
         </div>
     </div>
+
+    <script>
+        function showEditFormCounter(paymentId) {
+
+            // Show the clicked edit form
+            $(`#editForm5${paymentId}`).css('display', 'table-row');
+            $(`#editForm4${paymentId}`).css('display', 'none');
+        }
+
+        function Reload() {
+            location.reload(true); // true означает, что браузер выполнит полное обновление страницы, включая кэш
+        }
+    </script>
 
 @endsection
