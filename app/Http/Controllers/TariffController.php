@@ -110,23 +110,29 @@ class TariffController extends Controller
 
         $type = tariff::where('id', $NumberAccrualID)->value('type');
 
-
-
-        $paymentsWithoutMovs = Payment::where('NumberAccrualID', $NumberAccrualID)->doesntHave('payment_mov')->get();
-
-        $paymentsWithoutMovs->map(function ($payment) use ($NewValue) {
-            $square = $payment->amount;
-            $payment->tariff = $NewValue;
-            $payment->sum = $square * $NewValue;
-            $payment->save();
-        });
-
         $data=[
             'value' =>$NewValue,
             'type' =>$type,
         ];
 
         tariff::create($data);
+
+        $lastId = tariff::latest('id')->value('id');
+
+
+
+
+        $paymentsWithoutMovs = Payment::where('NumberAccrualID', $NumberAccrualID)->doesntHave('payment_mov')->get();
+
+        $paymentsWithoutMovs->map(function ($payment) use ($NewValue, $lastId) {
+            $square = $payment->amount;
+            $payment->tariff = $NewValue;
+            $payment->sum = $square * $NewValue;
+            $payment->NumberAccrualID = $lastId;
+            $payment->save();
+        });
+
+
 
 
         return redirect()->back();
