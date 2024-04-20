@@ -4,7 +4,7 @@
 use App\Models\Payment;
 use App\Models\payment_mov;
 
-function calculation($id, $value, $type, $lastIdIncoming)
+function calculation($id, $value, $type, $lastIdIncoming, $date)
 {
 
     $payments = Payment::select(['id', 'sum'])
@@ -36,7 +36,7 @@ function calculation($id, $value, $type, $lastIdIncoming)
             payment_mov::create([
                 'payments_id' => $paymentId,
                 'sum' => $remainingSumm,
-                'date' => now(),
+                'date' => $date,
                 'incoming' => $lastIdIncoming,
             ]);
             Payment::where('id', $paymentId)->update(['status' => 'оплачен']);
@@ -48,7 +48,7 @@ function calculation($id, $value, $type, $lastIdIncoming)
             payment_mov::create([
                 'payments_id' => $paymentId,
                 'sum' => $value,
-                'date' => now(), // Use Laravel's now() helper to get the current date and time
+                'date' => $date, // Use Laravel's now() helper to get the current date and time
                 'incoming' => $lastIdIncoming,
             ]);
             $value = 0;

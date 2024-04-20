@@ -59,7 +59,7 @@
                     </div>
                 </form>
 
-             <p>период с {{$startDate}} по {{$endDate}}</p>
+             <p>период с {{ \Carbon\Carbon::parse($startDate)->format('d-m-Y') }} по {{ \Carbon\Carbon::parse($endDate)->format('d-m-Y') }}</p>
          @endif
 
         <table class="table mt-3 table-bordered ">

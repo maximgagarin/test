@@ -99,7 +99,7 @@
 
 
             <!-- все долги -->
-            <div class=" col-lg-2 col-sm-6 " >
+            <div class=" col-lg-3 col-sm-6 " >
 
                 <x-tablealldebts :id="$id"/>
                 <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#AllPaymentsModal">
@@ -125,6 +125,7 @@
                                             <label for="">Сумма прихода</label>
                                             <input type="text" class="form-control" id="sum_incoming"
                                                    name="sum_incoming" placeholder="сумма прихода">
+                                            <button type="button" class="btn btn-primary btn-sm" onclick="autoCalc()">Авто</button>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-sm-6">
@@ -178,7 +179,7 @@
                                     <div class="mb-3">
                                         <label class="text-danger"><strong>Дата оплаты в банке</strong></label>
                                         <input type="date" class="form-control" name="date"
-                                               value="{{ now()->format('Y-m-d') }}">
+                                               value="">
                                     </div>
                                     <div class="mb-3">
                                         <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
@@ -583,6 +584,10 @@
 
         function Reload() {
             location.reload(true); // true означает, что браузер выполнит полное обновление страницы, включая кэш
+        }
+
+        function autoCalc(){
+            alert('12');
         }
 
 

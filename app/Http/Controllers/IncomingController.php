@@ -74,38 +74,37 @@ class IncomingController extends Controller
 
         if (($data['svet']))
         {
-
             $type = 'энергия';
             $value=$data['svet'];
-            calculation($areas_id, $value, $type, $lastIdIncoming);
+            calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['svet' => $value]);
         }
         if (($data['chvznos']))
         {
             $type = 'чвзнос';
             $value=$data['chvznos'];
-            calculation($areas_id, $value, $type, $lastIdIncoming);
+            calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['chvznos' => $value]);
         }
         if (($data['trash']))
         {
             $type = 'мусор';
             $value=$data['trash'];
-            calculation($areas_id, $value, $type, $lastIdIncoming);
+            calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['trash' => $value]);
         }
         if (($data['road']))
         {
             $type = 'дороги';
             $value=$data['road'];
-            calculation($areas_id, $value, $type, $lastIdIncoming);
+            calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['road' => $value]);
         }
         if (($data['camera']))
         {
             $type = 'благоустройство';
             $value=$data['camera'];
-            calculation($areas_id, $value, $type, $lastIdIncoming);
+            calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['camera' => $value]);
         }
         return redirect()->back();
@@ -114,12 +113,13 @@ class IncomingController extends Controller
 
     public function all()
     {
+
         $data = \request();
         $date = \request('date');
         if($data['date1']) {
             $startDate = $data['date1'];
             $endDate = $data['date2'];
-            $endDate = date('Y-m-d', strtotime($endDate . ' +1 day'));
+            $endDatePlus = date('Y-m-d', strtotime($endDate . ' +1 day'));
 
             $results = Incoming::leftJoin('areas', 'areas.id', '=', 'incomings.areas_id')
                 ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',

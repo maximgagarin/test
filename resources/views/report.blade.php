@@ -12,7 +12,7 @@
     </div>
 @endif
 
-<h4 class="mt-3 mb-3 text-center">Рассчеты по участкам </h4>
+<h4 class="mt-3 mb-3 text-center">Все оплаты общий отчет </h4>
 
 <div class="container">
     <h6>Выбрать период</h6>

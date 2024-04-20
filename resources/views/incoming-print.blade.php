@@ -25,7 +25,7 @@
 <div>
     <h7>СНТ "Заря-2"</h7>
 
-    <p>  период с  {{ \Carbon\Carbon::parse($startDate)->format('d-m-Y') }} по  {{ \Carbon\Carbon::parse($endDate)->format('d-m-Y') }}</p>
+    <p>оплаты: период с  {{ \Carbon\Carbon::parse($startDate)->format('d-m-Y') }} по  {{ \Carbon\Carbon::parse($endDate)->format('d-m-Y') }}</p>
 </div>
 
 

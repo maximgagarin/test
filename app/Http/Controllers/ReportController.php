@@ -49,7 +49,7 @@ class ReportController extends Controller
        $date3 = date('Y-m-d', strtotime($date2 . ' +1 day'));
 
         $PaidAll = payment_mov::query()->sum('sum');
-        $Paid = payment_mov::query()->whereBetween('date', [$date1, $date3])->sum('sum');
+        $Paid = payment_mov::query()->whereBetween('date', [$date1, $date2])->sum('sum');
 
 
         $sumPaid = number_format($Paid, 2, ',', ' ');
@@ -60,23 +60,23 @@ class ReportController extends Controller
 
         //чвзнос
        $DebtChvznos =   Payment::where('type', 'чвзнос')->sum('sum');
-       $PaidChvznos = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'чвзнос')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
+       $PaidChvznos = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'чвзнос')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
        //свет
        $DebtSvet =   Payment::where('type', 'энергия')->sum('sum');
-       $PaidSvet = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'энергия')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
+       $PaidSvet = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'энергия')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
        //мусор
        $DebtTrash =   Payment::where('type', 'мусор')->sum('sum');
-       $PaidTrash = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'мусор')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
+       $PaidTrash = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'мусор')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
        //дороги
        $DebtRoad =   Payment::where('type', 'дороги')->sum('sum');
-       $PaidRoad = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'дороги')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
+       $PaidRoad = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'дороги')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
        //благоустройство
        $DebtBlag =   Payment::where('type', 'благоустройство')->sum('sum');
-       $PaidBlag = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'благоустройство')->whereBetween('payment_movs.date', [$date1, $date3])->sum('payment_movs.sum');
+       $PaidBlag = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'благоустройство')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
 
 
