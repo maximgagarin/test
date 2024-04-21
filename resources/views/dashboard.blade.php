@@ -24,7 +24,7 @@
     @endif
 
     @if($id->area_status === 0)
-        <div class="alert alert-info">
+        <div class="alert alert-warning">
             Отключен от рассчетов
         </div>
     @endif

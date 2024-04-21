@@ -41,9 +41,9 @@ class AreasController extends Controller
         // Получаем данные из запроса и валидируем их
         $data = request()->validate([
             'number' => ['string'],
-            'name' => ['string'],
-            'address' => ['string'],
-            'telephone' => ['string'],
+//            'name' => ['string'],
+//            'address' => ['string'],
+//            'telephone' => ['string'],
             'square' => ['numeric'],
             'id' => ['numeric'],
             'test1' => ['string'], // Добавлено для валидации test1
@@ -76,9 +76,9 @@ class AreasController extends Controller
     {
         $data = request()->validate([
             'number' => ['string'],
-            'name' => ['string'],
-            'address' => ['string'],
-            'telephone' => ['string'],
+//            'name' => ['string'],
+//            'address' => ['string'],
+//            'telephone' => ['string'],
             'square' => ['numeric'],
 
         ]);
