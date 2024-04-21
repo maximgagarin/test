@@ -21,13 +21,13 @@ class DebtsController extends Controller
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен' and areas.area_status=1
             ) AS total_payments_sum,
             (
                 SELECT COALESCE(SUM(payment_movs.sum), 0)
                 FROM payments
                 LEFT JOIN payment_movs ON payments.id = payment_movs.payments_id
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
             areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
@@ -73,13 +73,13 @@ class DebtsController extends Controller
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type' and areas.area_status=1
             ) AS total_payments_sum,
             (
                 SELECT COALESCE(SUM(payment_movs.sum), 0)
                 FROM payments
                 LEFT JOIN payment_movs ON payments.id = payment_movs.payments_id
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
             areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
@@ -127,13 +127,13 @@ class DebtsController extends Controller
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type' and areas.area_status=1
             ) AS total_payments_sum,
             (
                 SELECT COALESCE(SUM(payment_movs.sum), 0)
                 FROM payments
                 LEFT JOIN payment_movs ON payments.id = payment_movs.payments_id
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
             areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
@@ -181,13 +181,13 @@ class DebtsController extends Controller
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type' and areas.area_status=1
             ) AS total_payments_sum,
             (
                 SELECT COALESCE(SUM(payment_movs.sum), 0)
                 FROM payments
                 LEFT JOIN payment_movs ON payments.id = payment_movs.payments_id
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
             areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
@@ -206,13 +206,13 @@ class DebtsController extends Controller
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен' and areas.area_status=1
             ) AS total_payments_sum,
             (
                 SELECT COALESCE(SUM(payment_movs.sum), 0)
                 FROM payments
                 LEFT JOIN payment_movs ON payments.id = payment_movs.payments_id
-                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
             areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
