@@ -40,7 +40,7 @@
                 </thead>
                 <tbody>
                 @foreach($areas as $al)
-                    <tr class="tr-link" onclick="window.location='{{ route('dashboard', $al->id) }}';">
+                    <tr class="tr-link {{ $al->area_status === 0 ? 'text-danger' : '' }}" onclick="window.location='{{ route('dashboard', $al->id) }}';">
                         <td> {{$al->number}}</td>
                         <td> {{$al->name}}</td>
                         <td> {{$al->square}}</td>

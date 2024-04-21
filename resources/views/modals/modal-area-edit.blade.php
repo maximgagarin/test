@@ -9,10 +9,19 @@
                 <div class="col-12">
                     <form class="myForm" id="form1" action="{{route('area.update')}}" method="POST">
                         @csrf
-                        <div class="mb-3">
-                            <input type="checkbox"  name="test" value="1">
-                            <label for="vehicle1"> Убрать из рассчетов</label><br>
+
+
+
+                        <div>
+                            <input type="radio" id="huey" name="test1" {{$id->area_status==1 ? 'checked' : ''}} value="on"/>
+                            <label for="huey">включен в рассчеты</label>
                         </div>
+
+                        <div>
+                            <input type="radio" id="dewey" name="test1" {{$id->area_status==0 ? 'checked' : ''}} value="off" />
+                            <label for="dewey">отключен от рассчетов</label>
+                        </div>
+
                         <div class="mb-3">
                             <input type="hidden" class="form-control" name="id" value="{{$id->id}}" >
                         </div>

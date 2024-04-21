@@ -38,9 +38,7 @@ class AreasController extends Controller
     }
     public function update2()
     {
-
-        $status = \request('test');
-
+        // Получаем данные из запроса и валидируем их
         $data = request()->validate([
             'number' => ['string'],
             'name' => ['string'],
@@ -48,22 +46,27 @@ class AreasController extends Controller
             'telephone' => ['string'],
             'square' => ['numeric'],
             'id' => ['numeric'],
+            'test1' => ['string'], // Добавлено для валидации test1
         ]);
 
-        if ($status){
-            $data['area_status'] = 1;
-        }
-
+        // Извлекаем значение test1 и удаляем его из массива данных
+        $test1 = $data['test1'];
+        unset($data['test1']);
 
         $id = $data['id'];
-        $data['balance'] = 0;
 
+        // Находим область по id
+        $area = Area::find($id);
 
-        Area::where('id', $id)->update($data);
+        // Обновляем статус в соответствии с переданным значением test1
+        $area->area_status = $test1 === 'on' ? '1' : '0';
 
+        // Обновляем остальные данные области
+        $area->update($data);
+
+        // Перенаправляемся на панель управления с передачей id
         return redirect()->route('dashboard', compact('id'));
     }
-
     public function create()
     {
         return view('areacreate');

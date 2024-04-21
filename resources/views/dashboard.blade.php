@@ -23,6 +23,14 @@
         </div>
     @endif
 
+    @if($id->area_status === 0)
+        <div class="alert alert-info">
+            Отключен от рассчетов
+        </div>
+    @endif
+
+
+
 
 
 
@@ -130,7 +138,7 @@
                                     </div>
                                     <div class="col-lg-4 col-sm-6">
                                         <div class="mb-3">
-                                            <label for="">Переплата</label>
+                                            <label for="">Осталось</label>
                                             <input type="text" class="form-control" id="sum_left" value=""
                                                    name="sum_left" placeholder="">
                                         </div>
