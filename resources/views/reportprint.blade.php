@@ -15,7 +15,7 @@
 </head>
 <div>
     <h5 class="mt-4">СНТ "Заря-2"</h5>
-    <h5 class="mb-4">Все оплаты   </h5>
+    <h5 class="mb-4">Все долги и оплаты   </h5>
     <h6 class="mt-4">период с  {{ \Carbon\Carbon::parse($date1)->format('d-m-Y') }} по  {{ \Carbon\Carbon::parse($date2)->format('d-m-Y') }}</h6>
 </div>
 
@@ -39,12 +39,12 @@
             <td>{{number_format($PaidChvznos,2,'.','')}}</td>
         </tr>
         <tr>
-            <td>мусор</td>
+            <td>уборка мусора</td>
             <td>{{number_format($DebtTrash,2,'.','')}}</td>
             <td>{{number_format($PaidTrash,2,'.','')}}</td>
         </tr>
         <tr>
-            <td>дороги</td>
+            <td>содержание дорог</td>
             <td>{{number_format($DebtRoad,2,'.','')}}</td>
             <td>{{number_format($PaidRoad,2,'.','')}}</td>
         </tr>

@@ -17,7 +17,7 @@
 <div>
     <h7>СНТ "Заря-2"</h7>
 
-    <p>оплаты: период с  </p>
+    <p>задолженности</p>
 </div>
 
 <table class=" table table-bordered">

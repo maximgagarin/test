@@ -431,7 +431,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>дата занесения</th>
+                                <th>дата оплаты</th>
                                 <th>сумма прихода</th>
                                 <th>в аванс</th>
                                 <th>всего оплачено</th>
@@ -440,14 +440,15 @@
                                 <th>мусор</th>
                                 <th>дороги</th>
                                 <th>благоуст.</th>
-                                <th>дата банк</th>
+                                <th>дата занесения</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($incoming as $count)
                                 <tr>
-                                    <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
+
                                     <td>{{ number_format($count->sum_incoming, 2, '.', '') }}</td>
                                     <td> {{number_format($count->sum_left,2,'.','')}}</td>
                                     <td> {{number_format($count->sum_paid,2,'.','')}}</td>
@@ -456,7 +457,7 @@
                                     <td> {{number_format($count->trash,2,'.','')}}</td>
                                     <td> {{number_format($count->road,2,'.','')}}</td>
                                     <td> {{number_format($count->camera,2,'.','')}}</td>
-                                    <td>{{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                                     <td>
                                         <form action="{{ route('incoming.delete', $count->id) }}" method="POST">
                                             @csrf
