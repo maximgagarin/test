@@ -125,12 +125,12 @@
                                             <label for="">Сумма прихода</label>
                                             <input type="text" class="form-control" id="sum_incoming"
                                                    name="sum_incoming" placeholder="сумма прихода">
-                                            <button type="button" class="btn btn-primary btn-sm" onclick="autoCalc()">Авто</button>
+                                            <button type="button" id="auto" class="btn btn-primary btn-sm" >Авто</button>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-sm-6">
                                         <div class="mb-3">
-                                            <label for="">Осталось</label>
+                                            <label for="">Переплата</label>
                                             <input type="text" class="form-control" id="sum_left" value=""
                                                    name="sum_left" placeholder="">
                                         </div>
@@ -228,7 +228,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <input type="date" class="form-control" name="date"
-                                           value="{{ now()->format('Y-m-d') }}">
+                                           value="">
                                 </div>
                                 <div class="mb-3">
                                     <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
@@ -242,7 +242,7 @@
                                 История показаний
                             </button>
                             <button type="button" class="btn btn-outline-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#TariffsModal">
-                                Тарифы на энергию
+                                Тарифы на э/энергию
                             </button>
                             <form class="myForm" action="{{ route('store3') }}" method="POST">
                                 @csrf
@@ -258,7 +258,7 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="date" class="form-control" name="date" value="{{ now() }}">
+                                    <input type="date" class="form-control" name="date" value="">
                                 </div>
                                 <div class="mb-3">
                                     <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
@@ -573,7 +573,58 @@
                 $('.alert-danger').remove();
             },3000)
 
+
+
+
+
+
+            $('#auto').click(function (){
+
+
+                var sumincoming = new Decimal($('#sum_incoming').val());
+                var sumPaid = new Decimal($('#sum_paid').val()); // Получаем текущее значение из #sum_paid
+
+                // Массив долгов
+                var debts = {
+                    '#svet': new Decimal($('#svetdebt').text()),
+                    '#trash': new Decimal($('#trashdebt').text()),
+                    '#road': new Decimal($('#roaddebt').text()),
+                    '#chvznos': new Decimal($('#chvznosdebt').text()),
+                    '#camera': new Decimal($('#cameradebt').text())
+                };
+
+                // Обновление значений
+                Object.keys(debts).forEach(function (selector) {
+                    var debt = debts[selector];
+                    var payment = Decimal.min(sumincoming, debt);
+                    $(selector).val(payment.toString());
+                    sumincoming = sumincoming.minus(payment);
+                });
+
+                // Обновление оставшейся суммы
+                $('#sum_left').val(sumincoming.toString());
+
+                // Обновление суммы оплаченных
+                sumPaid = sumPaid.plus(new Decimal($('#svet').val()));
+                sumPaid = sumPaid.plus(new Decimal($('#trash').val()));
+                sumPaid = sumPaid.plus(new Decimal($('#road').val()));
+                sumPaid = sumPaid.plus(new Decimal($('#chvznos').val()));
+                sumPaid = sumPaid.plus(new Decimal($('#camera').val()));
+
+                $('#sum_paid').val(sumPaid.toString());
+
+                console.log(sumincoming.toString());
+
+
+
+
+
+            })
+
+
+
         });
+
 
 
         function showEditForm(paymentId) {
@@ -586,9 +637,6 @@
             location.reload(true); // true означает, что браузер выполнит полное обновление страницы, включая кэш
         }
 
-        function autoCalc(){
-            alert('12');
-        }
 
 
     </script>

@@ -124,14 +124,23 @@ class TariffController extends Controller
 
         $paymentsWithoutMovs = Payment::where('NumberAccrualID', $NumberAccrualID)->doesntHave('payment_mov')->get();
 
+
+
         $paymentsWithoutMovs->map(function ($payment) use ($NewValue, $lastId) {
             $square = $payment->amount;
             $payment->tariff = $NewValue;
-            $payment->sum = $square * $NewValue;
+
+            // Используйте оператор сравнения == вместо оператора присваивания =
+            if ($payment->type == 'чвзнос') {
+                $payment->sum = $square * $NewValue;
+            } else {
+                // Если тип платежа не "чвзнос", пропускаем установку суммы платежа
+                $payment->sum =  $NewValue;
+            }
+
             $payment->NumberAccrualID = $lastId;
             $payment->save();
         });
-
 
 
 

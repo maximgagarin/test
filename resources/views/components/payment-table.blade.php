@@ -3,6 +3,7 @@
 
     <tr class="bg-light">
         <th>№</th>
+        <th>тип</th>
         <th>колич</th>
         <th>тариф</th>
         <th>начислено</th>
@@ -20,6 +21,7 @@
         <tr id="editForm2{{$payment->id}}">
             <td> {{$payment->id}}</td>
             <td> {{$payment->type}}</td>
+            <td> {{number_format($payment->amount,2,'.','')}}</td>
             <td>{{number_format($payment->tariff,2,'.','')}}р.</td>
             <td>{{number_format($payment->sum,2,'.','')}}р.</td>
             <td>{{ \Carbon\Carbon::parse($payment->date)->format('d-m-Y') }}</td>
@@ -43,7 +45,7 @@
             <form class="myForm" style="margin: 0" action="{{route('payments.update')}}" method="post">
                 @csrf
 
-
+                <td></td>
                 <td>{{$payment->type}}</td>
                 <td>
                     <input type="text" class="form-control" name="amount" placeholder="квт" value="{{$payment->amount}}">

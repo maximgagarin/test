@@ -11,7 +11,7 @@
         <th>статус</th>
         <th>Оплачено</th>
         <th>Осталось</th>
-        <th>от</th>
+        <th>период</th>
         <th>до</th>
         <th></th>
         <th></th>
@@ -54,14 +54,14 @@
                 <td>{{$payment->type}}</td>
                 <td>
                     <input type="text" class="form-control" style="width: 50px; height: 30px ; padding: 0; margin: 0" name="amount" placeholder="квт"
-                           value="{{$payment->amount}}">
+                           value="{{number_format($payment->amount,2,'.','')}}">
                 </td>
                 <td>
                     <input type="text" class="form-control"  style="width: 50px; height: 30px ; padding: 0; margin: 0"  name="tariff" placeholder="тариф"
-                           value="{{$payment->tariff}}">
+                           value="{{number_format($payment->tariff,2,'.','')}}">
                 </td>
                 <td>
-                    <input type="text" class="form-control"  style="width: 80px; height: 30px ; padding: 0; margin: 0"  name="sum" placeholder="сумма" value="{{$payment->sum}}">
+                    <input type="text" class="form-control"  style="width: 80px; height: 30px ; padding: 0; margin: 0"  name="sum" placeholder="сумма" value="{{number_format($payment->sum,2,'.','')}}">
                 </td>
                 <td>
                     <input type="hidden" class="form-control" name="type" placeholder="сумма"

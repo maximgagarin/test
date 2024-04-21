@@ -30,9 +30,13 @@ class PaymentController extends Controller
         ]);
 
         $data['areas_id'] = $id;
-
-
         $data['status'] = 'неоплачен';
+
+        if(!($data['type']=='чвзнос')){
+            $data['amount'] = 1;
+            Payment::create($data);
+            return redirect()->back();
+        }
 
 
         Payment::create($data);
@@ -116,7 +120,7 @@ class PaymentController extends Controller
         return redirect()->route('dashboard', compact('id'));
     }
 
-    public function update()
+    public function update2()
     {
 
         $data = request()->validate([
@@ -150,7 +154,7 @@ class PaymentController extends Controller
 
         if (Payment::where('id', $id)->has('payment_mov')->exists()) {
 
-           $sum  =  Payment::where('id',$id)->withSum('payment_mov as summ', 'sum')->value('summ');
+            $sum  =  Payment::where('id',$id)->withSum('payment_mov as summ', 'sum')->value('summ');
 
             $data =[
                 'sum' => $sum,
@@ -168,6 +172,8 @@ class PaymentController extends Controller
         }
 
 
-        }
+    }
+
+
 
 }
