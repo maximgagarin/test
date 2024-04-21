@@ -10,7 +10,10 @@
                     <form class="myForm" id="form1" action="{{route('area.update')}}" method="POST">
                         @csrf
                         <div class="mb-3">
-
+                            <input type="checkbox"  name="test" value="1">
+                            <label for="vehicle1"> Убрать из рассчетов</label><br>
+                        </div>
+                        <div class="mb-3">
                             <input type="hidden" class="form-control" name="id" value="{{$id->id}}" >
                         </div>
                         <div class="mb-3">

@@ -39,6 +39,8 @@ class AreasController extends Controller
     public function update2()
     {
 
+        $status = \request('test');
+
         $data = request()->validate([
             'number' => ['string'],
             'name' => ['string'],
@@ -47,6 +49,12 @@ class AreasController extends Controller
             'square' => ['numeric'],
             'id' => ['numeric'],
         ]);
+
+        if ($status){
+            $data['area_status'] = 1;
+        }
+
+
         $id = $data['id'];
         $data['balance'] = 0;
 

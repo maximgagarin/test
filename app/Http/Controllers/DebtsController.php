@@ -168,4 +168,58 @@ class DebtsController extends Controller
         return view('debts3', compact('results', 'formattedTotal', 'type', 'paginator'));
     }
 
+    public function print()
+    {
+        $data = request();
+        if ($data['type']) {
+            $type = $data['type'];
+
+            $query = "
+        SELECT
+            areas.id,
+            areas.number,
+            (
+                SELECT COALESCE(SUM(payments.sum), 0)
+                FROM payments
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type'
+            ) AS total_payments_sum,
+            (
+                SELECT COALESCE(SUM(payment_movs.sum), 0)
+                FROM payments
+                LEFT JOIN payment_movs ON payments.id = payment_movs.payments_id
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type'
+            ) AS total_payment_movs_sum
+        FROM
+            areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
+    ";
+
+
+            $results = DB::select($query);
+            return view('debts-print', compact('results'));
+        }
+
+
+        $query = "
+        SELECT
+            areas.id,
+            areas.number,
+            (
+                SELECT COALESCE(SUM(payments.sum), 0)
+                FROM payments
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
+            ) AS total_payments_sum,
+            (
+                SELECT COALESCE(SUM(payment_movs.sum), 0)
+                FROM payments
+                LEFT JOIN payment_movs ON payments.id = payment_movs.payments_id
+                WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'
+            ) AS total_payment_movs_sum
+        FROM
+            areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
+    ";
+
+        $results = DB::select($query);
+        return view('debts-print', compact('results'));
+    }
+
 }

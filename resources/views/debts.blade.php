@@ -61,6 +61,15 @@
     <div class="row">
 
         <h5 class="mb-5">Всего долг  {{$type}}: {{$formattedTotal}}р.</h5>
+
+        <form action="{{route('debts.print')}}"  method="post">
+            @csrf
+            <input type="hidden" name="type"  value="{{$type}}">
+
+            <button type="submit" class="btn btn-primary btn-sm">Печать</button>
+        </form>
+
+
         <div class="row mt-3 ">
             <div class="col-6">{{ $paginator->withQueryString()->links() }}</div>
         </div>

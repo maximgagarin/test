@@ -57,6 +57,7 @@ Route::post('vznos/edit', 'TariffController@edit')->name('vznos.edit');
 Route::get('Debts', 'DebtsController@index')->name('debts') ;
 Route::get('Debts2', 'DebtsController@index2')->name('debts2') ;
 Route::get('Debts3', 'DebtsController@index3')->name('debts3') ;
+Route::post('Debtsprint', 'DebtsController@print')->name('debts.print') ;
 
 Route::post('Areas/comment', 'AreasController@comment')->name('areas.comment') ; //обновление комментария
 Route::get('Areas/update/{id}', 'AreasController@update')->name('areas.update') ; //страница обновление участка
