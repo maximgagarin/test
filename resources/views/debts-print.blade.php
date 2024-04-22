@@ -24,6 +24,7 @@
     <thead>
     <tr>
         <th>Участок</th>
+        <th>Участок</th>
 
         <th class="">начислено</th>
         <th class="">оплачено</th>
@@ -34,6 +35,7 @@
     @foreach($results as $result)
         <tr>
             <td> {{$result->number}}</td>
+            <td> {{$result->name}}</td>
 
             <td>{{number_format( $result->total_payments_sum,2,'.','')}}р.</td>
             <td> {{number_format($result->total_payment_movs_sum,2,'.','')}}р.</td>
@@ -43,7 +45,40 @@
     </tbody>
 </table>
 
+<style>
 
+    @page {
+        /*size: 210mm 297mm; */
+        size: 210mm 297mm;
+        /* Chrome sets own margins, we change these printer settings */
+        margin: 10mm 10mm 10mm 10mm;
+    }
+
+    .table{
+        font-size: 13px
+
+    }
+
+    .table td{
+        margin: 0;
+        padding: 0;
+    }
+
+    .table tr{
+        margin: 0;
+        padding: 0;
+    }
+
+    .table th{
+        margin: 0;
+        padding: 0;
+    }
+
+
+
+
+
+</style>
 
 
 
