@@ -34,7 +34,7 @@ class AreasController extends Controller
       $id = \request('id');
       $text = \request('text');
         Area::where('id', $id)->update(['comment' => $text]);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Сохранено');
     }
     public function update2()
     {
