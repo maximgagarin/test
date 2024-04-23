@@ -11,7 +11,7 @@
     <script src='/decimal.js'></script>
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
     <link rel="stylesheet" href="{{ asset('/styles.css') }}">
-    <title>Document</title>
+    <title>Заря-2</title>
 </head>
 <header class="d-flex justify-content-center py-3  "  style="background-color: lightgray">
     <ul class="nav">

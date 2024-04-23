@@ -36,7 +36,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm"
-                            onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Удалить
+                            onclick="return confirm('Вы уверены, что хотите удалить этот платеж? Оплата по платежу перейдёт в аванс')">Удалить
                     </button>
                 </form>
             </td>
