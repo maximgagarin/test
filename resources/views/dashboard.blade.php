@@ -47,6 +47,7 @@
     @include('modals.modal-payments-video')
     @include('modals.modal-counter')
     @include('modals.modal-allpayments')
+    @include('modals.modal-money-come')
 
 
 
@@ -118,7 +119,7 @@
 
 
             <!-- оплата -->
-            <div class="col-lg-5  col-sm-12">
+            <div class="col-lg-5  col-sm-12 " id="PaySection">
                 <div class="card card-primary border border-secondary border-1">
                     <div class="card-header cart-header-custom">
                         <h7 class="card-title">Оплатить</h7>
@@ -282,7 +283,7 @@
 
 
             <!-- начисление взноса -->
-            <div class="col-lg-3 col-sm-6 mb-2">
+            <div class="col-lg-3 col-sm-6 mb-2" id="AddVznos">
                 <div class="card card-primary border border-secondary border-1">
                     <div class="card-header cart-header-custom">
                         <h7 class="card-title">Начислить взнос</h7>
@@ -422,14 +423,14 @@
 
 
         <!-- поступление денег -->
-        <div class="row">
-            <div class="col-12  mt-3">
+        <div class="row" >
+            <div class="col-12  mt-3" id="MoneyComing">
                 <div class="card card-primary border border-secondary border-1">
                     <div class="card-header" style="background-color: gainsboro">
                         <p>Поступление денег</p>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" >
                             <thead>
                             <tr>
                                 <th>дата оплаты</th>
@@ -481,6 +482,15 @@
                     </div>
                 </div>
             </div>
+            <div class="row mt-4 button-money-come">
+                <div class="col-lg-3 col-sm-5">
+                    <button type="button" class="btn btn-primary   mb-2" data-bs-toggle="modal"
+                            data-bs-target="#MoneyComeModal">
+                        приход денег
+                    </button>
+                </div>
+            </div>
+
         </div>
 
 

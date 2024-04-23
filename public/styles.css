@@ -43,21 +43,15 @@ P{
     color: #444;
 }
 
+
+.button-money-come{
+    display: none;
+}
+
 @media (max-width: 1200px) {
-    .table-payments-svet{
-      font-size: 10px;
-        padding: 0;
-    }
 
-    .table-payments-svet  td{
-        padding: 0;
-        margin: 0;
-    }
 
-    .table-payments-svet  th{
-        padding: 0;
-        margin: 0;
-    }
+
 
     .custom-modal-dialog {
 
@@ -86,5 +80,24 @@ P{
         overflow: hidden;
         clip: rect(0, 0, 0, 0);
         border: 0;
+    }
+}
+
+@media (max-width: 450px) {
+    #PaySection{
+        display: none;
+    }
+
+    #AddVznos{
+        display: none;
+    }
+
+    #MoneyComing{
+        display: none;
+    }
+
+
+    .button-money-come{
+        display: block;
     }
 }
