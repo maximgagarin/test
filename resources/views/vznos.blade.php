@@ -61,7 +61,7 @@
                     <tr id="editForm4{{$count->id}}">
                         <td>{{number_format($count->value,2,'.','')}}</td>
                         <td> {{$count->type}}</td>
-                        <td> {{$count->created_at}}</td>
+                        <td> {{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                         <td>
                                 <button class="btn btn-primary btn-sm" onclick="showEditFormCounter({{$count->id}})">Редактировать</button>
                         </td>
@@ -110,7 +110,7 @@
                     <tr id="editForm4{{$count->id}}">
                         <td>{{number_format($count->value,2,'.','')}}</td>
                         <td> {{$count->type}}</td>
-                        <td> {{$count->created_at}}</td>
+                        <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                         <td>
                             <button class="btn btn-primary btn-sm" onclick="showEditFormCounter({{$count->id}})">Редактировать</button>
                         </td>
@@ -144,7 +144,6 @@
     </div>
     <div class="row ">
 
-
         <div class="col-lg-7 col-sm-6 mt-2">
             <table class="table table-bordered border-dark">
                 <thead>
@@ -161,7 +160,7 @@
                     <tr id="editForm4{{$count->id}}">
                         <td>{{number_format($count->value,2,'.','')}}</td>
                         <td> {{$count->type}}</td>
-                        <td> {{$count->created_at}}</td>
+                        <td> {{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                         <td>
                             <button class="btn btn-primary btn-sm" onclick="showEditFormCounter({{$count->id}})">Редактировать</button>
                         </td>
@@ -210,7 +209,7 @@
                     <tr id="editForm4{{$count->id}}">
                         <td>{{number_format($count->value,2,'.','')}}</td>
                         <td> {{$count->type}}</td>
-                        <td> {{$count->created_at}}</td>
+                        <td> {{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                         <td>
                             <button class="btn btn-primary btn-sm" onclick="showEditFormCounter({{$count->id}})">Редактировать</button>
                         </td>

@@ -17,7 +17,11 @@
 <div>
     <h7>СНТ "Заря-2"</h7>
 
-    <p>задолженности</p>
+    @if(isset($type))
+        <p>Задолженности по {{ $type }}</p>
+    @else
+        <p>Общие задолженности</p>
+    @endif
 </div>
 
 <table class=" table table-bordered">

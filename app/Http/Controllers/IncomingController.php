@@ -125,6 +125,7 @@ class IncomingController extends Controller
                 ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
                     'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number','areas.name')
                 ->whereBetween('incomings.date', [$startDate, $endDate])
+             
                 ->get();
 
             return view('incoming', compact('results', 'startDate', 'endDate' ));
@@ -136,6 +137,7 @@ class IncomingController extends Controller
             ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
                 'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number', 'areas.name')
             ->whereDate('incomings.date', $date)
+
             ->get();
 
 
@@ -182,6 +184,7 @@ class IncomingController extends Controller
             ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
                 'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number','areas.name')
             ->whereBetween('incomings.date', [$startDate, $endDatePlus])
+            ->orderby('incomings.date')
             ->get();
 
         return view('incoming-print', compact('results', 'startDate', 'endDate' ));

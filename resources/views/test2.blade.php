@@ -5,45 +5,28 @@
 
 
 
-    <div class="container">
-   <h5>123</h5>
-   <div class="col-6">
-    <table class="table #counters-table" id="counters-table">
-        <thead>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>номер</th>
+        <th>номер</th>
+        <th>номер</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($results as $result)
         <tr>
-            <th>ID</th>
-            <th>Value</th>
-            <th>Date</th>
-            <th>Action</th>
+            <td> {{$result->name}}</td>
+            <td> {{$result->sum1}}</td>
+            <td> {{$result->sum2}}</td>
         </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-   </div>
-</div>
-
-    <button type="button" class="ajax" id="ajax">кнопа</button>
-
-    <!-- ... -->
-
-<script>
-    let button = document.getElementById('ajax');
-    button.onclick = function (){
-        axios.get('/test3')
-            .then(function (response) {
-                // handle success
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .finally(function () {
-                // always executed
-            });
-    }
+    @endforeach
+    </tbody>
+</table>
 
 
-</script>
 
 @endsection

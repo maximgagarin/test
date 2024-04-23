@@ -30,7 +30,7 @@ class DebtsController extends Controller
                 WHERE payments.areas_id = areas.id and payments.status = 'неоплачен' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
-            areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
+            areas HAVING total_payments_sum>0 ORDER BY areas.number
     ";
         $results = DB::select($query);
 
@@ -82,7 +82,7 @@ class DebtsController extends Controller
                 WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
-            areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
+            areas HAVING total_payments_sum>0 ORDER BY areas.number
     ";
 
 
@@ -136,7 +136,7 @@ class DebtsController extends Controller
                 WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
-            areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
+            areas HAVING total_payments_sum>0 ORDER BY areas.number
     ";
 
 
@@ -191,12 +191,12 @@ class DebtsController extends Controller
                 WHERE payments.areas_id = areas.id and payments.status = 'неоплачен'  AND payments.type = '$type' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
-            areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
+            areas HAVING total_payments_sum>0 ORDER BY areas.number
     ";
 
 
             $results = DB::select($query);
-            return view('debts-print', compact('results'));
+            return view('debts-print', compact('results' , 'type'));
         }
 
 
@@ -217,7 +217,7 @@ class DebtsController extends Controller
                 WHERE payments.areas_id = areas.id and payments.status = 'неоплачен' and areas.area_status=1
             ) AS total_payment_movs_sum
         FROM
-            areas HAVING total_payments_sum>0 ORDER BY total_payments_sum DESC
+            areas HAVING total_payments_sum>0 ORDER BY areas.number
     ";
 
         $results = DB::select($query);

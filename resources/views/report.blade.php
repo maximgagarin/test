@@ -55,12 +55,12 @@
                 <td>{{number_format($PaidChvznos,2,'.','')}}</td>
             </tr>
             <tr>
-                <td>мусор</td>
+                <td>вывоз мусора</td>
                 <td>{{number_format($DebtTrash,2,'.','')}}</td>
                 <td>{{number_format($PaidTrash,2,'.','')}}</td>
             </tr>
             <tr>
-                <td>дороги</td>
+                <td>содержание дорог</td>
                 <td>{{number_format($DebtRoad,2,'.','')}}</td>
                 <td>{{number_format($PaidRoad,2,'.','')}}</td>
             </tr>
