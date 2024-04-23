@@ -36,7 +36,7 @@
         <tr>
             <td>членский взнос</td>
             <td>{{number_format($DebtChvznos,2,'.',' ')}}</td>
-            <td>{{number_format($PaidChvznos,2,'.',' ')}}</td>
+            <td>{{number_format($PaidChvznos,2,'.','')}}</td>
         </tr>
         <tr>
             <td>уборка мусора</td>

@@ -51,23 +51,23 @@
             </tr>
             <tr>
                 <td>членский взнос</td>
-                <td>{{number_format($DebtChvznos,2,'.','')}}</td>
-                <td>{{number_format($PaidChvznos,2,'.','')}}</td>
+                <td>{{number_format($DebtChvznos,2,'.',' ')}}</td>
+                <td>{{number_format($PaidChvznos,2,'.',' ')}}</td>
             </tr>
             <tr>
                 <td>вывоз мусора</td>
-                <td>{{number_format($DebtTrash,2,'.','')}}</td>
-                <td>{{number_format($PaidTrash,2,'.','')}}</td>
+                <td>{{number_format($DebtTrash,2,'.',' ')}}</td>
+                <td>{{number_format($PaidTrash,2,'.',' ')}}</td>
             </tr>
             <tr>
                 <td>содержание дорог</td>
-                <td>{{number_format($DebtRoad,2,'.','')}}</td>
-                <td>{{number_format($PaidRoad,2,'.','')}}</td>
+                <td>{{number_format($DebtRoad,2,'.',' ')}}</td>
+                <td>{{number_format($PaidRoad,2,'.',' ')}}</td>
             </tr>
             <tr>
                 <td>благоустройство</td>
-                <td>{{number_format($DebtBlag,2,'.','')}}</td>
-                <td>{{number_format($PaidBlag,2,'.','')}}</td>
+                <td>{{number_format($DebtBlag,2,'.',' ')}}</td>
+                <td>{{number_format($PaidBlag,2,'.',' ')}}</td>
             </tr>
             <tr>
                 <td><strong>Итого</strong></td>
