@@ -88,7 +88,7 @@ class Counter2Controller extends Controller
 
            Payment::create($data2);
 
-        return redirect()->route('dashboard',['id' => $id]);
+        return redirect()->route('dashboard',['id' => $id])->with('success', 'Рассчитано. Создан счёт');
 
         // Валидация данных
 //        $data = request()->validate([
@@ -179,6 +179,6 @@ class Counter2Controller extends Controller
         $sumPaymentOld = $payment->sum;
 
 
-        return redirect()->route('dashboard', ['id' => $counter->areas_id])->with('success', 'Запись успешно удалена.');
+        return redirect()->route('dashboard', ['id' => $counter->areas_id])->with('success', 'Сохранено');
     }
 }

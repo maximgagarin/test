@@ -102,13 +102,13 @@ class AreasController extends Controller
 
         // Check if payments exist for the area
         if ($area->paymentsmovs()->exists()) {
-            return redirect()->back()->with('danger', 'There are associated payments. Cannot delete.');
+            return redirect()->back()->with('danger', 'Удалите платежи');
         }
 
         // No payments found, proceed with deletion
         $area->delete();
 
-        return redirect()->route('main')->with('success', 'Area deleted successfully.');
+        return redirect()->route('main')->with('success', 'Участок удалён');
     }
 
 

@@ -29,10 +29,22 @@ class IncomingController extends Controller
             'chvznos' => 'numeric',
             'trash' => 'numeric',
             'road' => 'numeric',
-            'camera' => 'numeric',
+            'blag' => 'numeric',
             'areas_id' => 'numeric',
             'date' => 'date',
+            'svetdebt' => '',
+            'chvznosdebt' => '',
+            'roaddebt' => '',
+            'trashdebt' => '',
+            'blagdebt' => '',
         ]);
+
+
+
+        if($data['svet'] > $data['svetdebt']  or $data['chvznos'] > $data['chvznosdebt']
+            or $data['road'] > $data['roaddebt'] or $data['trash'] > $data['trashdebt'] or $data['blag'] > $data['blagdebt'] ){
+            return  redirect()->back()->with('danger', 'Превышеная сумма по платежу');
+        }
 
         $alldebt = $data['alldebt'];
 
@@ -76,15 +88,19 @@ class IncomingController extends Controller
         {
             $type = 'энергия';
             $value=$data['svet'];
+
             calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['svet' => $value]);
+
         }
         if (($data['chvznos']))
         {
+
             $type = 'чвзнос';
             $value=$data['chvznos'];
             calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['chvznos' => $value]);
+
         }
         if (($data['trash']))
         {
@@ -92,6 +108,7 @@ class IncomingController extends Controller
             $value=$data['trash'];
             calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['trash' => $value]);
+
         }
         if (($data['road']))
         {
@@ -99,15 +116,17 @@ class IncomingController extends Controller
             $value=$data['road'];
             calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['road' => $value]);
+
         }
-        if (($data['camera']))
+        if (($data['blag']))
         {
             $type = 'благоустройство';
-            $value=$data['camera'];
+            $value=$data['blag'];
             calculation($areas_id, $value, $type, $lastIdIncoming, $date);
             Incoming::where('id',  $lastIdIncoming)->update(['camera' => $value]);
+
         }
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Добавлено');
 
     }
 
@@ -125,7 +144,7 @@ class IncomingController extends Controller
                 ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
                     'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number','areas.name')
                 ->whereBetween('incomings.date', [$startDate, $endDate])
-             
+
                 ->get();
 
             return view('incoming', compact('results', 'startDate', 'endDate' ));

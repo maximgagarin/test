@@ -79,9 +79,10 @@
             <thead>
             <tr>
                 <th>Участок</th>
+                <th>Владелец</th>
 
-                <th class="">начислено</th>
-                <th class="">оплачено</th>
+{{--                <th class="">начислено</th>--}}
+{{--                <th class="">оплачено</th>--}}
                 <th class="text-danger">долг</th>
             </tr>
             </thead>
@@ -89,9 +90,10 @@
             @foreach($paginator as $result)
                 <tr class="tr-link" onclick="window.location='{{ route('dashboard', $result->id) }}';">
                     <td> {{$result->number}}</td>
+                    <td> {{$result->name}}</td>
 
-                    <td>{{number_format( $result->total_payments_sum,2,'.','')}}р.</td>
-                    <td> {{number_format($result->total_payment_movs_sum,2,'.','')}}р.</td>
+{{--                    <td>{{number_format( $result->total_payments_sum,2,'.','')}}р.</td>--}}
+{{--                    <td> {{number_format($result->total_payment_movs_sum,2,'.','')}}р.</td>--}}
                     <td> {{  $result->total_payments_sum - $result->total_payment_movs_sum}}р.</td>
                 </tr>
             @endforeach

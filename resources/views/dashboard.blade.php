@@ -135,7 +135,7 @@
                                             <label for="">Сумма прихода</label>
                                             <input type="text" class="form-control" id="sum_incoming"
                                                    name="sum_incoming" placeholder="сумма прихода">
-                                            <button type="button" id="auto" class="btn btn-primary btn-sm" >Авто</button>
+{{--                                            <button type="button" id="auto" class="btn btn-primary btn-sm" >Авто</button>--}}
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-sm-6">
@@ -170,7 +170,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="">благоустройство</label>
-                                        <input type="text" class="form-control" id="camera" name="camera" value="0"
+                                        <input type="text" class="form-control" id="camera" name="blag" value="0"
                                                placeholder="благоустройство">
                                     </div>
                                 </div>
@@ -195,8 +195,24 @@
                                         <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="hidden" class="form-control" id="form_alldebt" name="alldebt"
-                                               value="">
+                                        <input type="hidden" class="form-control" id="form_alldebt" name="alldebt" value="">
+                                    </div>
+
+
+                                    <div class="mb-3">
+                                        <input type="hidden" class="form-control" id="svetdebtform" name="svetdebt" value="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="hidden" class="form-control" id="chvznosdebtform" name="chvznosdebt" value="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="hidden" class="form-control" id="roaddebtform" name="roaddebt" value="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="hidden" class="form-control" id="trashdebtform" name="trashdebt" value="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="hidden" class="form-control" id="blagdebtform" name="blagdebt" value="">
                                     </div>
                                 </div>
 
@@ -567,6 +583,15 @@
             var roaddebt = $('#roaddebt').text();
             var chvznosdebt = $('#chvznosdebt').text();
             var cameradebt = $('#cameradebt').text();
+
+
+            $('#svetdebtform').val(svetdebt);
+            $('#chvznosdebtform').val(chvznosdebt);
+            $('#roaddebtform').val(roaddebt);
+            $('#trashdebtform').val(trashdebt);
+            $('#blagdebtform').val(cameradebt);
+
+
 
 
             if (svetdebt == 0) {

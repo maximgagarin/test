@@ -16,10 +16,11 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th scope="col">показание</th>
-                                        <th scope="col">дата</th>
-                                        <th scope="col">id</th>
-                                        <th scope="col">id</th>
+                                        <th>показание</th>
+                                        <th>дата</th>
+                                        <th></th>
+                                        <th></th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -28,7 +29,7 @@
                                             <td> {{$count->value}}</td>
                                             <td> {{ \Carbon\Carbon::parse($count->date)->format('d-m-Y') }}</td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm" onclick="showEditFormCounter({{$count->id}})">Редактировать</button>
+{{--                                                <button class="btn btn-primary btn-sm" onclick="showEditFormCounter({{$count->id}})">Редактировать</button>--}}
                                             </td>
                                             <td>
                                                 <form action="{{ route('counter.delete', $count->id) }}" method="POST">
@@ -62,10 +63,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
         </div>
+    </div>
     </div>
 </div>
 <script>

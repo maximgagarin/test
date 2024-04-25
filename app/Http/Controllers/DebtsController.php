@@ -18,6 +18,8 @@ class DebtsController extends Controller
         SELECT
             areas.id,
             areas.number,
+            areas.name,
+
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments
@@ -70,6 +72,7 @@ class DebtsController extends Controller
         SELECT
             areas.id,
             areas.number,
+            areas.name,
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments

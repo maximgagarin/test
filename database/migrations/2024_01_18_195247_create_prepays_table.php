@@ -21,6 +21,7 @@ class CreatePrepaysTable extends Migration
             $table->timestamp('date')->nullable();
             $table->string('saldo');
             $table->integer('incoming')->nullable();
+            $table->softDeletes();
         });
     }
 
