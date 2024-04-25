@@ -96,4 +96,20 @@ class AreasController extends Controller
         return redirect()->route('main')->with('success', 'Сохранено');
     }
 
+    public function destroy($id)
+    {
+        $area = Area::findOrFail($id); // Find the area by ID
+
+        // Check if payments exist for the area
+        if ($area->paymentsmovs()->exists()) {
+            return redirect()->back()->with('danger', 'There are associated payments. Cannot delete.');
+        }
+
+        // No payments found, proceed with deletion
+        $area->delete();
+
+        return redirect()->route('main')->with('success', 'Area deleted successfully.');
+    }
+
+
 }

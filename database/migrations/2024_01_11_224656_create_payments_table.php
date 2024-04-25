@@ -29,6 +29,8 @@ class CreatePaymentsTable extends Migration
             $table->timestamp('datestart')->nullable();
             $table->timestamp('dateend')->nullable();
             $table->integer('NumberAccrualID')->nullable();
+
+            $table->softDeletes();
         });
     }
 

@@ -66,6 +66,7 @@ Route::post('Area/update', 'AreasController@update2')->name('area.update') ; //Ð
 Route::delete('/paymentmovs/{id}', 'PaymentmovsController@destroy')->name('payment_mov.delete');
 Route::get('Areas/create', 'AreasController@create')->name('area.create');
 Route::post('Areas', 'AreasController@store')->name('area.store');
+    Route::delete('/area/{id}', 'AreasController@destroy')->name('area.delete');
 
 Route::get('incoming', 'IncomingController@all')->name('incomingall');
 Route::delete('incoming/delete', 'IncomingController@destroy')->name('incoming.delete');
@@ -96,3 +97,5 @@ Auth::routes([
 ]);
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

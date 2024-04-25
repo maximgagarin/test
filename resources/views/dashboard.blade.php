@@ -491,6 +491,13 @@
                 </div>
             </div>
 
+
+            <form action="{{route('area.delete', $id->id)}}" method="post" class="mt-3">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-danger btn-sm">удалить участок</button>
+            </form>
+
         </div>
 
 

@@ -25,6 +25,8 @@ class CreateAreasTable extends Migration
             $table->string('comment', 500)->nullable();
             $table->integer('area_status')->nullable();
 //            $table->integer('owner')->nullable();
+
+            $table->softDeletes();
         });
     }
 
