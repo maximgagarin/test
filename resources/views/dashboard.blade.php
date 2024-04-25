@@ -243,7 +243,7 @@
                                 <div class="mb-3">
                                     <input type="hidden" class="form-control" name="areas_id" value="{{$id->id}}">
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-sm">Отправить</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
                             </form>
                         @else
                             <p>Последнее показание: <strong>{{$lastValue}}</strong></p>

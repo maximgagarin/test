@@ -25,7 +25,7 @@ class TariffController extends Controller
         ]);
         $data['type'] = 'энергия';
         tariff::create($data);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Сохранено');
     }
 
 
