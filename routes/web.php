@@ -43,7 +43,7 @@ Route::delete('Payment/{id}', 'PaymentController@destroy')->name('payment.delete
 
 Route::post('Prepay/{id}', 'PrepayController@prepay')->name('prepay');
 Route::get('Prepay/index/{id}', 'PrepayController@index')->name('prepay.index');
-Route::post('Prepay/store', 'PrepayController@store')->name('prepay.store');
+Route::post('Prepaystore', 'PrepayController@add')->name('prepay.add');
 Route::delete('Prepay/delete/{id}', 'PrepayController@delete')->name('prepay.delete');
 
 

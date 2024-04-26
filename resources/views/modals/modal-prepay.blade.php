@@ -35,7 +35,13 @@
                         @csrf
                         <input type="hidden" value="{{$prepayActual}}" name="value">
                         <input type="hidden" value="благоустройство" name="type">
-                        <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на в.наблюд</button>
+                        <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на благоуст.</button>
+                    </form>
+                    <form class="myForm" action="{{ route('prepay.add') }}" method="POST">
+                        @csrf
+                        <input type="text"  name="value" placeholder="Добавить аванс">
+                        <input type="hidden"  name="areas_id" value="{{$id->id}}" placeholder="Добавить аванс">
+                        <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Добавить аванс</button>
                     </form>
                 </div>
 

@@ -21,7 +21,7 @@ class PrepayController extends Controller
         return view('prepay', compact('counts', 'id'));
     }
 
-    public function store()
+    public function add()
     {
         $id= \request('areas_id');
 

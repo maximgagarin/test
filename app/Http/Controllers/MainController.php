@@ -27,7 +27,7 @@ class MainController extends Controller
             return view('main', compact('areas'));
         }
 
-        $areas = Area::orderby('number')->paginate(350);
+        $areas = Area::paginate(350);
         return view('main', compact('areas'));
     }
 

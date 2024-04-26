@@ -73,7 +73,7 @@
                             </button>
                             <button type="button" class="btn btn-outline-primary  btn-sm mb-2" data-bs-toggle="modal"
                                     data-bs-target="#PrepayModal">
-                                списать аванс: <strong>{{$prepayActual}}р</strong>
+                                Аванс: <strong>{{$prepayActual}}р</strong>
                             </button>
 {{--                            <form action="{{route('areas.new', $id->id)}}">--}}
 {{--                                <input type="hidden" name="number" value="{{$id->number}}">--}}
