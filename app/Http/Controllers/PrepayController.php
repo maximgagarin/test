@@ -35,7 +35,7 @@ class PrepayController extends Controller
 
         Prepay::create($data);
 
-        return redirect()->back();
+        return redirect()->back()->with('success' , 'добавлено');
     }
 
     public function delete($id)
