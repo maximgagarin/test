@@ -48,6 +48,7 @@
     @include('modals.modal-counter')
     @include('modals.modal-allpayments')
     @include('modals.modal-money-come')
+    @include('modals.modal-addsvet')
 
 
 
@@ -238,7 +239,10 @@
                         <div class="row">
                             <div class="col-6"> <p>счетчик</p></div>
                             <div class="col-6">
-
+                                <button type="button" class="btn btn-outline-primary  btn-sm mb-2" data-bs-toggle="modal"
+                                        data-bs-target="#AddSvetModal">
+                                   Добавить старый долг
+                                </button>
                             </div>
                         </div>
                     </div>

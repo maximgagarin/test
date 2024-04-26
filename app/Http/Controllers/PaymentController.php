@@ -20,6 +20,7 @@ class PaymentController extends Controller
     public function store($id)
     {
 
+
         $data = request()->validate([
            // 'areas_id' => '',
             'amount' => ['numeric'],
@@ -32,11 +33,22 @@ class PaymentController extends Controller
         $data['areas_id'] = $id;
         $data['status'] = 'неоплачен';
 
+        if ($data['type']=='энергия'){
+
+            $data['datestart'] = $data['date'];
+            $data['dateend'] = $data['date'];
+            Payment::create($data);
+            return redirect()->route('dashboard', compact('id'));
+
+        }
+
         if(!($data['type']=='чвзнос')){
             $data['amount'] = 1;
             Payment::create($data);
             return redirect()->back();
         }
+
+
 
 
         Payment::create($data);
