@@ -21,11 +21,11 @@ class CreateAreasTable extends Migration
             $table->string('telephone')->nullable();
             $table->string('name')->nullable();
             $table->decimal('square', $precision = 6, $scale = 2)->nullable();
-            $table->decimal('balance', $precision = 10, $scale = 4);
+            $table->decimal('debt', $precision = 10, $scale = 4)->nullable();
             $table->string('comment', 500)->nullable();
             $table->integer('area_status')->nullable();
+            $table->decimal('prepay' ,$precision=10, $scale =4)->nullable();
 //            $table->integer('owner')->nullable();
-
             $table->softDeletes();
         });
     }
