@@ -238,10 +238,10 @@
                     <div class="card-header cart-header-custom ">
                         <div class="row">
                             <div class="col-6"> <p>счетчик</p></div>
-                            <div class="col-6">
+                            <div >
                                 <button type="button" class="btn btn-outline-primary  btn-sm mb-2" data-bs-toggle="modal"
                                         data-bs-target="#AddSvetModal">
-                                   Добавить старый долг
+                                   Добавить старый долг на энерг.
                                 </button>
                             </div>
                         </div>

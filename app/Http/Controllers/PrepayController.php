@@ -23,20 +23,19 @@ class PrepayController extends Controller
 
     public function add()
     {
-        $id= \request('areas_id');
 
-        $value = \request('value');
 
-        $data = [
-            'sum'=>  $value,
-            'areas_id' => $id,
-            'date'=> now(),
-            'saldo'=>'приход',
-        ];
+        $data = request()->validate([
+            'sum' => ['numeric'],
+            'areas_id' => '',
+            'date' => '',
+            'saldo' => '',
+        ]);
+
 
         Prepay::create($data);
 
-        return redirect()->route('dashboard', compact('id'));
+        return redirect()->back();
     }
 
     public function delete($id)

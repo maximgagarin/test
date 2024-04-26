@@ -7,6 +7,13 @@
             </div>
             <div class="modal-body">
                 <div class="col-6">
+                    <form class="myForm mb-3" action="{{ route('prepay.add') }}" method="POST">
+                        @csrf
+                        <input type="text"  name="sum" placeholder="Введите сумму">
+                        <input type="hidden"  name="saldo" value="приход" placeholder="приход">
+                        <input type="hidden"  name="areas_id" value="{{$id->id}}" placeholder="">
+                        <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Добавить аванс</button>
+                    </form>
                     <form class="myForm mt-3" action="{{ route('prepay', $id->id) }}" method="POST">
                         @csrf
                         <input type="hidden" value="{{$prepayActual}}" name="value">
@@ -35,14 +42,9 @@
                         @csrf
                         <input type="hidden" value="{{$prepayActual}}" name="value">
                         <input type="hidden" value="благоустройство" name="type">
-                        <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на благоуст.</button>
+                        <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на благоуст</button>
                     </form>
-                    <form class="myForm" action="{{ route('prepay.add') }}" method="POST">
-                        @csrf
-                        <input type="text"  name="value" placeholder="Добавить аванс">
-                        <input type="hidden"  name="areas_id" value="{{$id->id}}" placeholder="Введите сумму">
-                        <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Добавить аванс</button>
-                    </form>
+
                 </div>
 
                 <div class="col-6">
