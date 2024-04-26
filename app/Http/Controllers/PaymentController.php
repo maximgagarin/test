@@ -35,8 +35,7 @@ class PaymentController extends Controller
 
         if ($data['type']=='энергия'){
 
-            $data['datestart'] = $data['date'];
-            $data['dateend'] = $data['date'];
+
             Payment::create($data);
             return redirect()->route('dashboard', compact('id'));
 

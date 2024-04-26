@@ -25,9 +25,16 @@
                         <input type="hidden" class="form-control" name="type" value="энергия"
                                placeholder="сумма">
                     </div>
-                    <label>Дата</label>
+                    <label>Дата от</label>
                     <div class="mb-3">
-                        <input type="date" class="form-control" name="date" value="">
+                        <input type="date" class="form-control" name="datestart" value="">
+                    </div>
+                    <label>Дата до</label>
+                    <div class="mb-3">
+                        <input type="date" class="form-control" name="dateend" value="">
+                    </div>
+                    <div class="mb-3">
+                        <input type="hidden" class="form-control" name="date" value="{{now()}}">
                     </div>
 
                     <div class="mb-3">
