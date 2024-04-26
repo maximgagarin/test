@@ -36,7 +36,18 @@ class PaymentController extends Controller
         if ($data['type']=='энергия'){
 
 
-            Payment::create($data);
+
+            Payment::create([
+                'type'=>'энергия',
+                'amount'=>1,
+                'tariff'=>1,
+                'sum'=>$data['sum'],
+                'status'=>'неоплачен',
+                'datestart'=>\request('datestart'),
+                'dateend'=>\request('dateend'),
+                'date'=>now(),
+                'areas_id'=>$id,
+            ]);
             return redirect()->route('dashboard', compact('id'));
 
         }

@@ -9,15 +9,16 @@
                 <div class="col-4">
                 <form class="myForm" id="form2" action="{{route('payments.store', $id->id)}}" method="POST">
                     @csrf
-                    <div class="mb-3">
+{{--                    <div class="mb-3">--}}
+{{--                     --}}
+{{--                        <input type="text" class="form-control" name="amount" id="amount"  placeholder="квт"--}}
+{{--                               value="">--}}
+{{--                    </div>--}}
 
-                        <input type="text" class="form-control" name="amount" id="amount"  placeholder="квт"
-                               value="">
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" name="tariff" id="tariff"
-                               placeholder="тариф">
-                    </div>
+{{--                    <div class="mb-3">--}}
+{{--                        <input type="text" class="form-control" name="tariff" id="tariff"--}}
+{{--                               placeholder="тариф">--}}
+{{--                    </div>--}}
                     <div class="mb-3">
                         <input type="text" class="form-control" name="sum" id="sum" placeholder="сумма">
                     </div>
