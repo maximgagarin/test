@@ -50,6 +50,7 @@ class DashboardController extends Controller
             ->join('payments', 'areas.id', '=', 'payments.areas_id')
             ->where('areas.id', $id->id)
             ->where('status', 'неоплачен')
+            ->whereNull('payments.deleted_at')
             ->get();
 
 

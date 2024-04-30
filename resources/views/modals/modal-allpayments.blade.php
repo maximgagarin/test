@@ -30,6 +30,9 @@
                     </table>
                     <input type="hidden" value="{{$id->name}}" name="namesnt">
                     <input type="hidden" value="{{$id->number}}" name="numbersnt">
+                    <input type="hidden" value="{{$id->FirstName}}" name="FirstName">
+                    <input type="hidden" value="{{$id->LastName}}" name="LastName">
+                    <input type="hidden" value="{{$id->MiddleName}}" name="MiddleName">
                     <button type="submit" class="btn btn-primary btn-sm">Создать квитанцию</button>
                 </form>
 

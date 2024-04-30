@@ -60,6 +60,7 @@ class FormController extends Controller
         $g->Purpose = $Purpose;
         $g->Sum = $Sum;
         $g->PayeeINN=$PayeeINN;
+        $g->PersonalAccount = '1234567890';
         $g->validate();
         $g->render("qr.png");
         sleep(1);
@@ -69,8 +70,13 @@ class FormController extends Controller
 
     public function submit(Request $request)
     {
+        dd($request);
+
         $namesnt = $request->namesnt;
         $numbersnt = $request->numbersnt;
+        $Firstname = $request->FirstName;
+        $LastName = $request->lastName;
+        $MiddleName = $request->MiddleName;
 
 
 
@@ -91,19 +97,10 @@ class FormController extends Controller
         $BankName = 'Липецкое отделение №8593 ПАО Сбербанк г.Липецк';
         $BIC= '044206604';
         $CorrespAcc = '30101810800000000604';
-        $Purpose = 'Взносы СНТ';
+
         $PayeeINN='481300308';
 
-        $namesnt = $request['namesnt'];
 
-
-
-
-
-
-        // Теперь $totalSum содержит общую сумму выбранных платежей
-
-        // Далее вы можете делать что-то с этой суммой, например, выводить на экран или использовать в своей логике
 
         $g = new Gost();
         $g->Name = 'СНТ Заря-2';
@@ -111,9 +108,16 @@ class FormController extends Controller
         $g->BankName = 'Липецкое отделение №8593 ПАО Сбербанк г.Липецк';
         $g->BIC = '044206604';
         $g->CorrespAcc = '30101810800000000604';
-        $g->Purpose = 'Взносы СНТ';
+
         $g->Sum = $sum;
         $g->PayeeINN='4813003083';
+
+        $g->LastName = $LastName;
+        $g->FirstName =$Firstname;
+        $g->MiddleName =$MiddleName;
+        $g->PersAcc= $numbersnt; //номер участка
+        $g->Purpose=$numbersnt; //назначение платежа
+
         $g->validate();
         $g->render("qr.png");
         sleep(1);
