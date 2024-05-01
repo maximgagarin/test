@@ -35,6 +35,8 @@ class FormController extends Controller
     public function check()
     {
 
+
+
         $data = \request();
         $Name = $data['Name'];
         $personalAcc = $data['PersonalAcc'];
@@ -70,12 +72,13 @@ class FormController extends Controller
 
     public function submit(Request $request)
     {
-        dd($request);
+
 
         $namesnt = $request->namesnt;
         $numbersnt = $request->numbersnt;
         $Firstname = $request->FirstName;
-        $LastName = $request->lastName;
+        $LastName = $request->LastName;
+
         $MiddleName = $request->MiddleName;
 
 
