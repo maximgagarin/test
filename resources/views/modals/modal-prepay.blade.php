@@ -6,14 +6,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="col-6">
+
+
                     <form class="myForm mb-3" action="{{ route('prepay.add') }}" method="POST">
                         @csrf
-                        <input type="text"  name="sum" placeholder="Введите сумму">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" name="sum" placeholder="Введите сумму">
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary btn-sm mb-3" type="submit">Добавить аванс</button>
+                            </div>
+                        </div>
                         <input type="hidden"  name="saldo" value="приход" placeholder="приход">
                         <input type="hidden"  name="areas_id" value="{{$id->id}}" placeholder="">
-                        <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Добавить аванс</button>
                     </form>
+
                     <form class="myForm mt-3" action="{{ route('prepay', $id->id) }}" method="POST">
                         @csrf
                         <input type="hidden" value="{{$prepayActual}}" name="value">
@@ -45,15 +53,16 @@
                         <button class="btn btn-outline-primary btn-sm mb-3" type="submit">Списать аванс на благоуст</button>
                     </form>
 
-                </div>
 
                 <div class="col-6">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">сумма</th>
-                            <th scope="col">дата</th>
-                            <th scope="col">приход</th>
+                            <th>сумма</th>
+                            <th>дата</th>
+                            <th>вид</th>
+                            <th>тип</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -62,6 +71,7 @@
                                 <td> {{number_format($count->sum,2,'.','')}}</td>
                                 <td> {{$count->date}}</td>
                                 <td> {{$count->saldo}}</td>
+                                <td> {{$count->type}}</td>
                                 <td>
                                     <form action="{{ route('prepay.delete', $count->id) }}" method="POST">
                                         @csrf
@@ -77,10 +87,11 @@
                 </div>
             </div>
             </div>
-        </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
         </div>
+
+    </div>
 
     </div>
 

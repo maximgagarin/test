@@ -32,6 +32,7 @@ class PrepayController extends Controller
             'saldo' => '',
         ]);
 
+        $data['date'] = now();
 
         Prepay::create($data);
 
@@ -91,7 +92,8 @@ class PrepayController extends Controller
                         'sum' => $remainingSumm,
                         'areas_id' =>$id,
                         'date' => now(),
-                        'saldo' => 'расход'
+                        'saldo' => 'расход',
+                        'type' => $type,
                     ]
                 );
                 Payment::where('id', $paymentId)->update(['status' => 'оплачен']);
@@ -108,7 +110,8 @@ class PrepayController extends Controller
                         'sum' => $value,
                         'areas_id' =>$id,
                         'date' => now(),
-                        'saldo' => 'расход'
+                        'saldo' => 'расход',
+                        'type' => $type,
                     ]
                 );
                 $value = 0;

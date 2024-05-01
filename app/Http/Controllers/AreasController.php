@@ -67,7 +67,7 @@ class AreasController extends Controller
         $area->update($data);
 
         // Перенаправляемся на панель управления с передачей id
-        return redirect()->route('dashboard', compact('id'));
+        return redirect()->route('dashboard', compact('id'))->with('success', 'Сохранено');
     }
     public function create()
     {
