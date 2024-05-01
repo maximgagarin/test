@@ -90,7 +90,7 @@
             @foreach($paginator as $result)
                 <tr class="tr-link" onclick="window.location='{{ route('dashboard', $result->id) }}';">
                     <td> {{$result->number}}</td>
-                    <td> {{$result->name}}</td>
+                    <td>{{$result->FirstName}} {{$result->LastName}} {{$result->MiddleName}}</td>
 
 {{--                    <td>{{number_format( $result->total_payments_sum,2,'.','')}}р.</td>--}}
 {{--                    <td> {{number_format($result->total_payment_movs_sum,2,'.','')}}р.</td>--}}

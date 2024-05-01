@@ -142,7 +142,8 @@ class IncomingController extends Controller
 
             $results = Incoming::leftJoin('areas', 'areas.id', '=', 'incomings.areas_id')
                 ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
-                    'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number','areas.name')
+                    'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road',
+                    'incomings.camera', 'incomings.areas_id', 'areas.number','areas.FirstName', 'areas.LastName', 'areas.MiddleName')
                 ->whereBetween('incomings.date', [$startDate, $endDate])
 
                 ->get();
@@ -154,7 +155,8 @@ class IncomingController extends Controller
 
         $results = Incoming::leftJoin('areas', 'areas.id', '=', 'incomings.areas_id')
             ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
-                'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number', 'areas.name')
+                'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number',
+                'areas.FirstName', 'areas.LastName', 'areas.MiddleName')
             ->whereDate('incomings.date', $date)
 
             ->get();
@@ -201,7 +203,8 @@ class IncomingController extends Controller
 
         $results = Incoming::leftJoin('areas', 'areas.id', '=', 'incomings.areas_id')
             ->select('incomings.created_at', 'incomings.date', 'incomings.sum_incoming', 'incomings.sum_left', 'incomings.sum_paid',
-                'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number','areas.name')
+                'incomings.svet', 'incomings.chvznos', 'incomings.trash', 'incomings.road', 'incomings.camera', 'incomings.areas_id', 'areas.number',
+                'areas.FirstName', 'areas.LastName', 'areas.MiddleName')
             ->whereBetween('incomings.date', [$startDate, $endDatePlus])
             ->orderby('incomings.date')
             ->get();

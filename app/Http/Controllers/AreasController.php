@@ -41,12 +41,14 @@ class AreasController extends Controller
         // Получаем данные из запроса и валидируем их
         $data = request()->validate([
             'number' => ['string'],
-            'name' => '',
             'address' => '',
             'telephone' => '',
             'square' => ['numeric'],
             'id' => ['numeric'],
             'test1' => ['string'], // Добавлено для валидации test1
+            'LastName' => '',
+            'FirstName' => '',
+            'MiddleName' => ''
         ]);
 
         // Извлекаем значение test1 и удаляем его из массива данных
@@ -73,25 +75,20 @@ class AreasController extends Controller
     }
 
     public function store()
+
     {
+
         $data = request()->validate([
             'number' => ['string'],
-//            'name' => ['string'],
-//            'address' => ['string'],
-//            'telephone' => ['string'],
+            'address' => '',
+            'telephone' => '',
             'square' => ['numeric'],
-
+            'LastName' => '',
+            'FirstName' => '',
+            'MiddleName' => ''
         ]);
-        $data['balance'] = 0;
-
-//        $data = [
-//            'number' => \request('number'),
-//            'name' => \request('name'),
-//            'address' => \request('address'),
-//            'telephone' => \request('telephone'),
-//            'square' => \request('square'),
-//            'balance' => 0,
-//        ]   ;
+        $data['debt'] = 0;
+        $data['area_status'] = 1;
         Area::create($data);
         return redirect()->route('main')->with('success', 'Сохранено');
     }

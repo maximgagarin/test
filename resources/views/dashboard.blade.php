@@ -90,8 +90,16 @@
                         <td>{{$id->number}}</td>
                     </tr>
                     <tr>
-                        <td>Владелец</td>
-                        <td>{{$id->name}}</td>
+                        <td>Имя</td>
+                        <td>{{$id->FirstName}} </td>
+                    </tr>
+                    <tr>
+                        <td>Фамилия</td>
+                        <td>{{$id->LastName}} </td>
+                    </tr>
+                    <tr>
+                        <td>Отчество</td>
+                        <td>{{$id->MiddleName}} </td>
                     </tr>
                     <tr>
                         <td>Адрес</td>

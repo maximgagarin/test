@@ -60,7 +60,7 @@
                 <td>{{number_format($count->road,2,'.','')}}</td>         <?php $sum7 += $count->road; ?>
                 <td>{{number_format($count->camera,2,'.','')}} </td>       <?php $sum8 += $count->camera; ?>
                 <td>{{$count->number}} </td>
-                <td>{{$count->name}} </td>
+                <td>{{$count->FirstName}} {{$count->LastName}} {{$count->MiddleName}}</td>
             </tr>
         @endforeach
         <tr class="text-danger ">

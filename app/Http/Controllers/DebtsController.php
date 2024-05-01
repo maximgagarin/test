@@ -18,7 +18,9 @@ class DebtsController extends Controller
         SELECT
             areas.id,
             areas.number,
-            areas.name,
+            areas.FirstName,
+            areas.LastName,
+            areas.MiddleName,
 
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
@@ -70,9 +72,11 @@ class DebtsController extends Controller
 
             $query = "
         SELECT
-            areas.id,
+          areas.id,
             areas.number,
-            areas.name,
+            areas.FirstName,
+            areas.LastName,
+            areas.MiddleName,
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments
@@ -179,9 +183,11 @@ class DebtsController extends Controller
 
             $query = "
         SELECT
-            areas.id,
+         areas.id,
             areas.number,
-            areas.name,
+            areas.FirstName,
+            areas.LastName,
+            areas.MiddleName,
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments
@@ -205,9 +211,11 @@ class DebtsController extends Controller
 
         $query = "
         SELECT
-            areas.id,
+             areas.id,
             areas.number,
-            areas.name,
+            areas.FirstName,
+            areas.LastName,
+            areas.MiddleName,
             (
                 SELECT COALESCE(SUM(payments.sum), 0)
                 FROM payments

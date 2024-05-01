@@ -30,8 +30,16 @@
                             <input type="text" class="form-control" name="number" value="{{$id->number}}" >
                         </div>
                         <div class="mb-3">
-                            <label>Собственник</label>
-                            <input type="text" class="form-control" name="name" value="{{$id->name}}" >
+                            <label>Имя</label>
+                            <input type="text" class="form-control" name="FirstName" value="{{$id->FirstName}}" >
+                        </div>
+                        <div class="mb-3">
+                            <label>Фамилия</label>
+                            <input type="text" class="form-control" name="LastName" value="{{$id->LastName}}" >
+                        </div>
+                        <div class="mb-3">
+                            <label>Отчество</label>
+                            <input type="text" class="form-control" name="MiddleName" value="{{$id->MiddleName}}" >
                         </div>
                         <div class="mb-3">
                             <label>Адрес собственника</label>

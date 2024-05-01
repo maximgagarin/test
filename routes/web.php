@@ -60,7 +60,7 @@ Route::get('Debts3', 'DebtsController@index3')->name('debts3') ;
 Route::post('Debtsprint', 'DebtsController@print')->name('debts.print') ;
 
 Route::post('Areas/comment', 'AreasController@comment')->name('areas.comment') ; //обновление комментария
-Route::get('Areas/update/{id}', 'AreasController@update')->name('areas.update') ; //страница обновление участка
+//Route::get('Areas/update/{id}', 'AreasController@update')->name('areas.update') ; //страница обновление участка
 Route::get('Areas/new', 'AreasController@new')->name('areas.new') ; //новый владелец
 Route::post('Area/update', 'AreasController@update2')->name('area.update') ; //обновление участка
 Route::delete('/paymentmovs/{id}', 'PaymentmovsController@destroy')->name('payment_mov.delete');

@@ -22,8 +22,16 @@
             <p style="font-size:12px">Без пробелов, например: 2массив2линия34</p>
         </div>
         <div class="mb-3">
-            <label>Собственник</label>
-            <input type="text" class="form-control" name="name" >
+            <label>Имя</label>
+            <input type="text" class="form-control" name="FirstName" >
+        </div>
+        <div class="mb-3">
+            <label>Фамилия</label>
+            <input type="text" class="form-control" name="LastName" >
+        </div>
+        <div class="mb-3">
+            <label>Отчество</label>
+            <input type="text" class="form-control" name="MiddleName" >
         </div>
         <div class="mb-3">
             <label>Адрес собственника</label>
