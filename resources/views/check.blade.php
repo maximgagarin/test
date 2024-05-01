@@ -88,7 +88,9 @@
         <tbody>
         @foreach($selectedPayments as $count)
             <tr>
-                <td>{{ $count->type }}</td>
+                <td>
+
+                    {{ $count->type=="чвзнос"? 'Членский взнос' : $count->type}}</td>
                 <td>{{number_format($count->sum,2,'.','')}}р.</td>
                 <td>{{ \Carbon\Carbon::parse($count->date)->format('Y') }}</td>
             </tr>

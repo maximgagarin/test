@@ -63,9 +63,9 @@
     <div class="container">
 
 <!-- участок -->
-        <div class="row mb-4 mt-4">
+        <div class="row mb-3 mt-4 justify-content-between">
             <div class="col-lg-3 col-sm-6 md-3">
-                <table class="table table-bordered ">
+                <table class="table table-bordered table-sm " style="font-size: 15px">
                     <tr>
                         <td colspan="2" class="bg-light"><h6>Участок</h6>
                             <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal"
@@ -76,12 +76,6 @@
                                     data-bs-target="#PrepayModal">
                                 Аванс: <strong>{{$prepayActual}}р</strong>
                             </button>
-{{--                            <form action="{{route('areas.new', $id->id)}}">--}}
-{{--                                <input type="hidden" name="number" value="{{$id->number}}">--}}
-{{--                                <input type="hidden" name="square" value="{{$id->square}}">--}}
-{{--                                <input type="hidden" id="area-debt" name="debt" value="">--}}
-{{--                                <button class="btn bnt-sm" type="submit">Создать нового владельца</button>--}}
-{{--                            </form>--}}
                             <br>
                         </td>
                     </tr>
@@ -103,7 +97,7 @@
                     </tr>
                     <tr>
                         <td>Адрес</td>
-                        <td>{{$id->address}}</td>
+                        <td class="text-wrap">{{$id->address}}</td>
                     </tr>
                     <tr>
                         <td>Телефон</td>
@@ -118,7 +112,7 @@
 
 
             <!-- все долги -->
-            <div class=" col-lg-3 col-sm-6 " >
+            <div class=" col-lg-2 col-sm-6 table-sm" >
 
                 <x-tablealldebts :id="$id"/>
                 <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#AllPaymentsModal">
