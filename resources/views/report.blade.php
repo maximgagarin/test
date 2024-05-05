@@ -70,6 +70,12 @@
                 <td>{{number_format($PaidBlag,2,'.',' ')}}</td>
             </tr>
             <tr>
+                <td>переплата</td>
+                <td></td>
+                <td>{{$summPrepay}} </td>
+
+            </tr>
+            <tr>
                 <td><strong>Итого</strong></td>
                 <td><strong>{{number_format($SummDebt, 2, ',', ' ')}}</strong></td>
                 <td><strong>{{number_format($SummPaid, 2, ',', ' ')}}</strong></td>
@@ -119,6 +125,10 @@
             <div class="mb-3">
                 <input type="hidden" class="form-control" name="SummPaid" value="{{$SummPaid}}">
             </div>
+            <div class="mb-3">
+                <input type="hidden" class="form-control" name="summPrepay" value="{{$summPrepay}}">
+            </div>
+
 
             @if(isset($date1))
                 <div class="mb-3">

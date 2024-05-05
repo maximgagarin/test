@@ -54,6 +54,12 @@
             <td>{{number_format($PaidBlag,2,'.',' ')}}</td>
         </tr>
         <tr>
+            <td>переплата</td>
+            <td></td>
+            <td>{{$summPrepay}} </td>
+
+        </tr>
+        <tr>
             <td><strong>Итого</strong></td>
             <td><strong>{{number_format($SummDebt, 2, ',', ' ')}}</strong></td>
             <td><strong>{{number_format($SummPaid, 2, ',', ' ')}}</strong></td>

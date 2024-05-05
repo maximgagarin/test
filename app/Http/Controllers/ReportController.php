@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\Incoming;
 use App\Models\Payment;
 use App\Models\payment_mov;
 use Illuminate\Http\Request;
@@ -37,9 +38,11 @@ class ReportController extends Controller
        $SummPaid=0;
        $SummDebt=0;
 
+       $summPrepay = 0;
+
 
        return view('report', compact('sumPaid','sumDebt', 'DebtChvznos',
-           'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag', 'SummPaid', 'SummDebt'));
+           'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag', 'SummPaid', 'SummDebt', 'summPrepay'));
    }
 
    public function calc()
@@ -56,7 +59,7 @@ class ReportController extends Controller
         $sumPaid = number_format($Paid, 2, ',', ' ');
         $Debt =   Payment::query()->sum('sum');
 
-
+        $summPrepay = Incoming::sum('sum_left');
 
 
 
@@ -84,7 +87,7 @@ class ReportController extends Controller
 
 
 
-        $SummPaid = $PaidChvznos + $PaidBlag +$PaidRoad +$PaidTrash +$PaidSvet;
+        $SummPaid = $PaidChvznos + $PaidBlag +$PaidRoad +$PaidTrash +$PaidSvet + $summPrepay;
         $SummDebt =  $DebtChvznos + $DebtBlag + $DebtRoad + $DebtTrash + $DebtSvet;
 
 
@@ -94,7 +97,7 @@ class ReportController extends Controller
        $sumDebt = number_format($Total, 2, ',', ' ');
 
         return view('report', compact('sumPaid', 'sumDebt', 'date1', 'date2', 'DebtChvznos',
-            'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag' ,'SummPaid', 'SummDebt'));
+            'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag' ,'SummPaid', 'SummDebt', 'summPrepay'));
    }
 
    public function print()
@@ -120,6 +123,8 @@ class ReportController extends Controller
        $SummPaid=\request('SummPaid');
        $SummDebt=\request('SummDebt');
 
+       $summPrepay=\request('summPrepay');
+
        $date1=\request('date1');
        $date2=\request('date2');
 
@@ -127,7 +132,7 @@ class ReportController extends Controller
 
 
        return view('reportprint', compact( 'date1', 'date2', 'DebtChvznos',
-           'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag' ,'SummPaid', 'SummDebt'));
+           'PaidChvznos', 'DebtSvet' ,'PaidSvet', 'DebtTrash' , 'PaidTrash' , 'DebtRoad' , 'PaidRoad' , 'DebtBlag' , 'PaidBlag' ,'SummPaid', 'SummDebt', 'summPrepay'));
    }
 
 }
