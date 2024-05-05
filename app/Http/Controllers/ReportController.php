@@ -70,7 +70,7 @@ class ReportController extends Controller
 
        //свет
        $DebtSvet =   Payment::where('type', 'энергия')->whereNull('payments.deleted_at')->sum('sum');
-       $PaidSvet = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'энергия')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
+       $PaidSvet = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'энергия')->whereNull('prepays')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
        //мусор
        $DebtTrash = Area::LeftJoin('payments', 'areas.id', '=', 'payments.areas_id')->where('area_status', 1)->where('payments.type', 'мусор')->whereNull('payments.deleted_at')->sum('payments.sum');
