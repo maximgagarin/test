@@ -66,7 +66,7 @@ class ReportController extends Controller
         //чвзнос
        $DebtChvznos = Area::LeftJoin('payments', 'areas.id', '=', 'payments.areas_id')->where('area_status', 1)->where('payments.type', 'чвзнос')->whereNull('payments.deleted_at')->sum('payments.sum');
 
-       $PaidChvznos = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'чвзнос')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
+       $PaidChvznos = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'чвзнос')->whereNull('prepays')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
        //свет
        $DebtSvet =   Payment::where('type', 'энергия')->whereNull('payments.deleted_at')->sum('sum');
@@ -75,15 +75,15 @@ class ReportController extends Controller
        //мусор
        $DebtTrash = Area::LeftJoin('payments', 'areas.id', '=', 'payments.areas_id')->where('area_status', 1)->where('payments.type', 'мусор')->whereNull('payments.deleted_at')->sum('payments.sum');
 
-       $PaidTrash = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'мусор')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
+       $PaidTrash = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'мусор')->whereNull('prepays')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
        //дороги
        $DebtRoad = Area::LeftJoin('payments', 'areas.id', '=', 'payments.areas_id')->where('area_status', 1)->whereNull('payments.deleted_at')->where('payments.type', 'дороги')->sum('payments.sum');
-       $PaidRoad = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'дороги')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
+       $PaidRoad = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'дороги')->whereNull('prepays')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
        //благоустройство
        $DebtBlag = Area::LeftJoin('payments', 'areas.id', '=', 'payments.areas_id')->where('area_status', 1)->whereNull('payments.deleted_at')->where('payments.type', 'благоустройство')->sum('payments.sum');
-       $PaidBlag = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'благоустройство')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
+       $PaidBlag = Payment::leftJoin('payment_movs', 'payments.id', '=', 'payment_movs.payments_id')->where('type', 'благоустройство')->whereNull('prepays')->whereBetween('payment_movs.date', [$date1, $date2])->sum('payment_movs.sum');
 
 
 

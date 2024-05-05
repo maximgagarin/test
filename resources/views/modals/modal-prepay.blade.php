@@ -73,12 +73,16 @@
                                 <td> {{$count->saldo}}</td>
                                 <td> {{$count->type}}</td>
                                 <td>
+                                    @if(isset($count->incoming))
+                                       ---
+                                    @else
                                     <form action="{{ route('prepay.delete', $count->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Удалить</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот платеж?')">Отменить</button>
                                         <input type="hidden" class="form-control" name="areas_id" value="{{$id}} ">
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

@@ -67,15 +67,16 @@
             <tr>
                 <th>дата оплаты</th>
                 <th>всего приход</th>
-                <th>переплата</th>
-                <th>всего оплачено</th>
+                <th>перепл.</th>
+                <th>всего оплач.</th>
                 <th>энергия</th>
                 <th>чвзнос</th>
                 <th>мусор</th>
                 <th>дороги</th>
                 <th>благоуст.</th>
-                <th>учасоток</th>
+                <th>участок</th>
                 <th>владелец</th>
+                <th>доб. в прог.</th>
             </tr>
             </thead>
             <tbody>
@@ -92,6 +93,7 @@
                     <td>{{number_format($count->camera,2,'.','')}} </td>       <?php $sum8 += $count->camera; ?>
                     <td>{{$count->number}} </td>
                     <td>{{$count->FirstName}} {{$count->LastName}} {{$count->MiddleName}}</td>
+                    <td>{{ \Carbon\Carbon::parse($count->created_at)->format('d-m-Y') }}</td>
                 </tr>
             @endforeach
             <tr class="text-danger ">

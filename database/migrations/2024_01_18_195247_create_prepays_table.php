@@ -24,6 +24,7 @@ class CreatePrepaysTable extends Migration
 
             $table->softDeletes();
             $table->string('type')->nullable();
+            $table->integer('payment_movs_id')->nullable();
         });
     }
 

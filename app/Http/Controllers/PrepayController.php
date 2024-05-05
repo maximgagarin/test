@@ -44,7 +44,10 @@ class PrepayController extends Controller
         $prepay = Prepay::find($id);
 
         if ($prepay) {
-            $prepay->delete();
+            $idPaymentMov =$prepay->payment_movs_id;
+
+                $prepay->delete();
+            payment_mov::where('id', $idPaymentMov)->delete();
             return redirect()->route('dashboard', ['id' => $prepay->areas_id])->with('success', 'Запись успешно удалена.');
         } else {
             return redirect()->route('dashboard')->with('error', 'Запись не найдена.');
@@ -82,38 +85,45 @@ class PrepayController extends Controller
             if ($value >= $remainingSumm) {
                 // Если в переменной $value достаточно денег, чтобы оплатить оставшуюся сумму
                 $value -= $remainingSumm; // Вычитаем сумму платежа из переменной $value
-                payment_mov::create([
+                $paymentMov = payment_mov::create([
                     'payments_id' => $paymentId,
                     'sum' => $remainingSumm,
                     'date' => now(),
                     'prepays' => 'оплачено_авансем'
                 ]);
+
+                $newlyCreatedId = $paymentMov->id;
                 Prepay::create([
                         'sum' => $remainingSumm,
                         'areas_id' =>$id,
                         'date' => now(),
                         'saldo' => 'расход',
                         'type' => $type,
+                        'payment_movs_id' => $newlyCreatedId,
                     ]
                 );
+
                 Payment::where('id', $paymentId)->update(['status' => 'оплачен']);
                 continue;
             }
             else{
-                payment_mov::create([
+                $paymentMov2 =  payment_mov::create([
                     'payments_id' => $paymentId,
                     'sum' => $value,
                     'date' => now(), // Use Laravel's now() helper to get the current date and time
                     'prepays' => 'оплачено_авансем'
                 ]);
+                $newlyCreatedId2 = $paymentMov2->id;
                 Prepay::create([
                         'sum' => $value,
                         'areas_id' =>$id,
                         'date' => now(),
                         'saldo' => 'расход',
                         'type' => $type,
+                        'payment_movs_id' => $newlyCreatedId2,
                     ]
                 );
+
                 $value = 0;
             }
         }
