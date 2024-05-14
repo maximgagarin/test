@@ -53,9 +53,17 @@ class DashboardController extends Controller
             ->whereNull('payments.deleted_at')
             ->get();
 
+        $AllPayments2 = Payment::withSum('payment_mov as sumpaid', 'sum')
+            ->where('areas_id', $id->id)
+
+            //    ->where('status', 'неоплачен')
+            ->get();
 
 
 
-        return view('dashboard', compact('id' , 'Prepays', 'AllPayments', 'PaymentTable', 'counts', 'comment', 'incoming', 'payments',  'tariffs' , 'prepayActual', 'lastValue', 'lastValuedate'));
+
+
+
+        return view('dashboard', compact('id' , 'Prepays', 'AllPayments', 'AllPayments2', 'PaymentTable', 'counts', 'comment', 'incoming', 'payments',  'tariffs' , 'prepayActual', 'lastValue', 'lastValuedate'));
     }
 }

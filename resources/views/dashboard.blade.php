@@ -47,6 +47,7 @@
     @include('modals.modal-payments-video')
     @include('modals.modal-counter')
     @include('modals.modal-allpayments')
+    @include('modals.modal-allpayments2')
     @include('modals.modal-money-come')
     @include('modals.modal-addsvet')
 
@@ -117,6 +118,9 @@
                 <x-tablealldebts :id="$id"/>
                 <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#AllPaymentsModal">
                     Квитанция
+                </button>
+                <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#AllPaymentsModal2">
+                    Все счета
                 </button>
             </div>
 
